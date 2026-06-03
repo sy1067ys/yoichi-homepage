@@ -41,7 +41,7 @@ function YagasuriBg({ className = "" }) {
 }
 
 function YoichiMark({ size = 48, dark = false }) {
-  return <img src={yoichiLogo} alt="YOICHI" width={size} height={size} style={{ objectFit:"contain", display:"block", mixBlendMode: dark ? "screen" : "multiply" }} />;
+  return <img src={yoichiLogo} alt="YOICHI" width={size} height={size} style={{ objectFit:"contain", display:"block" }} />;
 }
 
 function SectionHeading({ en, ja }) {

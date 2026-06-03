@@ -120,6 +120,7 @@ function PortfolioPage({ onBack }) {
 
 const navLinks = [
   { label:"サービス", id:"services" },
+  { label:"お仕事", id:"works_detail" },
   { label:"実績", id:"works" },
   { label:"会社概要", id:"about" },
   { label:"由来", id:"origin" },
@@ -228,6 +229,58 @@ export default function App() {
         </div>
       </section>
 
+      {/* ── YOICHIのお仕事 ── */}
+      <section id="works_detail" style={{ padding:"5rem 1.5rem", background:C.white, position:"relative", overflow:"hidden" }}>
+        <div style={{ position:"absolute", top:0, left:0, right:0, height:1, background:`linear-gradient(to right,transparent,${C.accent}55,transparent)` }} />
+        <div style={{ position:"absolute", top:10, right:10, width:200, height:200, color:C.primary, opacity:0.06 }}><YagasuriBg /></div>
+        <div style={{ maxWidth:1200, margin:"0 auto", position:"relative", zIndex:1 }}>
+          <SectionHeading en="WHAT WE DO" ja="YOICHIのお仕事" />
+          <div style={{ maxWidth:860, margin:"0 auto" }}>
+            <p style={{ textAlign:"center", color:"#555", lineHeight:1.9, marginBottom:"3rem", fontSize:"1rem" }}>
+              デザインのお仕事をメインにしています。
+            </p>
+            {/* お仕事グリッド */}
+            <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(200px,1fr))", gap:"1.2rem", marginBottom:"3rem" }}>
+              {[
+                { icon:"🖼️", label:"バナー作成" },
+                { icon:"💼", label:"名刺作成" },
+                { icon:"✏️", label:"ロゴ作成" },
+                { icon:"📦", label:"パッケージデザイン" },
+                { icon:"🖥️", label:"UI/UXデザイン" },
+                { icon:"🌐", label:"ウェブサイト作成" },
+                { icon:"📱", label:"アプリケーション作成" },
+                { icon:"📄", label:"テンプレート作成" },
+                { icon:"🎁", label:"雑貨デザイン" },
+                { icon:"📐", label:"レイアウトデザイン" },
+              ].map((item, i) => (
+                <div key={i} style={{ background:C.bg, border:`1px solid ${C.border}`, padding:"1.2rem 1rem", display:"flex", alignItems:"center", gap:"0.75rem", transition:"all 0.2s", position:"relative", overflow:"hidden" }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor=C.accent; e.currentTarget.style.background=C.white; e.currentTarget.style.transform="translateY(-2px)"; e.currentTarget.style.boxShadow="0 6px 20px rgba(0,0,0,0.08)"; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor=C.border; e.currentTarget.style.background=C.bg; e.currentTarget.style.transform="none"; e.currentTarget.style.boxShadow="none"; }}
+                >
+                  <span style={{ fontSize:"1.5rem" }}>{item.icon}</span>
+                  <span style={{ fontSize:"0.9rem", color:C.dark, letterSpacing:"0.05em", fontFamily:"serif" }}>{item.label}</span>
+                </div>
+              ))}
+            </div>
+            {/* その他ご相談 */}
+            <div style={{ background:C.primary, padding:"2rem 2.5rem", display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:"1rem", position:"relative", overflow:"hidden" }}>
+              <div style={{ position:"absolute", inset:0, color:"#fff", opacity:0.08 }}><YagasuriBg /></div>
+              <div style={{ position:"relative" }}>
+                <p style={{ color:"#fff", fontSize:"1.1rem", fontFamily:"serif", fontWeight:400, letterSpacing:"0.08em" }}>その他、気軽にご相談ください‼</p>
+                <p style={{ color:"rgba(255,255,255,0.75)", fontSize:"0.85rem", marginTop:"0.3rem" }}>上記以外のご要望もお気軽にどうぞ</p>
+              </div>
+              <button
+                onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" })}
+                style={{ padding:"0.75rem 1.8rem", background:"#fff", color:C.primary, border:"none", cursor:"pointer", fontSize:"0.9rem", letterSpacing:"0.12em", fontFamily:"inherit", fontWeight:700, transition:"all 0.2s", position:"relative", flexShrink:0 }}
+                onMouseEnter={e => { e.currentTarget.style.background=C.bg; }}
+                onMouseLeave={e => { e.currentTarget.style.background="#fff"; }}
+              >お問い合わせはこちら →</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── WORKS ── */}
       <section id="works" style={{ padding:"5rem 1.5rem", background:C.bg, position:"relative", overflow:"hidden" }}>
         <div style={{ position:"absolute", top:0, left:0, right:0, height:1, background:`linear-gradient(to right,transparent,${C.accent}55,transparent)` }} />
         <div style={{ maxWidth:1200, margin:"0 auto", position:"relative", zIndex:1 }}>
@@ -409,7 +462,7 @@ export default function App() {
             ))}
           </div>
           <div style={{ width:64, height:1, background:C.accent, opacity:0.4 }} />
-          <p style={{ fontSize:"0.8rem", color:"#6b7280", letterSpacing:"0.12em" }}>© 令和八年 YOICHI</p>
+          <p style={{ fontSize:"0.8rem", color:"#6b7280", letterSpacing:"0.12em" }}>© 令和八年 株式会社YOICHI</p>
         </div>
       </footer>
 

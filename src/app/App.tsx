@@ -1,5 +1,6 @@
 import { useState } from "react";
 import yoichiLogo from "../assets/yoichi-logo.png";
+import meishiImg from "../assets/meishi.png";
 
 const IconArrowRight = () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>);
 const IconArrowLeft = () => (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>);
@@ -121,6 +122,7 @@ function PortfolioPage({ onBack }) {
 const navLinks = [
   { label:"サービス", id:"services" },
   { label:"お仕事", id:"works_detail" },
+  { label:"名刺", id:"meishi" },
   { label:"実績", id:"works" },
   { label:"会社概要", id:"about" },
   { label:"由来", id:"origin" },
@@ -275,6 +277,64 @@ export default function App() {
                 onMouseEnter={e => { e.currentTarget.style.background=C.bg; }}
                 onMouseLeave={e => { e.currentTarget.style.background="#fff"; }}
               >お問い合わせはこちら →</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 名刺作成サンプル ── */}
+      <section id="meishi" style={{ padding:"5rem 1.5rem", background:C.dark, position:"relative", overflow:"hidden" }}>
+        <div style={{ position:"absolute", top:0, left:0, right:0, height:1, background:`linear-gradient(to right,transparent,${C.accent},transparent)` }} />
+        <div style={{ position:"absolute", inset:0, color:C.primary, opacity:0.08 }}><YagasuriBg /></div>
+        <div style={{ maxWidth:1100, margin:"0 auto", position:"relative", zIndex:1 }}>
+          <SectionHeading en="BUSINESS CARD" ja="名刺作成" />
+
+          <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(300px,1fr))", gap:"4rem", alignItems:"center" }}>
+
+            {/* 左：画像 */}
+            <div style={{ position:"relative" }}>
+              <div style={{ position:"absolute", top:-12, left:-12, right:12, bottom:12, border:`2px solid ${C.accent}`, opacity:0.4 }} />
+              <img
+                src={meishiImg}
+                alt="こだわりの名刺をYOICHIで"
+                style={{ width:"100%", display:"block", position:"relative" }}
+              />
+            </div>
+
+            {/* 右：テキスト */}
+            <div>
+              <p style={{ fontSize:"0.75rem", color:C.accent, letterSpacing:"0.3em", marginBottom:"1rem" }}>BUSINESS CARD DESIGN</p>
+              <h3 style={{ fontSize:"clamp(1.6rem,3vw,2.4rem)", fontFamily:"serif", fontWeight:400, color:C.bg, lineHeight:1.7, marginBottom:"1.5rem" }}>
+                あなたの想いを<br />この一枚に
+              </h3>
+              <div style={{ width:48, height:3, background:C.accent, marginBottom:"1.5rem" }} />
+              <p style={{ color:"rgba(255,255,255,0.8)", lineHeight:2, fontSize:"0.95rem", marginBottom:"2rem" }}>
+                名刺はあなたの第一印象を決める大切なツールです。YOICHIでは、お客様のブランドや想いを丁寧にヒアリングし、こだわりの一枚を制作いたします。
+              </p>
+
+              {/* 特徴リスト */}
+              <div style={{ display:"flex", flexDirection:"column", gap:"0.75rem", marginBottom:"2rem" }}>
+                {[
+                  "オリジナルデザインで唯一無二の名刺",
+                  "用途・業種に合わせたレイアウト提案",
+                  "印刷データの納品まで対応",
+                  "小ロットからでもご相談可能",
+                ].map((text, i) => (
+                  <div key={i} style={{ display:"flex", alignItems:"center", gap:"0.75rem" }}>
+                    <div style={{ width:20, height:20, background:C.accent, borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <span style={{ color:"rgba(255,255,255,0.85)", fontSize:"0.9rem" }}>{text}</span>
+                  </div>
+                ))}
+              </div>
+
+              <button
+                onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" })}
+                style={{ padding:"1rem 2rem", background:C.accent, color:"#fff", border:"none", cursor:"pointer", fontSize:"0.95rem", letterSpacing:"0.12em", fontFamily:"inherit", transition:"background 0.2s", display:"inline-flex", alignItems:"center", gap:"0.5rem" }}
+                onMouseEnter={e => e.currentTarget.style.background=C.deep}
+                onMouseLeave={e => e.currentTarget.style.background=C.accent}
+              >名刺制作のご相談はこちら →</button>
             </div>
           </div>
         </div>

@@ -190,7 +190,7 @@ export default function App() {
         <div style={{ maxWidth:1200, margin:"0 auto", padding:"8rem 1.5rem 5rem", position:"relative", zIndex:1, width:"100%" }}>
           <div style={{ maxWidth:780 }}>
             <div className="hero-lockup" style={{ display:"flex", alignItems:"center", gap:"1.5rem", marginBottom:"3rem" }}>
-              <YoichiMark size={110} />
+              <YoichiMark size={180} />
               <div>
                 <h1 style={{ fontSize:"clamp(2.5rem,6vw,4.5rem)", letterSpacing:"0.2em", fontWeight:700, marginBottom:"0.4rem", lineHeight:1 }}>YOICHI</h1>
                 <div style={{ height:4, width:96, background:C.accent }} />

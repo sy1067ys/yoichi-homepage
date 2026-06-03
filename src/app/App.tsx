@@ -40,8 +40,8 @@ function YagasuriBg({ className = "" }) {
   );
 }
 
-function YoichiMark({ size = 48 }) {
-  return <img src={yoichiLogo} alt="YOICHI" width={size} height={size} style={{ objectFit:"contain", display:"block" }} />;
+function YoichiMark({ size = 48, dark = false }) {
+  return <img src={yoichiLogo} alt="YOICHI" width={size} height={size} style={{ objectFit:"contain", display:"block", mixBlendMode: dark ? "screen" : "multiply" }} />;
 }
 
 function SectionHeading({ en, ja }) {
@@ -379,7 +379,7 @@ export default function App() {
               <div style={{ position:"absolute", top:-16, left:-16, right:16, bottom:16, border:`2px solid ${C.accent}`, opacity:0.25 }} />
               <div style={{ position:"relative", background:C.primary, padding:"4rem", display:"flex", alignItems:"center", justifyContent:"center", aspectRatio:"1" }}>
                 <div style={{ position:"absolute", inset:0, color:"#fff", opacity:0.1 }}><YagasuriBg /></div>
-                <YoichiMark size={160} />
+                <YoichiMark size={160} dark={true} />
               </div>
             </div>
           </div>
@@ -507,7 +507,7 @@ export default function App() {
         <div style={{ position:"absolute", top:0, left:0, right:0, height:1, background:`linear-gradient(to right,transparent,${C.accent},transparent)` }} />
         <div style={{ position:"absolute", inset:0, color:C.primary, opacity:0.1 }}><YagasuriBg /></div>
         <div style={{ maxWidth:1200, margin:"0 auto", position:"relative", display:"flex", flexDirection:"column", alignItems:"center", gap:"1.5rem" }}>
-          <div style={{ display:"flex", alignItems:"center", gap:"1rem" }}><YoichiMark size={52} /><span style={{ fontSize:"1.8rem", letterSpacing:"0.2em", fontWeight:700 }}>YOICHI</span></div>
+          <div style={{ display:"flex", alignItems:"center", gap:"1rem" }}><YoichiMark size={52} dark={true} /><span style={{ fontSize:"1.8rem", letterSpacing:"0.2em", fontWeight:700 }}>YOICHI</span></div>
           <p style={{ fontSize:"0.85rem", color:"#9ca3af", letterSpacing:"0.05em" }}>想いをカタチに、笑顔をそばに、繋がりを大切に</p>
           <div className="footer-links" style={{ display:"flex", gap:"2rem", flexWrap:"wrap", justifyContent:"center" }}>
             {[...navLinks,{ label:"Portfolio", id:"portfolio" },{ label:"お問い合わせ", id:"contact" }].map(l => (
@@ -522,7 +522,7 @@ export default function App() {
             ))}
           </div>
           <div style={{ width:64, height:1, background:C.accent, opacity:0.4 }} />
-          <p style={{ fontSize:"0.8rem", color:"#6b7280", letterSpacing:"0.12em" }}>© 令和八年 YOICHI</p>
+          <p style={{ fontSize:"0.8rem", color:"#6b7280", letterSpacing:"0.12em" }}>© 令和八年 株式会社YOICHI</p>
         </div>
       </footer>
 

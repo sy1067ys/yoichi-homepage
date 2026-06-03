@@ -203,7 +203,7 @@ export default function App() {
               </div>
             </div>
             <div style={{ paddingLeft:"1.2rem", marginBottom:"2.5rem" }}>
-              <p style={{ fontSize:"1rem", color:"#666", lineHeight:1.9 }}>伝統と革新が調和するデザインで、<br />お客様の想いを形にいたします。</p>
+              <p style={{ fontSize:"1rem", color:"#666", lineHeight:1.9 }}>すべての製品に心を込めてお届け</p>
             </div>
             <div className="cta-group" style={{ display:"flex", flexWrap:"wrap", gap:"1rem", paddingLeft:"1.2rem" }}>
               <button onClick={() => scrollTo("contact")} style={{ padding:"1rem 2rem", background:C.primary, color:"#fff", border:"none", cursor:"pointer", display:"flex", alignItems:"center", gap:"0.5rem", letterSpacing:"0.12em", fontSize:"0.95rem", fontFamily:"inherit", transition:"background 0.2s", boxShadow:"0 4px 20px rgba(139,79,71,0.3)" }} onMouseEnter={e => e.currentTarget.style.background=C.deep} onMouseLeave={e => e.currentTarget.style.background=C.primary}>ご相談はこちら <IconArrowRight /></button>

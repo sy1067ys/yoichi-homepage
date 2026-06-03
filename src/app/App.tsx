@@ -244,23 +244,26 @@ export default function App() {
             {/* お仕事グリッド */}
             <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(200px,1fr))", gap:"1.2rem", marginBottom:"3rem" }}>
               {[
-                { icon:"🖼️", label:"バナー作成" },
-                { icon:"💼", label:"名刺作成" },
-                { icon:"✏️", label:"ロゴ作成" },
-                { icon:"📦", label:"パッケージデザイン" },
-                { icon:"🖥️", label:"UI/UXデザイン" },
-                { icon:"🌐", label:"ウェブサイト作成" },
-                { icon:"📱", label:"アプリケーション作成" },
-                { icon:"📄", label:"テンプレート作成" },
-                { icon:"🎁", label:"雑貨デザイン" },
-                { icon:"📐", label:"レイアウトデザイン" },
+                { icon:"🖼️", label:"バナー作成", link: null },
+                { icon:"💼", label:"名刺作成", link: "meishi" },
+                { icon:"✏️", label:"ロゴ作成", link: null },
+                { icon:"📦", label:"パッケージデザイン", link: null },
+                { icon:"🖥️", label:"UI/UXデザイン", link: null },
+                { icon:"🌐", label:"ウェブサイト作成", link: null },
+                { icon:"📱", label:"アプリケーション作成", link: null },
+                { icon:"📄", label:"テンプレート作成", link: null },
+                { icon:"🎁", label:"雑貨デザイン", link: null },
+                { icon:"📐", label:"レイアウトデザイン", link: null },
               ].map((item, i) => (
-                <div key={i} style={{ background:C.bg, border:`1px solid ${C.border}`, padding:"1.2rem 1rem", display:"flex", alignItems:"center", gap:"0.75rem", transition:"all 0.2s", position:"relative", overflow:"hidden" }}
+                <div key={i}
+                  onClick={() => item.link && document.getElementById(item.link)?.scrollIntoView({ behavior:"smooth" })}
+                  style={{ background:C.bg, border:`1px solid ${item.link ? C.accent : C.border}`, padding:"1.2rem 1rem", display:"flex", alignItems:"center", gap:"0.75rem", transition:"all 0.2s", position:"relative", overflow:"hidden", cursor: item.link ? "pointer" : "default" }}
                   onMouseEnter={e => { e.currentTarget.style.borderColor=C.accent; e.currentTarget.style.background=C.white; e.currentTarget.style.transform="translateY(-2px)"; e.currentTarget.style.boxShadow="0 6px 20px rgba(0,0,0,0.08)"; }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor=C.border; e.currentTarget.style.background=C.bg; e.currentTarget.style.transform="none"; e.currentTarget.style.boxShadow="none"; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor=item.link ? C.accent : C.border; e.currentTarget.style.background=C.bg; e.currentTarget.style.transform="none"; e.currentTarget.style.boxShadow="none"; }}
                 >
                   <span style={{ fontSize:"1.5rem" }}>{item.icon}</span>
-                  <span style={{ fontSize:"0.9rem", color:C.dark, letterSpacing:"0.05em", fontFamily:"serif" }}>{item.label}</span>
+                  <span style={{ fontSize:"0.9rem", color: item.link ? C.accent : C.dark, letterSpacing:"0.05em", fontFamily:"serif", fontWeight: item.link ? 700 : 400 }}>{item.label}</span>
+                  {item.link && <span style={{ marginLeft:"auto", fontSize:"0.75rem", color:C.accent }}>→</span>}
                 </div>
               ))}
             </div>

@@ -409,7 +409,7 @@ export default function App() {
             ))}
           </div>
           <div style={{ width:64, height:1, background:C.accent, opacity:0.4 }} />
-          <p style={{ fontSize:"0.8rem", color:"#6b7280", letterSpacing:"0.12em" }}>© 令和八年 株式会社YOICHI</p>
+          <p style={{ fontSize:"0.8rem", color:"#6b7280", letterSpacing:"0.12em" }}>© 令和八年 YOICHI</p>
         </div>
       </footer>
 

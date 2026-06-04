@@ -3,6 +3,7 @@ import yoichiLogo from "../assets/yoichi-logo.png";
 import meishiImg from "../assets/meishi.png";
 import sakuraBoxImg from "../assets/sakura-box-ad.png";
 import meishiSampleImg from "../assets/meishi-sample.png";
+import samplesHeroImg from "../assets/samples-hero.png";
 
 const IconArrowRight = () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>);
 const IconArrowLeft = () => (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>);
@@ -516,21 +517,16 @@ export default function App() {
           <p style={{ textAlign:"center", color:"#555", marginBottom:"3rem", lineHeight:1.9 }}>YOICHIが制作したデザインのイメージサンプルをご覧ください。</p>
 
           {/* サンプル画像を大きく表示 */}
-          <div style={{ maxWidth:700, margin:"0 auto 3rem", cursor:"pointer", position:"relative" }}
+          <div style={{ maxWidth:900, margin:"0 auto 3rem", cursor:"pointer", position:"relative" }}
             onClick={() => setPage("samples")}
             onMouseEnter={e => { e.currentTarget.style.transform="translateY(-4px)"; e.currentTarget.style.boxShadow="0 16px 48px rgba(0,0,0,0.15)"; }}
             onMouseLeave={e => { e.currentTarget.style.transform="none"; e.currentTarget.style.boxShadow="0 4px 20px rgba(0,0,0,0.1)"; }}
           >
-            <div style={{ position:"absolute", top:-8, left:-8, right:8, bottom:8, border:`2px solid ${C.accent}`, opacity:0.3 }} />
             <img
-              src={meishiSampleImg}
-              alt="シンプルと高級感を両立したデザインの名刺"
+              src={samplesHeroImg}
+              alt="YOICHI デザインサンプル"
               style={{ width:"100%", display:"block", position:"relative", boxShadow:"0 4px 20px rgba(0,0,0,0.1)", transition:"all 0.3s" }}
             />
-            <div style={{ position:"absolute", bottom:0, left:0, right:0, padding:"1.5rem 2rem", background:"linear-gradient(to top,rgba(0,0,0,0.7),transparent)" }}>
-              <p style={{ color:"#fff", fontSize:"1.1rem", fontFamily:"serif", letterSpacing:"0.08em" }}>シンプルと高級感を両立したデザイン</p>
-              <p style={{ color:"rgba(255,255,255,0.7)", fontSize:"0.8rem", marginTop:"0.3rem" }}>名刺デザインサンプル</p>
-            </div>
           </div>
 
           <div style={{ textAlign:"center" }}>

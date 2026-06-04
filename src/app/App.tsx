@@ -10,6 +10,7 @@ const IconPhone = ({ color = "currentColor", size = 20 }) => (<svg width={size} 
 const IconMapPin = ({ color = "currentColor", size = 20 }) => (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>);
 const IconInstagram = ({ color = "currentColor", size = 20 }) => (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>);
 const IconTwitter = ({ color = "currentColor", size = 20 }) => (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>);
+const IconTikTok = ({ color = "currentColor", size = 20 }) => (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>);
 const IconMenu = () => (<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>);
 const IconX = () => (<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>);
 const IconExternalLink = ({ size = 13 }) => (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>);
@@ -552,7 +553,7 @@ export default function App() {
         <div style={{ maxWidth:1200, margin:"0 auto", position:"relative", zIndex:1 }}>
           <SectionHeading en="FOLLOW US" ja="SNS" />
           <p style={{ textAlign:"center", color:C.textMuted, marginBottom:"3rem", lineHeight:1.9 }}>日々の制作風景やデザインの想いを発信しています。<br />ぜひフォローしてください。</p>
-          <div className="sns-grid" style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(280px,1fr))", gap:"2rem", maxWidth:720, margin:"0 auto" }}>
+          <div className="sns-grid" style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(280px,1fr))", gap:"2rem", maxWidth:1100, margin:"0 auto" }}>
             <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" onMouseEnter={() => setHoveredSns("ig")} onMouseLeave={() => setHoveredSns(null)} style={{ textDecoration:"none", display:"block" }}>
               <div style={{ background:hoveredSns==="ig"?"linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045)":C.white, border:`2px solid ${hoveredSns==="ig"?"transparent":C.border}`, padding:"2.5rem 2rem", transition:"all 0.3s", position:"relative", overflow:"hidden", transform:hoveredSns==="ig"?"translateY(-4px)":"none", boxShadow:hoveredSns==="ig"?"0 12px 32px rgba(131,58,180,0.25)":"none" }}>
                 <div style={{ display:"flex", alignItems:"center", gap:"1rem", marginBottom:"1rem" }}>
@@ -571,6 +572,16 @@ export default function App() {
                 </div>
                 <p style={{ fontSize:"0.88rem", color:hoveredSns==="x"?"rgba(255,255,255,0.85)":"#555", lineHeight:1.8 }}>デザインの考え方や業界の最新情報を発信。お気軽にリプライやDMもどうぞ。</p>
                 <div style={{ marginTop:"1.2rem", display:"flex", alignItems:"center", gap:"0.4rem", color:hoveredSns==="x"?"#fff":C.accent, fontSize:"0.82rem", letterSpacing:"0.1em" }}>フォローする <IconExternalLink size={13} /></div>
+              </div>
+            </a>
+            <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer" onMouseEnter={() => setHoveredSns("tk")} onMouseLeave={() => setHoveredSns(null)} style={{ textDecoration:"none", display:"block" }}>
+              <div style={{ background:hoveredSns==="tk"?"linear-gradient(135deg,#00f2ea,#ff0050)":C.white, border:`2px solid ${hoveredSns==="tk"?"transparent":C.border}`, padding:"2.5rem 2rem", transition:"all 0.3s", position:"relative", overflow:"hidden", transform:hoveredSns==="tk"?"translateY(-4px)":"none", boxShadow:hoveredSns==="tk"?"0 12px 32px rgba(255,0,80,0.25)":"none" }}>
+                <div style={{ display:"flex", alignItems:"center", gap:"1rem", marginBottom:"1rem" }}>
+                  <div style={{ width:52, height:52, background:hoveredSns==="tk"?"rgba(255,255,255,0.2)":"linear-gradient(135deg,#00f2ea,#ff0050)", borderRadius:"12px", display:"flex", alignItems:"center", justifyContent:"center" }}><IconTikTok color="#fff" size={26} /></div>
+                  <div><div style={{ fontWeight:700, fontSize:"1.1rem", color:hoveredSns==="tk"?"#fff":C.dark }}>TikTok</div><div style={{ fontSize:"0.8rem", color:hoveredSns==="tk"?"rgba(255,255,255,0.8)":C.textMuted }}>@yoichi_design</div></div>
+                </div>
+                <p style={{ fontSize:"0.88rem", color:hoveredSns==="tk"?"rgba(255,255,255,0.9)":"#555", lineHeight:1.8 }}>デザインの制作過程やビフォーアフターを動画で公開中。ぜひチェックしてください。</p>
+                <div style={{ marginTop:"1.2rem", display:"flex", alignItems:"center", gap:"0.4rem", color:hoveredSns==="tk"?"#fff":C.accent, fontSize:"0.82rem", letterSpacing:"0.1em" }}>フォローする <IconExternalLink size={13} /></div>
               </div>
             </a>
           </div>
@@ -615,7 +626,7 @@ export default function App() {
             ))}
           </div>
           <div style={{ display:"flex", gap:"1rem" }}>
-            {[{ href:"https://www.instagram.com/", Icon:IconInstagram },{ href:"https://twitter.com/", Icon:IconTwitter }].map(({ href, Icon }) => (
+            {[{ href:"https://www.instagram.com/", Icon:IconInstagram },{ href:"https://twitter.com/", Icon:IconTwitter },{ href:"https://www.tiktok.com/", Icon:IconTikTok }].map(({ href, Icon }) => (
               <a key={href} href={href} target="_blank" rel="noopener noreferrer" style={{ width:36, height:36, background:"rgba(255,255,255,0.1)", borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center" }}><Icon color="#fff" size={16} /></a>
             ))}
           </div>

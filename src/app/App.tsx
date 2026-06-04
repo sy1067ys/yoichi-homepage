@@ -2,6 +2,7 @@ import { useState } from "react";
 import yoichiLogo from "../assets/yoichi-logo.png";
 import meishiImg from "../assets/meishi.png";
 import sakuraBoxImg from "../assets/sakura-box-ad.png";
+import meishiSampleImg from "../assets/meishi-sample.png";
 
 const IconArrowRight = () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>);
 const IconArrowLeft = () => (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>);
@@ -116,6 +117,73 @@ function PortfolioPage({ onBack }) {
       </div>
       <footer style={{ borderTop:`1px solid ${C.border}`, padding:"2rem 1.5rem", textAlign:"center", background:C.dark, color:C.bg }}>
         <p style={{ fontSize:"0.8rem", color:"#9ca3af", letterSpacing:"0.12em" }}>© 令和八年 YOICHI</p>
+      </footer>
+    </div>
+  );
+}
+
+// ── サンプルページ ──
+function SamplesPage({ onBack }) {
+  return (
+    <div style={{ minHeight:"100vh", background:C.bg, fontFamily:"'Georgia','Hiragino Mincho ProN',serif", color:C.dark }}>
+      <header style={{ position:"fixed", top:0, left:0, right:0, zIndex:50, background:`${C.bg}f5`, backdropFilter:"blur(8px)", borderBottom:`2px solid ${C.primary}33` }}>
+        <nav style={{ maxWidth:1200, margin:"0 auto", padding:"1rem 1.5rem", display:"flex", alignItems:"center", gap:"1rem" }}>
+          <button onClick={onBack} style={{ background:"none", border:"none", cursor:"pointer", display:"flex", alignItems:"center", gap:"0.5rem", color:C.primary, fontSize:"0.9rem", letterSpacing:"0.1em" }}><IconArrowLeft /> ホームに戻る</button>
+          <div style={{ width:1, height:20, background:C.border }} />
+          <div style={{ display:"flex", alignItems:"center", gap:"0.6rem" }}><YoichiMark size={36} /><span style={{ fontSize:"1.2rem", fontWeight:700, letterSpacing:"0.2em" }}>YOICHI<span style={{ color:C.accent }}>.</span></span></div>
+          <span style={{ color:C.textMuted, fontSize:"0.85rem", letterSpacing:"0.15em" }}>/ SAMPLES</span>
+        </nav>
+      </header>
+
+      <div style={{ padding:"7rem 1.5rem 5rem", maxWidth:1200, margin:"0 auto" }}>
+        <SectionHeading en="IMAGE SAMPLES" ja="イメージサンプル" />
+        <p style={{ textAlign:"center", color:"#555", marginBottom:"4rem", lineHeight:1.9 }}>YOICHIが制作したデザインのイメージサンプルです。<br />実際の制作ではお客様のご要望に合わせてカスタマイズいたします。</p>
+
+        {/* サンプル一覧 */}
+        <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(340px,1fr))", gap:"2.5rem" }}>
+          {/* 名刺サンプル */}
+          <div style={{ background:C.white, border:`2px solid ${C.border}`, overflow:"hidden", transition:"all 0.3s" }}
+            onMouseEnter={e => { e.currentTarget.style.borderColor=C.accent; e.currentTarget.style.transform="translateY(-4px)"; e.currentTarget.style.boxShadow="0 12px 32px rgba(0,0,0,0.12)"; }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor=C.border; e.currentTarget.style.transform="none"; e.currentTarget.style.boxShadow="none"; }}
+          >
+            <img src={meishiSampleImg} alt="名刺デザインサンプル" style={{ width:"100%", display:"block" }} />
+            <div style={{ padding:"1.5rem" }}>
+              <div style={{ fontSize:"0.72rem", color:C.textMuted, letterSpacing:"0.2em", marginBottom:"0.5rem" }}>名刺デザイン</div>
+              <h3 style={{ fontSize:"1.1rem", fontFamily:"serif", fontWeight:400, marginBottom:"0.8rem", lineHeight:1.5 }}>シンプルと高級感を両立したデザイン</h3>
+              <p style={{ fontSize:"0.88rem", color:C.textMuted, lineHeight:1.8 }}>Hair Salon向けのシンプルかつ高級感のある名刺デザイン。ゴールドとシルバーの2パターンをご提案。</p>
+            </div>
+          </div>
+
+          {/* パッケージサンプル */}
+          <div style={{ background:C.white, border:`2px solid ${C.border}`, overflow:"hidden", transition:"all 0.3s" }}
+            onMouseEnter={e => { e.currentTarget.style.borderColor=C.accent; e.currentTarget.style.transform="translateY(-4px)"; e.currentTarget.style.boxShadow="0 12px 32px rgba(0,0,0,0.12)"; }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor=C.border; e.currentTarget.style.transform="none"; e.currentTarget.style.boxShadow="none"; }}
+          >
+            <img src={sakuraBoxImg} alt="パッケージデザインサンプル" style={{ width:"100%", display:"block" }} />
+            <div style={{ padding:"1.5rem" }}>
+              <div style={{ fontSize:"0.72rem", color:C.textMuted, letterSpacing:"0.2em", marginBottom:"0.5rem" }}>パッケージデザイン</div>
+              <h3 style={{ fontSize:"1.1rem", fontFamily:"serif", fontWeight:400, marginBottom:"0.8rem", lineHeight:1.5 }}>桜が届ける、春の贈りもの</h3>
+              <p style={{ fontSize:"0.88rem", color:C.textMuted, lineHeight:1.8 }}>春の季節に合わせた桜模様のギフトボックス。華やかさと上品さを兼ね備えたデザイン。</p>
+            </div>
+          </div>
+
+          {/* 名刺イメージサンプル */}
+          <div style={{ background:C.white, border:`2px solid ${C.border}`, overflow:"hidden", transition:"all 0.3s" }}
+            onMouseEnter={e => { e.currentTarget.style.borderColor=C.accent; e.currentTarget.style.transform="translateY(-4px)"; e.currentTarget.style.boxShadow="0 12px 32px rgba(0,0,0,0.12)"; }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor=C.border; e.currentTarget.style.transform="none"; e.currentTarget.style.boxShadow="none"; }}
+          >
+            <img src={meishiImg} alt="名刺作成イメージ" style={{ width:"100%", display:"block" }} />
+            <div style={{ padding:"1.5rem" }}>
+              <div style={{ fontSize:"0.72rem", color:C.textMuted, letterSpacing:"0.2em", marginBottom:"0.5rem" }}>名刺作成</div>
+              <h3 style={{ fontSize:"1.1rem", fontFamily:"serif", fontWeight:400, marginBottom:"0.8rem", lineHeight:1.5 }}>あなたの想いをこの一枚に</h3>
+              <p style={{ fontSize:"0.88rem", color:C.textMuted, lineHeight:1.8 }}>こだわりの名刺をYOICHIで。お客様のブランドを一枚に凝縮します。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer style={{ borderTop:`1px solid ${C.border}`, padding:"2rem 1.5rem", textAlign:"center", background:C.dark, color:C.bg }}>
+        <p style={{ fontSize:"0.8rem", color:"#9ca3af", letterSpacing:"0.12em" }}>© 令和八年 株式会社YOICHI</p>
       </footer>
     </div>
   );
@@ -275,7 +343,7 @@ function MeishiPage({ onBack, onContact }) {
 const navLinks = [
   { label:"サービス", id:"services" },
   { label:"お仕事", id:"works_detail" },
-  { label:"実績", id:"works" },
+  { label:"サンプル", id:"works" },
   { label:"会社概要", id:"about" },
   { label:"由来", id:"origin" },
   { label:"SNS", id:"sns" },
@@ -289,6 +357,7 @@ export default function App() {
   const [hoveredService, setHoveredService] = useState(null);
 
   if (page === "portfolio") return <PortfolioPage onBack={() => setPage("home")} />;
+  if (page === "samples") return <SamplesPage onBack={() => setPage("home")} />;
   if (page === "meishi") return <MeishiPage onBack={() => setPage("home")} onContact={() => { setPage("home"); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }), 100); }} />;
   if (page === "package") return <PackagePage onBack={() => setPage("home")} onContact={() => { setPage("home"); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }), 100); }} />;
 
@@ -361,7 +430,7 @@ export default function App() {
             </div>
             <div className="cta-group" style={{ display:"flex", flexWrap:"wrap", gap:"1rem", paddingLeft:"1.2rem" }}>
               <button onClick={() => scrollTo("contact")} style={{ padding:"1rem 2rem", background:C.primary, color:"#fff", border:"none", cursor:"pointer", display:"flex", alignItems:"center", gap:"0.5rem", letterSpacing:"0.12em", fontSize:"0.95rem", fontFamily:"inherit", transition:"background 0.2s", boxShadow:"0 4px 20px rgba(139,79,71,0.3)" }} onMouseEnter={e => e.currentTarget.style.background=C.deep} onMouseLeave={e => e.currentTarget.style.background=C.primary}>ご相談はこちら <IconArrowRight /></button>
-              <button onClick={() => scrollTo("works")} style={{ padding:"1rem 2rem", background:"transparent", color:C.primary, border:`2px solid ${C.primary}`, cursor:"pointer", letterSpacing:"0.12em", fontSize:"0.95rem", fontFamily:"inherit", transition:"all 0.2s" }} onMouseEnter={e => { e.currentTarget.style.background=C.primary; e.currentTarget.style.color="#fff"; }} onMouseLeave={e => { e.currentTarget.style.background="transparent"; e.currentTarget.style.color=C.primary; }}>制作実績</button>
+              <button onClick={() => scrollTo("works")} style={{ padding:"1rem 2rem", background:"transparent", color:C.primary, border:`2px solid ${C.primary}`, cursor:"pointer", letterSpacing:"0.12em", fontSize:"0.95rem", fontFamily:"inherit", transition:"all 0.2s" }} onMouseEnter={e => { e.currentTarget.style.background=C.primary; e.currentTarget.style.color="#fff"; }} onMouseLeave={e => { e.currentTarget.style.background="transparent"; e.currentTarget.style.color=C.primary; }}>イメージサンプル</button>
             </div>
           </div>
         </div>
@@ -439,25 +508,33 @@ export default function App() {
         </div>
       </section>
 
-      {/* ── WORKS ── */}
+      {/* ── イメージサンプル ── */}
       <section id="works" style={{ padding:"5rem 1.5rem", background:C.bg, position:"relative", overflow:"hidden" }}>
         <div style={{ position:"absolute", top:0, left:0, right:0, height:1, background:`linear-gradient(to right,transparent,${C.accent}55,transparent)` }} />
-        <div style={{ maxWidth:1200, margin:"0 auto", position:"relative", zIndex:1 }}>
-          <SectionHeading en="WORKS" ja="制作実績" />
-          <div className="works-grid" style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(280px,1fr))", gap:"2rem" }}>
-            {PORTFOLIO_ITEMS.slice(0,4).map(w => (
-              <div key={w.id} onMouseEnter={() => setHoveredWork(w.id)} onMouseLeave={() => setHoveredWork(null)} style={{ position:"relative", height:280, overflow:"hidden", cursor:"pointer", border:`4px solid ${C.white}`, boxShadow:"0 4px 20px rgba(0,0,0,0.1)" }}>
-                <div style={{ position:"absolute", inset:0, background:w.grad, transition:"transform 0.35s ease", transform:hoveredWork===w.id?"scale(1.05)":"scale(1)" }} />
-                <div style={{ position:"absolute", top:16, right:16, width:48, height:48, border:"1px solid rgba(255,255,255,0.3)", transform:"rotate(45deg)" }} />
-                <div style={{ position:"absolute", bottom:0, left:0, right:0, padding:"2rem", background:"linear-gradient(to top,rgba(0,0,0,0.6),transparent)" }}>
-                  <p style={{ fontSize:"0.75rem", color:"rgba(255,255,255,0.85)", marginBottom:"0.4rem", letterSpacing:"0.15em" }}>{w.category}</p>
-                  <h3 style={{ fontSize:"1.2rem", color:"#fff", fontFamily:"serif", fontWeight:400 }}>{w.title}</h3>
-                </div>
-              </div>
-            ))}
+        <div style={{ maxWidth:1100, margin:"0 auto", position:"relative", zIndex:1 }}>
+          <SectionHeading en="IMAGE SAMPLE" ja="イメージサンプル" />
+          <p style={{ textAlign:"center", color:"#555", marginBottom:"3rem", lineHeight:1.9 }}>YOICHIが制作したデザインのイメージサンプルをご覧ください。</p>
+
+          {/* サンプル画像を大きく表示 */}
+          <div style={{ maxWidth:700, margin:"0 auto 3rem", cursor:"pointer", position:"relative" }}
+            onClick={() => setPage("samples")}
+            onMouseEnter={e => { e.currentTarget.style.transform="translateY(-4px)"; e.currentTarget.style.boxShadow="0 16px 48px rgba(0,0,0,0.15)"; }}
+            onMouseLeave={e => { e.currentTarget.style.transform="none"; e.currentTarget.style.boxShadow="0 4px 20px rgba(0,0,0,0.1)"; }}
+          >
+            <div style={{ position:"absolute", top:-8, left:-8, right:8, bottom:8, border:`2px solid ${C.accent}`, opacity:0.3 }} />
+            <img
+              src={meishiSampleImg}
+              alt="シンプルと高級感を両立したデザインの名刺"
+              style={{ width:"100%", display:"block", position:"relative", boxShadow:"0 4px 20px rgba(0,0,0,0.1)", transition:"all 0.3s" }}
+            />
+            <div style={{ position:"absolute", bottom:0, left:0, right:0, padding:"1.5rem 2rem", background:"linear-gradient(to top,rgba(0,0,0,0.7),transparent)" }}>
+              <p style={{ color:"#fff", fontSize:"1.1rem", fontFamily:"serif", letterSpacing:"0.08em" }}>シンプルと高級感を両立したデザイン</p>
+              <p style={{ color:"rgba(255,255,255,0.7)", fontSize:"0.8rem", marginTop:"0.3rem" }}>名刺デザインサンプル</p>
+            </div>
           </div>
-          <div style={{ textAlign:"center", marginTop:"3rem" }}>
-            <button onClick={() => setPage("portfolio")} style={{ padding:"1rem 2.5rem", background:"transparent", color:C.primary, border:`2px solid ${C.primary}`, cursor:"pointer", letterSpacing:"0.12em", fontSize:"0.95rem", fontFamily:"inherit", transition:"all 0.2s", display:"inline-flex", alignItems:"center", gap:"0.5rem" }} onMouseEnter={e => { e.currentTarget.style.background=C.primary; e.currentTarget.style.color="#fff"; }} onMouseLeave={e => { e.currentTarget.style.background="transparent"; e.currentTarget.style.color=C.primary; }}>すべての実績を見る <IconArrowRight /></button>
+
+          <div style={{ textAlign:"center" }}>
+            <button onClick={() => setPage("samples")} style={{ padding:"1rem 2.5rem", background:"transparent", color:C.primary, border:`2px solid ${C.primary}`, cursor:"pointer", letterSpacing:"0.12em", fontSize:"0.95rem", fontFamily:"inherit", transition:"all 0.2s", display:"inline-flex", alignItems:"center", gap:"0.5rem" }} onMouseEnter={e => { e.currentTarget.style.background=C.primary; e.currentTarget.style.color="#fff"; }} onMouseLeave={e => { e.currentTarget.style.background="transparent"; e.currentTarget.style.color=C.primary; }}>すべてのサンプルを見る <IconArrowRight /></button>
           </div>
         </div>
       </section>

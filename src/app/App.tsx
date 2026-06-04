@@ -1,6 +1,7 @@
 import { useState } from "react";
 import yoichiLogo from "../assets/yoichi-logo.png";
 import meishiImg from "../assets/meishi.png";
+import sakuraBoxImg from "../assets/sakura-box-ad.png";
 
 const IconArrowRight = () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>);
 const IconArrowLeft = () => (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>);
@@ -119,6 +120,81 @@ function PortfolioPage({ onBack }) {
   );
 }
 
+// ── パッケージデザインページ ──
+function PackagePage({ onBack, onContact }) {
+  return (
+    <div style={{ minHeight:"100vh", background:"#fdf5f0", fontFamily:"'Georgia','Hiragino Mincho ProN',serif", color:"#3a3230" }}>
+      <header style={{ position:"fixed", top:0, left:0, right:0, zIndex:50, background:"rgba(253,245,240,0.95)", backdropFilter:"blur(8px)", borderBottom:"2px solid #e8c0cc" }}>
+        <nav style={{ maxWidth:1200, margin:"0 auto", padding:"1rem 1.5rem", display:"flex", alignItems:"center", gap:"1rem" }}>
+          <button onClick={onBack} style={{ background:"none", border:"none", cursor:"pointer", display:"flex", alignItems:"center", gap:"0.5rem", color:"#8b4f47", fontSize:"0.9rem", letterSpacing:"0.1em" }}><IconArrowLeft /> ホームに戻る</button>
+          <div style={{ width:1, height:20, background:"#e8c0cc" }} />
+          <div style={{ display:"flex", alignItems:"center", gap:"0.6rem" }}><YoichiMark size={36} /><span style={{ fontSize:"1.2rem", fontWeight:700, letterSpacing:"0.2em" }}>YOICHI<span style={{ color:"#c4504a" }}>.</span></span></div>
+          <span style={{ color:"#aaa", fontSize:"0.85rem", letterSpacing:"0.15em" }}>/ PACKAGE DESIGN</span>
+        </nav>
+      </header>
+
+      <div style={{ paddingTop:"5rem" }}>
+        {/* 広告画像をそのまま大きく表示 */}
+        <div style={{ maxWidth:700, margin:"0 auto", padding:"2rem 1.5rem" }}>
+          <img
+            src={sakuraBoxImg}
+            alt="桜のパッケージデザイン"
+            style={{ width:"100%", display:"block", boxShadow:"0 8px 40px rgba(0,0,0,0.12)" }}
+          />
+        </div>
+
+        {/* 詳細コンテンツ */}
+        <div style={{ background:"#fff", padding:"5rem 1.5rem", position:"relative" }}>
+          <div style={{ position:"absolute", top:0, left:0, right:0, height:3, background:"linear-gradient(to right,#e8a0b0,#c4504a)" }} />
+          <div style={{ maxWidth:900, margin:"0 auto" }}>
+            <div style={{ textAlign:"center", marginBottom:"4rem" }}>
+              <p style={{ fontSize:"0.75rem", color:"#aaa", letterSpacing:"0.3em", marginBottom:"0.5rem" }}>PACKAGE DESIGN</p>
+              <h2 style={{ fontSize:"clamp(1.8rem,4vw,2.8rem)", fontFamily:"serif", fontWeight:400, color:"#3a3230", lineHeight:1.7, marginBottom:"1rem" }}>想いを包む、特別なデザイン</h2>
+              <div style={{ width:64, height:4, background:"#c4504a", margin:"0 auto" }} />
+            </div>
+
+            <p style={{ color:"#555", lineHeight:2.2, fontSize:"1rem", textAlign:"center", maxWidth:700, margin:"0 auto 3rem" }}>
+              パッケージは商品の第一印象を決める大切な要素です。<br />
+              YOICHIでは、お客様のブランドや想いを丁寧にヒアリングし、<br />
+              心に残るパッケージデザインを制作いたします。
+            </p>
+
+            {/* 特徴カード */}
+            <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(260px,1fr))", gap:"1.5rem", marginBottom:"4rem" }}>
+              {[
+                { title:"オリジナルデザイン", desc:"ブランドの世界観を表現した唯一無二のパッケージをご提案します。" },
+                { title:"用途に合わせた提案", desc:"ギフト・食品・雑貨など、用途に応じた最適なデザインをご提案。" },
+                { title:"印刷データ納品", desc:"印刷に対応したデータを納品。印刷会社への入稿もサポートします。" },
+                { title:"小ロット対応", desc:"少量からでもご相談可能。試作品のデザインも承ります。" },
+              ].map((item, i) => (
+                <div key={i} style={{ background:"#fdf5f0", border:"1px solid #e8c0cc", padding:"2rem", position:"relative", overflow:"hidden" }}>
+                  <div style={{ width:32, height:3, background:"#c4504a", marginBottom:"1rem" }} />
+                  <h4 style={{ fontSize:"1.1rem", fontFamily:"serif", fontWeight:400, color:"#3a3230", marginBottom:"0.75rem" }}>{item.title}</h4>
+                  <p style={{ fontSize:"0.9rem", color:"#666", lineHeight:1.8 }}>{item.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* CTA */}
+            <div style={{ textAlign:"center" }}>
+              <button
+                onClick={onContact}
+                style={{ padding:"1rem 2.5rem", background:"#8b4f47", color:"#fff", border:"none", cursor:"pointer", fontSize:"1rem", letterSpacing:"0.12em", fontFamily:"inherit", transition:"background 0.2s", display:"inline-flex", alignItems:"center", gap:"0.5rem", boxShadow:"0 4px 20px rgba(139,79,71,0.3)" }}
+                onMouseEnter={e => e.currentTarget.style.background="#6d3d37"}
+                onMouseLeave={e => e.currentTarget.style.background="#8b4f47"}
+              >パッケージデザインのご相談はこちら →</button>
+            </div>
+          </div>
+        </div>
+
+        <footer style={{ background:"#3a3230", padding:"2rem 1.5rem", textAlign:"center" }}>
+          <p style={{ fontSize:"0.8rem", color:"#9ca3af", letterSpacing:"0.12em" }}>© 令和八年 株式会社YOICHI</p>
+        </footer>
+      </div>
+    </div>
+  );
+}
+
 // ── 名刺作成ページ ──
 function MeishiPage({ onBack, onContact }) {
   return (
@@ -213,6 +289,7 @@ export default function App() {
 
   if (page === "portfolio") return <PortfolioPage onBack={() => setPage("home")} />;
   if (page === "meishi") return <MeishiPage onBack={() => setPage("home")} onContact={() => { setPage("home"); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }), 100); }} />;
+  if (page === "package") return <PackagePage onBack={() => setPage("home")} onContact={() => { setPage("home"); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }), 100); }} />;
 
   const scrollTo = (id) => { document.getElementById(id)?.scrollIntoView({ behavior:"smooth" }); setMenuOpen(false); };
 
@@ -323,7 +400,7 @@ export default function App() {
                 { icon:"🖼️", label:"バナー作成", link:null },
                 { icon:"💼", label:"名刺作成", link:"meishi" },
                 { icon:"✏️", label:"ロゴ作成", link:null },
-                { icon:"📦", label:"パッケージデザイン", link:null },
+                { icon:"📦", label:"パッケージデザイン", link:"package" },
                 { icon:"🖥️", label:"UI/UXデザイン", link:null },
                 { icon:"🌐", label:"ウェブサイト作成", link:null },
                 { icon:"📱", label:"アプリケーション作成", link:null },

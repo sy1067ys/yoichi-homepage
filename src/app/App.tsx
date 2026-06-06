@@ -515,11 +515,11 @@ export default function App() {
             <div style={{ borderLeft:`4px solid ${C.accent}`, paddingLeft:"1.5rem" }}>
               <p style={{ fontSize:"0.75rem", color:C.accent, letterSpacing:"0.3em", marginBottom:"0.8rem" }}>MANAGEMENT PHILOSOPHY</p>
               <h3 style={{ fontSize:"1.8rem", fontFamily:"serif", fontWeight:400, lineHeight:1.8, marginBottom:"1.5rem" }}>経営理念</h3>
-              <div style={{ display:"flex", flexDirection:"row", gap:"0.5rem", marginBottom:"1.5rem", alignItems:"center" }}>
+              <div className="philosophy-row" style={{ display:"flex", flexDirection:"row", gap:"0.5rem", marginBottom:"1.5rem", alignItems:"center" }}>
                 <p style={{ fontSize:"clamp(0.95rem,2vw,1.25rem)", fontFamily:"serif", fontWeight:400, lineHeight:1.8, color:C.dark, whiteSpace:"nowrap", margin:0 }}>発想で豊かに</p>
-                <span style={{ color:C.accent, fontSize:"0.8rem" }}>／</span>
+                <span className="philosophy-sep" style={{ color:C.accent, fontSize:"0.8rem" }}>／</span>
                 <p style={{ fontSize:"clamp(0.95rem,2vw,1.25rem)", fontFamily:"serif", fontWeight:400, lineHeight:1.8, color:C.dark, whiteSpace:"nowrap", margin:0 }}>創造でユニークに</p>
-                <span style={{ color:C.accent, fontSize:"0.8rem" }}>／</span>
+                <span className="philosophy-sep" style={{ color:C.accent, fontSize:"0.8rem" }}>／</span>
                 <p style={{ fontSize:"clamp(0.95rem,2vw,1.25rem)", fontFamily:"serif", fontWeight:400, lineHeight:1.8, color:C.dark, whiteSpace:"nowrap", margin:0 }}>ひらめきで笑顔に</p>
               </div>
               <h4 style={{ fontSize:"1.2rem", fontFamily:"serif", fontWeight:400, color:C.dark, letterSpacing:"0.15em", marginBottom:"1rem" }}>ご挨拶</h4>
@@ -719,6 +719,8 @@ export default function App() {
           .section-inner{padding:3rem 1rem!important;}
           .about-grid{grid-template-columns:1fr!important;gap:2rem!important;}
           .about-logo-box{display:none!important;}
+          .philosophy-row{flex-direction:column!important;align-items:flex-start!important;gap:0.2rem!important;}
+          .philosophy-sep{display:none!important;}
           .contact-grid{grid-template-columns:1fr!important;gap:2rem!important;}
           .cta-group{flex-direction:column!important;}
           .cta-group button{width:100%!important;justify-content:center!important;}

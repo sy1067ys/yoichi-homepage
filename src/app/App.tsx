@@ -343,7 +343,6 @@ function MeishiPage({ onBack, onContact }) {
 }
 
 const navLinks = [
-  { label:"サービス", id:"services" },
   { label:"お仕事", id:"works_detail" },
   { label:"サンプル", id:"works" },
   { label:"会社概要", id:"about" },
@@ -356,7 +355,6 @@ export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [hoveredWork, setHoveredWork] = useState(null);
   const [hoveredSns, setHoveredSns] = useState(null);
-  const [hoveredService, setHoveredService] = useState(null);
 
   if (page === "portfolio") return <PortfolioPage onBack={() => setPage("home")} />;
   if (page === "samples") return <SamplesPage onBack={() => setPage("home")} />;
@@ -364,12 +362,6 @@ export default function App() {
   if (page === "package") return <PackagePage onBack={() => setPage("home")} onContact={() => { setPage("home"); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }), 100); }} />;
 
   const scrollTo = (id) => { document.getElementById(id)?.scrollIntoView({ behavior:"smooth" }); setMenuOpen(false); };
-
-  const services = [
-    { num:"壱", title:"意匠", subtitle:"ブランディング", desc:"企業の本質を見極め、唯一無二の価値を創出いたします。家紋から連なる日本の紋章文化を現代に昇華させ、永く愛されるブランドを築きます。" },
-    { num:"弐", title:"図案", subtitle:"UI/UXデザイン", desc:"使い手の心に寄り添う設計思想。茶道の「一期一会」の精神で、人とデジタルの調和を追求し、心地よい体験を創造します。" },
-    { num:"参", title:"装飾", subtitle:"グラフィックデザイン", desc:"伝統的な美意識と現代の技術を融合。印刷物からデジタルまで、日本らしい繊細さと品格を備えた表現をお届けします。" },
-  ];
 
   const originItems = [
     { letter:"Y", word:"Yume（夢）", desc:"お客様の夢やビジョンを共に描き、デザインの力で現実へと近づける存在でありたいという想いを込めています。" },
@@ -427,31 +419,10 @@ export default function App() {
                 {["想いをカタチに","笑顔をそばに","繋がりを大切に"].map((line,i) => (<p key={i} style={{ fontSize:"clamp(1.6rem,4vw,2.8rem)", fontFamily:"serif", fontWeight:400, lineHeight:1.75, color:C.dark, margin:0 }}>{line}</p>))}
               </div>
             </div>
-            <div style={{ paddingLeft:"1.2rem", marginBottom:"2.5rem" }}>
-              <p style={{ fontSize:"1rem", color:"#666", lineHeight:1.9 }}>伝統と革新が調和するデザインで、<br />お客様の想いを形にいたします。</p>
-            </div>
             <div className="cta-group" style={{ display:"flex", flexWrap:"wrap", gap:"1rem", paddingLeft:"1.2rem" }}>
               <button onClick={() => scrollTo("contact")} style={{ padding:"1rem 2rem", background:C.primary, color:"#fff", border:"none", cursor:"pointer", display:"flex", alignItems:"center", gap:"0.5rem", letterSpacing:"0.12em", fontSize:"0.95rem", fontFamily:"inherit", transition:"background 0.2s", boxShadow:"0 4px 20px rgba(139,79,71,0.3)" }} onMouseEnter={e => e.currentTarget.style.background=C.deep} onMouseLeave={e => e.currentTarget.style.background=C.primary}>ご相談はこちら <IconArrowRight /></button>
               <button onClick={() => scrollTo("works")} style={{ padding:"1rem 2rem", background:"transparent", color:C.primary, border:`2px solid ${C.primary}`, cursor:"pointer", letterSpacing:"0.12em", fontSize:"0.95rem", fontFamily:"inherit", transition:"all 0.2s" }} onMouseEnter={e => { e.currentTarget.style.background=C.primary; e.currentTarget.style.color="#fff"; }} onMouseLeave={e => { e.currentTarget.style.background="transparent"; e.currentTarget.style.color=C.primary; }}>イメージサンプル</button>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="services" style={{ padding:"5rem 1.5rem", background:C.white, position:"relative", overflow:"hidden" }}>
-        <div style={{ position:"absolute", top:0, left:0, right:0, height:1, background:`linear-gradient(to right,transparent,${C.accent}55,transparent)` }} />
-        <div style={{ maxWidth:1200, margin:"0 auto", position:"relative", zIndex:1 }}>
-          <SectionHeading en="SERVICES" ja="事業内容" />
-          <div className="services-grid" style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(280px,1fr))", gap:"2rem" }}>
-            {services.map((s,i) => (
-              <div key={i} onMouseEnter={() => setHoveredService(i)} onMouseLeave={() => setHoveredService(null)} style={{ position:"relative", padding:"2.5rem 2rem", border:`2px solid ${hoveredService===i?C.accent:C.border}`, background:hoveredService===i?C.bg:C.white, transition:"all 0.3s", overflow:"hidden", transform:hoveredService===i?"translateY(-4px)":"none", boxShadow:hoveredService===i?"0 12px 32px rgba(0,0,0,0.08)":"none" }}>
-                <div style={{ fontSize:"3rem", fontFamily:"serif", color:C.primary, opacity:0.2, position:"absolute", top:12, right:16, lineHeight:1 }}>{s.num}</div>
-                <div style={{ width:4, height:32, background:C.accent, marginBottom:"1.2rem" }} />
-                <h3 style={{ fontSize:"1.8rem", fontFamily:"serif", fontWeight:400, marginBottom:"0.4rem", color:C.dark }}>{s.title}</h3>
-                <p style={{ fontSize:"0.8rem", color:C.accent, letterSpacing:"0.12em", marginBottom:"1.2rem" }}>{s.subtitle}</p>
-                <p style={{ color:"#555", lineHeight:1.9, fontSize:"0.95rem" }}>{s.desc}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>

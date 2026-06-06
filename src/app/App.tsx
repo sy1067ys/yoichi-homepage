@@ -522,6 +522,7 @@ export default function App() {
                 <span style={{ color:C.accent, fontSize:"0.8rem" }}>／</span>
                 <p style={{ fontSize:"clamp(0.95rem,2vw,1.25rem)", fontFamily:"serif", fontWeight:400, lineHeight:1.8, color:C.dark, whiteSpace:"nowrap", margin:0 }}>ひらめきで笑顔に</p>
               </div>
+              <h4 style={{ fontSize:"1.2rem", fontFamily:"serif", fontWeight:400, color:C.dark, letterSpacing:"0.15em", marginBottom:"1rem" }}>ご挨拶</h4>
               {["私たちYOICHIは、「想いをカタチに」をモットーに、お客様一人ひとりの想いをデザインとしてカタチにしています。","私たちの提供する商品・サービスは、その一つ一つに心を込め、お客様と共に作り上げる一つの芸術作品です。","お客様との出会いは私たちにとって新たな物語の始まりです。それぞれのお客様のビジョンを理解し、共に創造する過程は私たちにとって大きなやりがいであり、誇りです。","お客様の夢を実現するために、私たちは常に全力を尽くします。共に歩む中で築かれる信頼と絆は、私たちの大切な財産です。","これからも、お客様と共に新しい価値観を生み出し、感動を共有できる瞬間を創り続けていきます。"].map((p,i) => (<p key={i} style={{ color:"#555", lineHeight:2, marginBottom:"1rem", fontSize:"0.95rem" }}>{p}</p>))}
               <div style={{ background:C.bg, padding:"1.5rem", borderLeft:`2px solid ${C.accent}`, marginTop:"1.5rem" }}>
                 {[["会社名","YOICHI"],["設立","2026年"],["代表","横山 真一郎"],["副代表","住谷 永人"]].map(([k,v]) => (<div key={k} style={{ display:"flex", gap:"1rem", marginBottom:"0.6rem", fontSize:"0.95rem" }}><span style={{ color:C.textMuted, minWidth:72 }}>{k}</span><span>{v}</span></div>))}

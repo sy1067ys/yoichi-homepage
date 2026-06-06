@@ -515,7 +515,7 @@ export default function App() {
             <div style={{ borderLeft:`4px solid ${C.accent}`, paddingLeft:"1.5rem" }}>
               <p style={{ fontSize:"0.75rem", color:C.accent, letterSpacing:"0.3em", marginBottom:"0.8rem" }}>MANAGEMENT PHILOSOPHY</p>
               <h3 style={{ fontSize:"1.8rem", fontFamily:"serif", fontWeight:400, lineHeight:1.8, marginBottom:"1.5rem" }}>経営理念</h3>
-              <div style={{ display:"flex", flexDirection:"column", gap:"0.5rem", marginBottom:"1.5rem" }}>
+              <div style={{ display:"flex", flexDirection:"row", gap:"1.5rem", marginBottom:"1.5rem", flexWrap:"wrap" }}>
                 {["発想で豊かに","創造でユニークに","ひらめきで笑顔に"].map((line,i) => (
                   <p key={i} style={{ fontSize:"clamp(1.2rem,3vw,1.6rem)", fontFamily:"serif", fontWeight:400, lineHeight:1.8, color:C.dark }}>{line}</p>
                 ))}

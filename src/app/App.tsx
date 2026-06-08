@@ -9,6 +9,16 @@ import bannerSale from "../assets/banner-sale.png";
 import bannerRestaurant from "../assets/banner-restaurant.png";
 import bannerSalon from "../assets/banner-salon.png";
 import bannerEc from "../assets/banner-ec.png";
+import logo01 from "../assets/logo-01.png";
+import logo02 from "../assets/logo-02.png";
+import logo03 from "../assets/logo-03.png";
+import logo04 from "../assets/logo-04.png";
+import logo05 from "../assets/logo-05.png";
+import logo06 from "../assets/logo-06.png";
+import logo07 from "../assets/logo-07.png";
+import logo08 from "../assets/logo-08.png";
+import logo09 from "../assets/logo-09.png";
+import logo10 from "../assets/logo-10.png";
 
 const IconArrowRight = () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>);
 const IconArrowLeft = () => (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>);
@@ -124,6 +134,64 @@ function PortfolioPage({ onBack }) {
       </div>
       <footer style={{ borderTop:`1px solid ${C.border}`, padding:"2rem 1.5rem", textAlign:"center", background:C.dark, color:C.bg }}>
         <p style={{ fontSize:"0.8rem", color:"#9ca3af", letterSpacing:"0.12em" }}>© 令和八年 YOICHI</p>
+      </footer>
+    </div>
+  );
+}
+
+// ── ロゴサンプルページ ──
+function LogoSamplesPage({ onBack }) {
+  const logos = [
+    { img: logo01, title: "ミニマル・サークル", desc: "カフェ・コーヒーショップ向け", tag: "カフェ" },
+    { img: logo02, title: "和風・家紋スタイル", desc: "和菓子・旅館・伝統工芸向け", tag: "和風" },
+    { img: logo03, title: "シャープ・モダン", desc: "IT・テック企業向け", tag: "テック" },
+    { img: logo04, title: "エレガント・ゴールド", desc: "美容室・ジュエリー向け", tag: "美容" },
+    { img: logo05, title: "ナチュラル・リーフ", desc: "オーガニック・自然食品向け", tag: "ナチュラル" },
+    { img: logo06, title: "太字・インパクト", desc: "ジム・スポーツ・アパレル向け", tag: "スポーツ" },
+    { img: logo07, title: "幾何学・ヘキサゴン", desc: "建築・不動産向け", tag: "建築" },
+    { img: logo08, title: "ポップ・カラフル", desc: "写真スタジオ・キッズ向け", tag: "キッズ" },
+    { img: logo09, title: "高級・モノグラム", desc: "ホテル・レストラン・ブランド向け", tag: "高級" },
+    { img: logo10, title: "和モダン・日本茶", desc: "和食・日本茶カフェ向け", tag: "和風" },
+  ];
+  return (
+    <div style={{ minHeight:"100vh", background:C.bg, fontFamily:"'Georgia','Hiragino Mincho ProN',serif", color:C.dark }}>
+      <header style={{ position:"fixed", top:0, left:0, right:0, zIndex:50, background:`${C.bg}f5`, backdropFilter:"blur(8px)", borderBottom:`2px solid ${C.primary}33` }}>
+        <nav style={{ maxWidth:1200, margin:"0 auto", padding:"1rem 1.5rem", display:"flex", alignItems:"center", gap:"1rem" }}>
+          <button onClick={onBack} style={{ background:"none", border:"none", cursor:"pointer", display:"flex", alignItems:"center", gap:"0.5rem", color:C.primary, fontSize:"0.9rem", letterSpacing:"0.1em" }}><IconArrowLeft /> ホームに戻る</button>
+          <div style={{ width:1, height:20, background:C.border }} />
+          <div style={{ display:"flex", alignItems:"center", gap:"0.6rem" }}><YoichiMark size={36} /><span style={{ fontSize:"1.2rem", fontWeight:700, letterSpacing:"0.2em" }}>YOICHI<span style={{ color:C.accent }}>.</span></span></div>
+          <span style={{ color:C.textMuted, fontSize:"0.85rem", letterSpacing:"0.15em" }}>/ LOGO SAMPLES</span>
+        </nav>
+      </header>
+      <div style={{ padding:"7rem 1.5rem 5rem", maxWidth:1200, margin:"0 auto" }}>
+        <SectionHeading en="LOGO DESIGN SAMPLES" ja="ロゴデザインサンプル" />
+        <p style={{ textAlign:"center", color:"#555", marginBottom:"4rem", lineHeight:1.9 }}>さまざまな業種・テイストに対応したロゴデザインのサンプルです。<br />お客様のブランドに合わせたオリジナルロゴを制作いたします。</p>
+        <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(280px,1fr))", gap:"2rem" }}>
+          {logos.map((l, i) => (
+            <div key={i} style={{ background:C.white, border:`1px solid ${C.border}`, overflow:"hidden", transition:"all 0.3s" }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor=C.accent; e.currentTarget.style.transform="translateY(-4px)"; e.currentTarget.style.boxShadow="0 12px 32px rgba(0,0,0,0.1)"; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor=C.border; e.currentTarget.style.transform="none"; e.currentTarget.style.boxShadow="none"; }}
+            >
+              <div style={{ padding:"1rem", background:"#fafafa" }}>
+                <img src={l.img} alt={l.title} style={{ width:"100%", display:"block" }} />
+              </div>
+              <div style={{ padding:"1.2rem 1.5rem" }}>
+                <div style={{ display:"flex", alignItems:"center", gap:"0.5rem", marginBottom:"0.4rem" }}>
+                  <span style={{ background:C.accent, color:"#fff", fontSize:"0.65rem", padding:"0.15rem 0.5rem", letterSpacing:"0.08em" }}>{l.tag}</span>
+                  <span style={{ fontSize:"0.7rem", color:C.textMuted }}>SAMPLE {String(i+1).padStart(2,"0")}</span>
+                </div>
+                <h3 style={{ fontSize:"1rem", fontFamily:"serif", fontWeight:400, marginBottom:"0.3rem" }}>{l.title}</h3>
+                <p style={{ fontSize:"0.82rem", color:"#888", lineHeight:1.6 }}>{l.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div style={{ textAlign:"center", marginTop:"4rem" }}>
+          <button onClick={() => { onBack(); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }), 100); }} style={{ padding:"1rem 2.5rem", background:C.primary, color:"#fff", border:"none", cursor:"pointer", fontSize:"1rem", letterSpacing:"0.12em", fontFamily:"inherit", boxShadow:"0 4px 20px rgba(139,79,71,0.3)" }}>ロゴ制作のご相談はこちら →</button>
+        </div>
+      </div>
+      <footer style={{ borderTop:`1px solid ${C.border}`, padding:"2rem 1.5rem", textAlign:"center", background:C.dark, color:C.bg }}>
+        <p style={{ fontSize:"0.8rem", color:"#9ca3af", letterSpacing:"0.12em" }}>© 令和八年 株式会社YOICHI</p>
       </footer>
     </div>
   );
@@ -416,6 +484,7 @@ export default function App() {
   if (page === "portfolio") return <PortfolioPage onBack={() => setPage("home")} />;
   if (page === "samples") return <SamplesPage onBack={() => setPage("home")} />;
   if (page === "banners") return <BannerSamplesPage onBack={() => setPage("home")} />;
+  if (page === "logos") return <LogoSamplesPage onBack={() => setPage("home")} />;
   if (page === "meishi") return <MeishiPage onBack={() => setPage("home")} onContact={() => { setPage("home"); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }), 100); }} />;
   if (page === "package") return <PackagePage onBack={() => setPage("home")} onContact={() => { setPage("home"); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }), 100); }} />;
 
@@ -500,7 +569,7 @@ export default function App() {
               {[
                 { icon:"🖼️", label:"バナー作成", link:"banners" },
                 { icon:"💼", label:"名刺作成", link:"meishi" },
-                { icon:"✏️", label:"ロゴ作成", link:null },
+                { icon:"✏️", label:"ロゴ作成", link:"logos" },
                 { icon:"📦", label:"パッケージデザイン", link:"package" },
                 { icon:"🖥️", label:"UI/UXデザイン", link:null },
                 { icon:"🌐", label:"ウェブサイト作成", link:null },

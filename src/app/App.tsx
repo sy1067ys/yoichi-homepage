@@ -100,7 +100,7 @@ function PortfolioPage({ onBack }) {
   const [hovered, setHovered] = useState(null);
   const filtered = active === "すべて" ? PORTFOLIO_ITEMS : PORTFOLIO_ITEMS.filter(p => p.category === active);
   return (
-    <div style={{ minHeight:"100vh", background:C.bg, fontFamily:"'Georgia','Hiragino Mincho ProN',serif", color:C.dark }}>
+    <div className="page-animate" style={{ minHeight:"100vh", background:C.bg, fontFamily:"'Georgia','Hiragino Mincho ProN',serif", color:C.dark }}>
       <header style={{ position:"fixed", top:0, left:0, right:0, zIndex:50, background:`${C.bg}f5`, backdropFilter:"blur(8px)", borderBottom:`2px solid ${C.primary}33` }}>
         <nav style={{ maxWidth:1200, margin:"0 auto", padding:"1rem 1.5rem", display:"flex", alignItems:"center", gap:"1rem" }}>
           <button onClick={onBack} style={{ background:"none", border:"none", cursor:"pointer", display:"flex", alignItems:"center", gap:"0.5rem", color:C.primary, fontSize:"0.9rem", letterSpacing:"0.1em" }}><IconArrowLeft /> ホームに戻る</button>
@@ -154,7 +154,7 @@ function LogoSamplesPage({ onBack }) {
     { img: logo10, title: "和モダン・日本茶", desc: "和食・日本茶カフェ向け", tag: "和風" },
   ];
   return (
-    <div style={{ minHeight:"100vh", background:C.bg, fontFamily:"'Georgia','Hiragino Mincho ProN',serif", color:C.dark }}>
+    <div className="page-animate" style={{ minHeight:"100vh", background:C.bg, fontFamily:"'Georgia','Hiragino Mincho ProN',serif", color:C.dark }}>
       <header style={{ position:"fixed", top:0, left:0, right:0, zIndex:50, background:`${C.bg}f5`, backdropFilter:"blur(8px)", borderBottom:`2px solid ${C.primary}33` }}>
         <nav style={{ maxWidth:1200, margin:"0 auto", padding:"1rem 1.5rem", display:"flex", alignItems:"center", gap:"1rem" }}>
           <button onClick={onBack} style={{ background:"none", border:"none", cursor:"pointer", display:"flex", alignItems:"center", gap:"0.5rem", color:C.primary, fontSize:"0.9rem", letterSpacing:"0.1em" }}><IconArrowLeft /> ホームに戻る</button>
@@ -207,7 +207,7 @@ function BannerSamplesPage({ onBack }) {
     { img: bannerEc, title: "ECサイト・新商品", desc: "ネイビー×ホワイトのクリーンなデザイン。商品カード付きで見やすく。", tag: "EC" },
   ];
   return (
-    <div style={{ minHeight:"100vh", background:C.bg, fontFamily:"'Georgia','Hiragino Mincho ProN',serif", color:C.dark }}>
+    <div className="page-animate" style={{ minHeight:"100vh", background:C.bg, fontFamily:"'Georgia','Hiragino Mincho ProN',serif", color:C.dark }}>
       <header style={{ position:"fixed", top:0, left:0, right:0, zIndex:50, background:`${C.bg}f5`, backdropFilter:"blur(8px)", borderBottom:`2px solid ${C.primary}33` }}>
         <nav style={{ maxWidth:1200, margin:"0 auto", padding:"1rem 1.5rem", display:"flex", alignItems:"center", gap:"1rem" }}>
           <button onClick={onBack} style={{ background:"none", border:"none", cursor:"pointer", display:"flex", alignItems:"center", gap:"0.5rem", color:C.primary, fontSize:"0.9rem", letterSpacing:"0.1em" }}><IconArrowLeft /> ホームに戻る</button>
@@ -251,7 +251,7 @@ function BannerSamplesPage({ onBack }) {
 // ── サンプルページ ──
 function SamplesPage({ onBack }) {
   return (
-    <div style={{ minHeight:"100vh", background:C.bg, fontFamily:"'Georgia','Hiragino Mincho ProN',serif", color:C.dark }}>
+    <div className="page-animate" style={{ minHeight:"100vh", background:C.bg, fontFamily:"'Georgia','Hiragino Mincho ProN',serif", color:C.dark }}>
       <header style={{ position:"fixed", top:0, left:0, right:0, zIndex:50, background:`${C.bg}f5`, backdropFilter:"blur(8px)", borderBottom:`2px solid ${C.primary}33` }}>
         <nav style={{ maxWidth:1200, margin:"0 auto", padding:"1rem 1.5rem", display:"flex", alignItems:"center", gap:"1rem" }}>
           <button onClick={onBack} style={{ background:"none", border:"none", cursor:"pointer", display:"flex", alignItems:"center", gap:"0.5rem", color:C.primary, fontSize:"0.9rem", letterSpacing:"0.1em" }}><IconArrowLeft /> ホームに戻る</button>
@@ -318,7 +318,7 @@ function SamplesPage({ onBack }) {
 // ── パッケージデザインページ ──
 function PackagePage({ onBack, onContact }) {
   return (
-    <div style={{ minHeight:"100vh", background:"#fdf5f0", fontFamily:"'Georgia','Hiragino Mincho ProN',serif", color:"#3a3230" }}>
+    <div className="page-animate" style={{ minHeight:"100vh", background:"#fdf5f0", fontFamily:"'Georgia','Hiragino Mincho ProN',serif", color:"#3a3230" }}>
       <header style={{ position:"fixed", top:0, left:0, right:0, zIndex:50, background:"rgba(253,245,240,0.95)", backdropFilter:"blur(8px)", borderBottom:"2px solid #e8c0cc" }}>
         <nav style={{ maxWidth:1200, margin:"0 auto", padding:"1rem 1.5rem", display:"flex", alignItems:"center", gap:"1rem" }}>
           <button onClick={onBack} style={{ background:"none", border:"none", cursor:"pointer", display:"flex", alignItems:"center", gap:"0.5rem", color:"#8b4f47", fontSize:"0.9rem", letterSpacing:"0.1em" }}><IconArrowLeft /> ホームに戻る</button>
@@ -393,7 +393,7 @@ function PackagePage({ onBack, onContact }) {
 // ── 名刺作成ページ ──
 function MeishiPage({ onBack, onContact }) {
   return (
-    <div style={{ minHeight:"100vh", background:C.dark, fontFamily:"'Georgia','Hiragino Mincho ProN',serif", color:C.bg }}>
+    <div className="page-animate" style={{ minHeight:"100vh", background:C.dark, fontFamily:"'Georgia','Hiragino Mincho ProN',serif", color:C.bg }}>
       <header style={{ position:"fixed", top:0, left:0, right:0, zIndex:50, background:`${C.dark}f5`, backdropFilter:"blur(8px)", borderBottom:`2px solid ${C.accent}33` }}>
         <nav style={{ maxWidth:1200, margin:"0 auto", padding:"1rem 1.5rem", display:"flex", alignItems:"center", gap:"1rem" }}>
           <button onClick={onBack} style={{ background:"none", border:"none", cursor:"pointer", display:"flex", alignItems:"center", gap:"0.5rem", color:C.accent, fontSize:"0.9rem", letterSpacing:"0.1em" }}><IconArrowLeft /> ホームに戻る</button>
@@ -477,16 +477,17 @@ const navLinks = [
 
 export default function App() {
   const [page, setPage] = useState("home");
+  const goToPage = (p) => { setPage(p); window.scrollTo(0, 0); };
   const [menuOpen, setMenuOpen] = useState(false);
   const [hoveredWork, setHoveredWork] = useState(null);
   const [hoveredSns, setHoveredSns] = useState(null);
 
-  if (page === "portfolio") return <PortfolioPage onBack={() => setPage("home")} />;
-  if (page === "samples") return <SamplesPage onBack={() => setPage("home")} />;
-  if (page === "banners") return <BannerSamplesPage onBack={() => setPage("home")} />;
-  if (page === "logos") return <LogoSamplesPage onBack={() => setPage("home")} />;
-  if (page === "meishi") return <MeishiPage onBack={() => setPage("home")} onContact={() => { setPage("home"); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }), 100); }} />;
-  if (page === "package") return <PackagePage onBack={() => setPage("home")} onContact={() => { setPage("home"); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }), 100); }} />;
+  if (page === "portfolio") return <PortfolioPage onBack={() => goToPage("home")} />;
+  if (page === "samples") return <SamplesPage onBack={() => goToPage("home")} />;
+  if (page === "banners") return <BannerSamplesPage onBack={() => goToPage("home")} />;
+  if (page === "logos") return <LogoSamplesPage onBack={() => goToPage("home")} />;
+  if (page === "meishi") return <MeishiPage onBack={() => goToPage("home")} onContact={() => { goToPage("home"); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }), 100); }} />;
+  if (page === "package") return <PackagePage onBack={() => goToPage("home")} onContact={() => { goToPage("home"); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }), 100); }} />;
 
   const scrollTo = (id) => { document.getElementById(id)?.scrollIntoView({ behavior:"smooth" }); setMenuOpen(false); };
 
@@ -511,7 +512,7 @@ export default function App() {
           </div>
           <div className="nav-desktop">
             {navLinks.map(l => (<button key={l.id} onClick={() => scrollTo(l.id)} style={{ background:"none", border:"none", cursor:"pointer", fontSize:"0.9rem", letterSpacing:"0.12em", color:C.dark, fontFamily:"inherit", transition:"color 0.2s" }} onMouseEnter={e => e.currentTarget.style.color=C.accent} onMouseLeave={e => e.currentTarget.style.color=C.dark}>{l.label}</button>))}
-            <button onClick={() => setPage("portfolio")} style={{ background:"none", border:"none", cursor:"pointer", fontSize:"0.9rem", letterSpacing:"0.12em", color:C.dark, fontFamily:"inherit", transition:"color 0.2s" }} onMouseEnter={e => e.currentTarget.style.color=C.accent} onMouseLeave={e => e.currentTarget.style.color=C.dark}>Portfolio</button>
+            <button onClick={() => goToPage("portfolio")} style={{ background:"none", border:"none", cursor:"pointer", fontSize:"0.9rem", letterSpacing:"0.12em", color:C.dark, fontFamily:"inherit", transition:"color 0.2s" }} onMouseEnter={e => e.currentTarget.style.color=C.accent} onMouseLeave={e => e.currentTarget.style.color=C.dark}>Portfolio</button>
             <button onClick={() => scrollTo("contact")} style={{ padding:"0.55rem 1.4rem", background:C.primary, color:"#fff", border:"none", cursor:"pointer", letterSpacing:"0.12em", fontSize:"0.88rem", fontFamily:"inherit", transition:"background 0.2s" }} onMouseEnter={e => e.currentTarget.style.background=C.deep} onMouseLeave={e => e.currentTarget.style.background=C.primary}>お問い合わせ</button>
           </div>
           <button className="nav-hamburger" onClick={() => setMenuOpen(!menuOpen)} style={{ background:"none", border:"none", cursor:"pointer" }}>
@@ -521,7 +522,7 @@ export default function App() {
         {menuOpen && (
           <div style={{ background:C.bg, borderTop:`1px solid ${C.border}`, padding:"1rem 1.5rem" }}>
             {[...navLinks, { label:"Portfolio", id:"portfolio" }, { label:"お問い合わせ", id:"contact" }].map(l => (
-              <button key={l.id} onClick={() => l.id==="portfolio"?(setPage("portfolio"),setMenuOpen(false)):scrollTo(l.id)} style={{ display:"block", width:"100%", textAlign:"left", padding:"0.75rem 0", background:"none", border:"none", cursor:"pointer", fontSize:"1rem", letterSpacing:"0.1em", fontFamily:"inherit", color:C.dark, borderBottom:`1px solid ${C.border}` }}>{l.label}</button>
+              <button key={l.id} onClick={() => l.id==="portfolio"?(goToPage("portfolio"),setMenuOpen(false)):scrollTo(l.id)} style={{ display:"block", width:"100%", textAlign:"left", padding:"0.75rem 0", background:"none", border:"none", cursor:"pointer", fontSize:"1rem", letterSpacing:"0.1em", fontFamily:"inherit", color:C.dark, borderBottom:`1px solid ${C.border}` }}>{l.label}</button>
             ))}
           </div>
         )}
@@ -579,7 +580,7 @@ export default function App() {
                 { icon:"📐", label:"レイアウトデザイン", link:null },
               ].map((item, i) => (
                 <div key={i}
-                  onClick={() => item.link && setPage(item.link)}
+                  onClick={() => item.link && goToPage(item.link)}
                   style={{ background:C.bg, border:`1px solid ${item.link ? C.accent : C.border}`, padding:"1.2rem 1rem", display:"flex", alignItems:"center", gap:"0.75rem", transition:"all 0.2s", position:"relative", overflow:"hidden", cursor:item.link?"pointer":"default" }}
                   onMouseEnter={e => { e.currentTarget.style.borderColor=C.accent; e.currentTarget.style.background=C.white; e.currentTarget.style.transform="translateY(-2px)"; e.currentTarget.style.boxShadow="0 6px 20px rgba(0,0,0,0.08)"; }}
                   onMouseLeave={e => { e.currentTarget.style.borderColor=item.link?C.accent:C.border; e.currentTarget.style.background=C.bg; e.currentTarget.style.transform="none"; e.currentTarget.style.boxShadow="none"; }}
@@ -617,7 +618,7 @@ export default function App() {
 
           {/* サンプル画像を大きく表示 */}
           <div style={{ maxWidth:900, margin:"0 auto 3rem", cursor:"pointer", position:"relative" }}
-            onClick={() => setPage("samples")}
+            onClick={() => goToPage("samples")}
             onMouseEnter={e => { e.currentTarget.style.transform="translateY(-4px)"; e.currentTarget.style.boxShadow="0 16px 48px rgba(0,0,0,0.15)"; }}
             onMouseLeave={e => { e.currentTarget.style.transform="none"; e.currentTarget.style.boxShadow="0 4px 20px rgba(0,0,0,0.1)"; }}
           >
@@ -629,7 +630,7 @@ export default function App() {
           </div>
 
           <div style={{ textAlign:"center" }}>
-            <button onClick={() => setPage("samples")} style={{ padding:"1rem 2.5rem", background:"transparent", color:C.primary, border:`2px solid ${C.primary}`, cursor:"pointer", letterSpacing:"0.12em", fontSize:"0.95rem", fontFamily:"inherit", transition:"all 0.2s", display:"inline-flex", alignItems:"center", gap:"0.5rem" }} onMouseEnter={e => { e.currentTarget.style.background=C.primary; e.currentTarget.style.color="#fff"; }} onMouseLeave={e => { e.currentTarget.style.background="transparent"; e.currentTarget.style.color=C.primary; }}>すべてのサンプルを見る <IconArrowRight /></button>
+            <button onClick={() => goToPage("samples")} style={{ padding:"1rem 2.5rem", background:"transparent", color:C.primary, border:`2px solid ${C.primary}`, cursor:"pointer", letterSpacing:"0.12em", fontSize:"0.95rem", fontFamily:"inherit", transition:"all 0.2s", display:"inline-flex", alignItems:"center", gap:"0.5rem" }} onMouseEnter={e => { e.currentTarget.style.background=C.primary; e.currentTarget.style.color="#fff"; }} onMouseLeave={e => { e.currentTarget.style.background="transparent"; e.currentTarget.style.color=C.primary; }}>すべてのサンプルを見る <IconArrowRight /></button>
           </div>
         </div>
       </section>
@@ -918,7 +919,7 @@ export default function App() {
           <div className="footer-links" style={{ display:"flex", gap:"2rem", flexWrap:"wrap", justifyContent:"center" }}>
             {[...navLinks,{ label:"Portfolio", id:"portfolio" },{ label:"お問い合わせ", id:"contact" }].map(l => (
               l.id==="portfolio"
-                ? <button key="portfolio" onClick={() => setPage("portfolio")} style={{ background:"none", border:"none", color:"#9ca3af", cursor:"pointer", fontSize:"0.85rem", letterSpacing:"0.12em", fontFamily:"inherit" }}>Portfolio</button>
+                ? <button key="portfolio" onClick={() => goToPage("portfolio")} style={{ background:"none", border:"none", color:"#9ca3af", cursor:"pointer", fontSize:"0.85rem", letterSpacing:"0.12em", fontFamily:"inherit" }}>Portfolio</button>
                 : <button key={l.id} onClick={() => scrollTo(l.id)} style={{ background:"none", border:"none", color:"#9ca3af", cursor:"pointer", fontSize:"0.85rem", letterSpacing:"0.12em", fontFamily:"inherit" }}>{l.label}</button>
             ))}
           </div>
@@ -937,6 +938,31 @@ export default function App() {
         *{box-sizing:border-box;margin:0;padding:0;}
         ::placeholder{color:#aaa;}
         body{overflow-x:hidden;}
+
+        @keyframes fadeInUp{
+          from{opacity:0;transform:translateY(30px);}
+          to{opacity:1;transform:translateY(0);}
+        }
+        @keyframes fadeIn{
+          from{opacity:0;}
+          to{opacity:1;}
+        }
+        @keyframes slideInLeft{
+          from{opacity:0;transform:translateX(-30px);}
+          to{opacity:1;transform:translateX(0);}
+        }
+        .page-animate{animation:fadeIn 0.5s ease-out;}
+        .page-animate .anim-item{animation:fadeInUp 0.6s ease-out both;}
+        .page-animate .anim-item:nth-child(1){animation-delay:0.1s;}
+        .page-animate .anim-item:nth-child(2){animation-delay:0.2s;}
+        .page-animate .anim-item:nth-child(3){animation-delay:0.3s;}
+        .page-animate .anim-item:nth-child(4){animation-delay:0.4s;}
+        .page-animate .anim-item:nth-child(5){animation-delay:0.5s;}
+        .page-animate .anim-item:nth-child(6){animation-delay:0.6s;}
+        .page-animate .anim-item:nth-child(7){animation-delay:0.7s;}
+        .page-animate .anim-item:nth-child(8){animation-delay:0.8s;}
+        .page-animate .anim-item:nth-child(9){animation-delay:0.9s;}
+        .page-animate .anim-item:nth-child(10){animation-delay:1.0s;}
         .nav-desktop{display:flex;align-items:center;gap:1.8rem;}
         .nav-hamburger{display:none!important;}
         @media(max-width:768px){

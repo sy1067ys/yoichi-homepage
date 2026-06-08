@@ -4,6 +4,11 @@ import meishiImg from "../assets/meishi.png";
 import sakuraBoxImg from "../assets/sakura-box-ad.png";
 import meishiSampleImg from "../assets/meishi-sample.png";
 import samplesHeroImg from "../assets/samples-hero.png";
+import bannerCafe from "../assets/banner-cafe.png";
+import bannerSale from "../assets/banner-sale.png";
+import bannerRestaurant from "../assets/banner-restaurant.png";
+import bannerSalon from "../assets/banner-salon.png";
+import bannerEc from "../assets/banner-ec.png";
 
 const IconArrowRight = () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>);
 const IconArrowLeft = () => (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>);
@@ -119,6 +124,57 @@ function PortfolioPage({ onBack }) {
       </div>
       <footer style={{ borderTop:`1px solid ${C.border}`, padding:"2rem 1.5rem", textAlign:"center", background:C.dark, color:C.bg }}>
         <p style={{ fontSize:"0.8rem", color:"#9ca3af", letterSpacing:"0.12em" }}>© 令和八年 YOICHI</p>
+      </footer>
+    </div>
+  );
+}
+
+// ── バナーサンプルページ ──
+function BannerSamplesPage({ onBack }) {
+  const banners = [
+    { img: bannerCafe, title: "カフェ・オープン告知", desc: "ダーク×ゴールドの高級感あるデザイン。新規オープンの雰囲気を演出。", tag: "飲食店" },
+    { img: bannerSale, title: "スプリングセール", desc: "赤×白のストライプで目を引くセールバナー。期間限定感を強調。", tag: "セール" },
+    { img: bannerRestaurant, title: "和風レストラン", desc: "伝統的な和のテイストで高級感を演出。菱形パターンと金の装飾。", tag: "飲食店" },
+    { img: bannerSalon, title: "ヘアサロン", desc: "モノトーン×ゴールドの洗練されたデザイン。美容室の上品さを表現。", tag: "美容" },
+    { img: bannerEc, title: "ECサイト・新商品", desc: "ネイビー×ホワイトのクリーンなデザイン。商品カード付きで見やすく。", tag: "EC" },
+  ];
+  return (
+    <div style={{ minHeight:"100vh", background:C.bg, fontFamily:"'Georgia','Hiragino Mincho ProN',serif", color:C.dark }}>
+      <header style={{ position:"fixed", top:0, left:0, right:0, zIndex:50, background:`${C.bg}f5`, backdropFilter:"blur(8px)", borderBottom:`2px solid ${C.primary}33` }}>
+        <nav style={{ maxWidth:1200, margin:"0 auto", padding:"1rem 1.5rem", display:"flex", alignItems:"center", gap:"1rem" }}>
+          <button onClick={onBack} style={{ background:"none", border:"none", cursor:"pointer", display:"flex", alignItems:"center", gap:"0.5rem", color:C.primary, fontSize:"0.9rem", letterSpacing:"0.1em" }}><IconArrowLeft /> ホームに戻る</button>
+          <div style={{ width:1, height:20, background:C.border }} />
+          <div style={{ display:"flex", alignItems:"center", gap:"0.6rem" }}><YoichiMark size={36} /><span style={{ fontSize:"1.2rem", fontWeight:700, letterSpacing:"0.2em" }}>YOICHI<span style={{ color:C.accent }}>.</span></span></div>
+          <span style={{ color:C.textMuted, fontSize:"0.85rem", letterSpacing:"0.15em" }}>/ BANNER SAMPLES</span>
+        </nav>
+      </header>
+      <div style={{ padding:"7rem 1.5rem 5rem", maxWidth:1000, margin:"0 auto" }}>
+        <SectionHeading en="BANNER DESIGN SAMPLES" ja="バナーデザインサンプル" />
+        <p style={{ textAlign:"center", color:"#555", marginBottom:"4rem", lineHeight:1.9 }}>YOICHIが制作した広告バナーのイメージサンプルです。<br />お客様のご要望に合わせてオリジナルデザインを制作いたします。</p>
+        <div style={{ display:"flex", flexDirection:"column", gap:"3rem" }}>
+          {banners.map((b, i) => (
+            <div key={i} style={{ background:C.white, border:`1px solid ${C.border}`, overflow:"hidden", transition:"all 0.3s" }}
+              onMouseEnter={e => { e.currentTarget.style.boxShadow="0 8px 32px rgba(0,0,0,0.1)"; e.currentTarget.style.transform="translateY(-2px)"; }}
+              onMouseLeave={e => { e.currentTarget.style.boxShadow="none"; e.currentTarget.style.transform="none"; }}
+            >
+              <img src={b.img} alt={b.title} style={{ width:"100%", display:"block" }} />
+              <div style={{ padding:"1.5rem 2rem" }}>
+                <div style={{ display:"flex", alignItems:"center", gap:"0.75rem", marginBottom:"0.5rem" }}>
+                  <span style={{ background:C.accent, color:"#fff", fontSize:"0.7rem", padding:"0.2rem 0.6rem", letterSpacing:"0.1em" }}>{b.tag}</span>
+                  <span style={{ fontSize:"0.75rem", color:C.textMuted }}>SAMPLE {String(i+1).padStart(2,"0")}</span>
+                </div>
+                <h3 style={{ fontSize:"1.2rem", fontFamily:"serif", fontWeight:400, marginBottom:"0.5rem" }}>{b.title}</h3>
+                <p style={{ fontSize:"0.9rem", color:"#777", lineHeight:1.8 }}>{b.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div style={{ textAlign:"center", marginTop:"4rem" }}>
+          <button onClick={() => { onBack(); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }), 100); }} style={{ padding:"1rem 2.5rem", background:C.primary, color:"#fff", border:"none", cursor:"pointer", fontSize:"1rem", letterSpacing:"0.12em", fontFamily:"inherit", boxShadow:"0 4px 20px rgba(139,79,71,0.3)" }}>バナー制作のご相談はこちら →</button>
+        </div>
+      </div>
+      <footer style={{ borderTop:`1px solid ${C.border}`, padding:"2rem 1.5rem", textAlign:"center", background:C.dark, color:C.bg }}>
+        <p style={{ fontSize:"0.8rem", color:"#9ca3af", letterSpacing:"0.12em" }}>© 令和八年 株式会社YOICHI</p>
       </footer>
     </div>
   );
@@ -358,6 +414,7 @@ export default function App() {
 
   if (page === "portfolio") return <PortfolioPage onBack={() => setPage("home")} />;
   if (page === "samples") return <SamplesPage onBack={() => setPage("home")} />;
+  if (page === "banners") return <BannerSamplesPage onBack={() => setPage("home")} />;
   if (page === "meishi") return <MeishiPage onBack={() => setPage("home")} onContact={() => { setPage("home"); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }), 100); }} />;
   if (page === "package") return <PackagePage onBack={() => setPage("home")} onContact={() => { setPage("home"); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }), 100); }} />;
 
@@ -440,7 +497,7 @@ export default function App() {
             {/* お仕事グリッド */}
             <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(200px,1fr))", gap:"1.2rem", marginBottom:"3rem" }}>
               {[
-                { icon:"🖼️", label:"バナー作成", link:null },
+                { icon:"🖼️", label:"バナー作成", link:"banners" },
                 { icon:"💼", label:"名刺作成", link:"meishi" },
                 { icon:"✏️", label:"ロゴ作成", link:null },
                 { icon:"📦", label:"パッケージデザイン", link:"package" },
@@ -515,11 +572,11 @@ export default function App() {
             <div style={{ borderLeft:`4px solid ${C.accent}`, paddingLeft:"1.5rem" }}>
               <p style={{ fontSize:"0.75rem", color:C.accent, letterSpacing:"0.3em", marginBottom:"0.8rem" }}>MANAGEMENT PHILOSOPHY</p>
               <h3 style={{ fontSize:"1.8rem", fontFamily:"serif", fontWeight:400, lineHeight:1.8, marginBottom:"1.5rem" }}>経営理念</h3>
-              <div className="philosophy-row" style={{ display:"flex", flexDirection:"row", gap:"0.5rem", marginBottom:"1.5rem", alignItems:"center" }}>
+              <div style={{ display:"flex", flexDirection:"row", gap:"0.5rem", marginBottom:"1.5rem", alignItems:"center" }}>
                 <p style={{ fontSize:"clamp(0.95rem,2vw,1.25rem)", fontFamily:"serif", fontWeight:400, lineHeight:1.8, color:C.dark, whiteSpace:"nowrap", margin:0 }}>発想で豊かに</p>
-                <span className="philosophy-sep" style={{ color:C.accent, fontSize:"0.8rem" }}>／</span>
+                <span style={{ color:C.accent, fontSize:"0.8rem" }}>／</span>
                 <p style={{ fontSize:"clamp(0.95rem,2vw,1.25rem)", fontFamily:"serif", fontWeight:400, lineHeight:1.8, color:C.dark, whiteSpace:"nowrap", margin:0 }}>創造でユニークに</p>
-                <span className="philosophy-sep" style={{ color:C.accent, fontSize:"0.8rem" }}>／</span>
+                <span style={{ color:C.accent, fontSize:"0.8rem" }}>／</span>
                 <p style={{ fontSize:"clamp(0.95rem,2vw,1.25rem)", fontFamily:"serif", fontWeight:400, lineHeight:1.8, color:C.dark, whiteSpace:"nowrap", margin:0 }}>ひらめきで笑顔に</p>
               </div>
               <h4 style={{ fontSize:"1.2rem", fontFamily:"serif", fontWeight:400, color:C.dark, letterSpacing:"0.15em", marginBottom:"1rem" }}>ご挨拶</h4>
@@ -719,8 +776,6 @@ export default function App() {
           .section-inner{padding:3rem 1rem!important;}
           .about-grid{grid-template-columns:1fr!important;gap:2rem!important;}
           .about-logo-box{display:none!important;}
-          .philosophy-row{flex-direction:column!important;align-items:flex-start!important;gap:0.2rem!important;}
-          .philosophy-sep{display:none!important;}
           .contact-grid{grid-template-columns:1fr!important;gap:2rem!important;}
           .cta-group{flex-direction:column!important;}
           .cta-group button{width:100%!important;justify-content:center!important;}

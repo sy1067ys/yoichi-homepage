@@ -401,6 +401,7 @@ function MeishiPage({ onBack, onContact }) {
 const navLinks = [
   { label:"お仕事", id:"works_detail" },
   { label:"サンプル", id:"works" },
+  { label:"ご納品の流れ", id:"flow" },
   { label:"会社概要", id:"about" },
   { label:"由来", id:"origin" },
   { label:"SNS", id:"sns" },
@@ -561,6 +562,106 @@ export default function App() {
           <div style={{ textAlign:"center" }}>
             <button onClick={() => setPage("samples")} style={{ padding:"1rem 2.5rem", background:"transparent", color:C.primary, border:`2px solid ${C.primary}`, cursor:"pointer", letterSpacing:"0.12em", fontSize:"0.95rem", fontFamily:"inherit", transition:"all 0.2s", display:"inline-flex", alignItems:"center", gap:"0.5rem" }} onMouseEnter={e => { e.currentTarget.style.background=C.primary; e.currentTarget.style.color="#fff"; }} onMouseLeave={e => { e.currentTarget.style.background="transparent"; e.currentTarget.style.color=C.primary; }}>すべてのサンプルを見る <IconArrowRight /></button>
           </div>
+        </div>
+      </section>
+
+      {/* ── ご納品までの流れ ── */}
+      <section id="flow" style={{ padding:"5rem 1.5rem", background:C.white, position:"relative", overflow:"hidden" }}>
+        <div style={{ position:"absolute", top:0, left:0, right:0, height:1, background:`linear-gradient(to right,transparent,${C.accent}55,transparent)` }} />
+        <div style={{ maxWidth:900, margin:"0 auto", position:"relative", zIndex:1 }}>
+          <SectionHeading en="DELIVERY FLOW" ja="ご納品までの流れ" />
+
+          {/* フローチャート */}
+          <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:0 }}>
+
+            {/* STEP 1 */}
+            <div style={{ width:"100%", maxWidth:500, background:C.bg, border:`2px solid ${C.primary}`, padding:"1.5rem 2rem", textAlign:"center", position:"relative" }}>
+              <span style={{ position:"absolute", top:-12, left:20, background:C.accent, color:"#fff", fontSize:"0.7rem", padding:"0.15rem 0.6rem", letterSpacing:"0.1em" }}>STEP 01</span>
+              <h4 style={{ fontSize:"1.2rem", fontFamily:"serif", fontWeight:400, color:C.dark }}>ヒアリング</h4>
+              <p style={{ fontSize:"0.85rem", color:"#777", marginTop:"0.4rem" }}>ご要望・イメージをお伺いします</p>
+            </div>
+
+            {/* 矢印 */}
+            <div style={{ width:2, height:30, background:C.accent }} />
+            <div style={{ width:0, height:0, borderLeft:"8px solid transparent", borderRight:"8px solid transparent", borderTop:`10px solid ${C.accent}` }} />
+
+            {/* STEP 2 */}
+            <div style={{ width:"100%", maxWidth:600, background:C.bg, border:`2px solid ${C.primary}`, padding:"1.5rem 2rem", textAlign:"center", position:"relative", marginTop:4 }}>
+              <span style={{ position:"absolute", top:-12, left:20, background:C.accent, color:"#fff", fontSize:"0.7rem", padding:"0.15rem 0.6rem", letterSpacing:"0.1em" }}>STEP 02</span>
+              <h4 style={{ fontSize:"1.2rem", fontFamily:"serif", fontWeight:400, color:C.dark }}>イメージ確認・ラフ案の作成</h4>
+              <p style={{ fontSize:"0.85rem", color:"#777", marginTop:"0.4rem" }}>ヒアリングをもとにデザインの方向性を決定します</p>
+            </div>
+
+            {/* 分岐矢印 */}
+            <div style={{ width:2, height:20, background:C.accent }} />
+            <div className="flow-branch" style={{ display:"flex", width:"100%", maxWidth:600, gap:"2rem", justifyContent:"center" }}>
+
+              {/* 左ルート：イメージ合致 */}
+              <div style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", gap:0 }}>
+                <div style={{ width:0, height:0, borderLeft:"8px solid transparent", borderRight:"8px solid transparent", borderTop:`10px solid ${C.accent}` }} />
+                <div style={{ width:"100%", background:"#fff", border:`2px solid ${C.border}`, padding:"1rem", textAlign:"center", marginTop:4 }}>
+                  <p style={{ fontSize:"0.85rem", color:C.primary, fontWeight:700 }}>イメージの合致</p>
+                </div>
+                <div style={{ width:2, height:20, background:C.accent }} />
+                <div style={{ width:0, height:0, borderLeft:"8px solid transparent", borderRight:"8px solid transparent", borderTop:`10px solid ${C.accent}` }} />
+                <div style={{ width:"100%", background:"#fff", border:`2px solid ${C.border}`, padding:"1rem", textAlign:"center", marginTop:4 }}>
+                  <p style={{ fontSize:"0.85rem", color:C.dark }}>注文内容の確認</p>
+                </div>
+              </div>
+
+              {/* 右ルート：ご提案 */}
+              <div style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", gap:0 }}>
+                <div style={{ width:0, height:0, borderLeft:"8px solid transparent", borderRight:"8px solid transparent", borderTop:`10px solid ${C.accent}` }} />
+                <div style={{ width:"100%", background:"#fff", border:`2px solid ${C.border}`, padding:"1rem", textAlign:"center", marginTop:4 }}>
+                  <p style={{ fontSize:"0.85rem", color:C.primary, fontWeight:700 }}>ご提案</p>
+                </div>
+                <div style={{ width:2, height:20, background:C.accent }} />
+                <div style={{ width:0, height:0, borderLeft:"8px solid transparent", borderRight:"8px solid transparent", borderTop:`10px solid ${C.accent}` }} />
+                <div style={{ width:"100%", background:"#fff", border:`2px solid ${C.border}`, padding:"1rem", textAlign:"center", marginTop:4 }}>
+                  <p style={{ fontSize:"0.85rem", color:C.dark }}>イメージの合致</p>
+                </div>
+                <div style={{ width:2, height:20, background:C.accent }} />
+                <div style={{ width:0, height:0, borderLeft:"8px solid transparent", borderRight:"8px solid transparent", borderTop:`10px solid ${C.accent}` }} />
+                <div style={{ width:"100%", background:"#fff", border:`2px solid ${C.border}`, padding:"1rem", textAlign:"center", marginTop:4 }}>
+                  <p style={{ fontSize:"0.85rem", color:C.dark }}>注文内容の確認</p>
+                </div>
+              </div>
+            </div>
+
+            {/* 合流矢印 */}
+            <div style={{ width:2, height:30, background:C.accent, marginTop:4 }} />
+            <div style={{ width:0, height:0, borderLeft:"8px solid transparent", borderRight:"8px solid transparent", borderTop:`10px solid ${C.accent}` }} />
+
+            {/* STEP 3 */}
+            <div style={{ width:"100%", maxWidth:600, background:C.bg, border:`2px solid ${C.primary}`, padding:"1.5rem 2rem", textAlign:"center", position:"relative", marginTop:4 }}>
+              <span style={{ position:"absolute", top:-12, left:20, background:C.accent, color:"#fff", fontSize:"0.7rem", padding:"0.15rem 0.6rem", letterSpacing:"0.1em" }}>STEP 03</span>
+              <h4 style={{ fontSize:"1.2rem", fontFamily:"serif", fontWeight:400, color:C.dark }}>修正対応（最大4回まで）</h4>
+              <p style={{ fontSize:"0.85rem", color:"#777", marginTop:"0.4rem" }}>デザインの微調整を行います</p>
+            </div>
+
+            <div style={{ width:2, height:30, background:C.accent }} />
+            <div style={{ width:0, height:0, borderLeft:"8px solid transparent", borderRight:"8px solid transparent", borderTop:`10px solid ${C.accent}` }} />
+
+            {/* STEP 4 */}
+            <div style={{ width:"100%", maxWidth:500, background:C.bg, border:`2px solid ${C.primary}`, padding:"1.5rem 2rem", textAlign:"center", position:"relative", marginTop:4 }}>
+              <span style={{ position:"absolute", top:-12, left:20, background:C.accent, color:"#fff", fontSize:"0.7rem", padding:"0.15rem 0.6rem", letterSpacing:"0.1em" }}>STEP 04</span>
+              <h4 style={{ fontSize:"1.2rem", fontFamily:"serif", fontWeight:400, color:C.dark }}>最終デザイン確認</h4>
+              <p style={{ fontSize:"0.85rem", color:"#777", marginTop:"0.4rem" }}>完成デザインを最終確認いただきます</p>
+            </div>
+
+            <div style={{ width:2, height:30, background:C.accent }} />
+            <div style={{ width:0, height:0, borderLeft:"8px solid transparent", borderRight:"8px solid transparent", borderTop:`10px solid ${C.accent}` }} />
+
+            {/* STEP 5 */}
+            <div style={{ width:"100%", maxWidth:500, background:C.primary, padding:"1.5rem 2rem", textAlign:"center", position:"relative", marginTop:4 }}>
+              <span style={{ position:"absolute", top:-12, left:20, background:C.dark, color:"#fff", fontSize:"0.7rem", padding:"0.15rem 0.6rem", letterSpacing:"0.1em" }}>STEP 05</span>
+              <h4 style={{ fontSize:"1.3rem", fontFamily:"serif", fontWeight:400, color:"#fff" }}>ご納品</h4>
+              <p style={{ fontSize:"0.85rem", color:"rgba(255,255,255,0.8)", marginTop:"0.4rem" }}>完成データをお届けいたします</p>
+            </div>
+          </div>
+
+          {/* 注釈 */}
+          <p style={{ textAlign:"center", color:C.accent, fontSize:"0.85rem", marginTop:"2.5rem", lineHeight:1.8 }}>※製品や仕様によって流れが変わる場合がございます。</p>
         </div>
       </section>
 
@@ -777,6 +878,7 @@ export default function App() {
           .about-grid{grid-template-columns:1fr!important;gap:2rem!important;}
           .about-logo-box{display:none!important;}
           .contact-grid{grid-template-columns:1fr!important;gap:2rem!important;}
+          .flow-branch{flex-direction:column!important;gap:1rem!important;}
           .cta-group{flex-direction:column!important;}
           .cta-group button{width:100%!important;justify-content:center!important;}
           .sns-grid{max-width:100%!important;}

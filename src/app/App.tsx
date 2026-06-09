@@ -975,11 +975,12 @@ export default function App() {
           .philosophy-row{flex-direction:column!important;align-items:flex-start!important;gap:0.2rem!important;}
           .philosophy-sep{display:none!important;}
           .contact-grid{grid-template-columns:1fr!important;gap:2rem!important;}
-          .flow-branch{flex-direction:column!important;gap:0.5rem!important;padding:0 0.5rem!important;}
-          .flow-step{maxWidth:100%!important;max-width:100%!important;padding:1.2rem 1rem!important;box-sizing:border-box!important;}
-          .flow-step-wide{max-width:100%!important;padding:1.2rem 1rem!important;}
-          .flow-step h4{font-size:1rem!important;}
-          .flow-step p{font-size:0.8rem!important;}
+          .flow-branch{gap:0.8rem!important;padding:0!important;}
+          .flow-branch p{font-size:0.75rem!important;}
+          .flow-step{max-width:100%!important;padding:1rem 0.8rem!important;}
+          .flow-step-wide{max-width:100%!important;padding:1rem 0.8rem!important;}
+          .flow-step h4{font-size:0.95rem!important;}
+          .flow-step p{font-size:0.75rem!important;}
           .cta-group{flex-direction:column!important;}
           .cta-group button{width:100%!important;justify-content:center!important;}
           .sns-grid{max-width:100%!important;}
@@ -997,8 +998,9 @@ export default function App() {
           .origin-card{padding:1.5rem 1rem 1.5rem 1.5rem!important;}
           .origin-heading{font-size:1.1rem!important;}
           .letter-card{padding:1.5rem!important;}
-          .flow-step{padding:1rem 0.8rem!important;}
-          .flow-step h4{font-size:0.9rem!important;}
+          .flow-step{padding:0.8rem 0.6rem!important;}
+          .flow-step h4{font-size:0.85rem!important;}
+          .flow-branch p{font-size:0.7rem!important;}
         }
       `}</style>
     </div>

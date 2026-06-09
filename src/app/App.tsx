@@ -24,6 +24,16 @@ import uiux02 from "../assets/uiux-02.png";
 import uiux03 from "../assets/uiux-03.png";
 import uiux04 from "../assets/uiux-04.png";
 import uiux05 from "../assets/uiux-05.png";
+import sample01 from "../assets/sample-01.png";
+import sample02 from "../assets/sample-02.png";
+import sample03 from "../assets/sample-03.png";
+import sample04 from "../assets/sample-04.png";
+import sample05 from "../assets/sample-05.png";
+import sample06 from "../assets/sample-06.png";
+import sample07 from "../assets/sample-07.png";
+import sample08 from "../assets/sample-08.png";
+import sample09 from "../assets/sample-09.png";
+import sample10 from "../assets/sample-10.png";
 
 const IconArrowRight = () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>);
 const IconArrowLeft = () => (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>);
@@ -306,6 +316,21 @@ function BannerSamplesPage({ onBack }) {
 
 // ── サンプルページ ──
 function SamplesPage({ onBack }) {
+  const allSamples = [
+    { img: meishiSampleImg, tag:"名刺", title:"シンプルと高級感を両立したデザイン", desc:"Hair Salon向けのシンプルかつ高級感のある名刺デザイン。" },
+    { img: sakuraBoxImg, tag:"パッケージ", title:"桜が届ける、春の贈りもの", desc:"春の季節に合わせた桜模様のギフトボックスデザイン。" },
+    { img: sample01, tag:"招待状", title:"ウェディング招待状", desc:"上品なゴールドのフレームで特別な日を演出する招待状デザイン。" },
+    { img: sample02, tag:"ショップカード", title:"和菓子ショップカード", desc:"伝統的な和の雰囲気を活かした老舗和菓子店のショップカード。" },
+    { img: sample03, tag:"ポスター", title:"スポーツイベントポスター", desc:"ダイナミックなレイアウトでイベントの活力を伝えるポスター。" },
+    { img: sample04, tag:"ブランディング", title:"ナチュラルコスメ", desc:"自然派コスメブランドの世界観を表現したブランディングデザイン。" },
+    { img: sample05, tag:"チラシ", title:"音楽教室チラシ", desc:"楽しさと本格的なレッスン内容を伝える音楽教室のチラシ。" },
+    { img: sample06, tag:"チラシ", title:"不動産チラシ", desc:"物件の魅力を分かりやすく伝える不動産広告デザイン。" },
+    { img: sample07, tag:"メニュー", title:"カフェメニューデザイン", desc:"木漏れ日のような温かさを感じるカフェのメニュー表。" },
+    { img: sample08, tag:"フライヤー", title:"ヨガスタジオフライヤー", desc:"穏やかで心地よい雰囲気を伝えるヨガスタジオのフライヤー。" },
+    { img: sample09, tag:"ポスター", title:"テックカンファレンス", desc:"先進的なテクノロジーイベントのポスターデザイン。" },
+    { img: sample10, tag:"チラシ", title:"ペットサロンチラシ", desc:"かわいさと信頼感を両立したペットサロンの広告デザイン。" },
+    { img: meishiImg, tag:"名刺", title:"あなたの想いをこの一枚に", desc:"こだわりの名刺をYOICHIで。お客様のブランドを一枚に凝縮。" },
+  ];
   return (
     <div className="page-animate" style={{ minHeight:"100vh", background:C.bg, fontFamily:"'Georgia','Hiragino Mincho ProN',serif", color:C.dark }}>
       <header style={{ position:"fixed", top:0, left:0, right:0, zIndex:50, background:`${C.bg}f5`, backdropFilter:"blur(8px)", borderBottom:`2px solid ${C.primary}33` }}>
@@ -321,46 +346,23 @@ function SamplesPage({ onBack }) {
         <SectionHeading en="IMAGE SAMPLES" ja="イメージサンプル" />
         <p style={{ textAlign:"center", color:"#555", marginBottom:"4rem", lineHeight:1.9 }}>YOICHIが制作したデザインのイメージサンプルです。<br />実際の制作ではお客様のご要望に合わせてカスタマイズいたします。</p>
 
-        {/* サンプル一覧 */}
-        <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(340px,1fr))", gap:"2.5rem" }}>
-          {/* 名刺サンプル */}
-          <div style={{ background:C.white, border:`2px solid ${C.border}`, overflow:"hidden", transition:"all 0.3s" }}
-            onMouseEnter={e => { e.currentTarget.style.borderColor=C.accent; e.currentTarget.style.transform="translateY(-4px)"; e.currentTarget.style.boxShadow="0 12px 32px rgba(0,0,0,0.12)"; }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor=C.border; e.currentTarget.style.transform="none"; e.currentTarget.style.boxShadow="none"; }}
-          >
-            <img src={meishiSampleImg} alt="名刺デザインサンプル" style={{ width:"100%", display:"block" }} />
-            <div style={{ padding:"1.5rem" }}>
-              <div style={{ fontSize:"0.72rem", color:C.textMuted, letterSpacing:"0.2em", marginBottom:"0.5rem" }}>名刺デザイン</div>
-              <h3 style={{ fontSize:"1.1rem", fontFamily:"serif", fontWeight:400, marginBottom:"0.8rem", lineHeight:1.5 }}>シンプルと高級感を両立したデザイン</h3>
-              <p style={{ fontSize:"0.88rem", color:C.textMuted, lineHeight:1.8 }}>Hair Salon向けのシンプルかつ高級感のある名刺デザイン。ゴールドとシルバーの2パターンをご提案。</p>
+        <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(320px,1fr))", gap:"2rem" }}>
+          {allSamples.map((s, i) => (
+            <div key={i} className="anim-item" style={{ background:C.white, border:`1px solid ${C.border}`, overflow:"hidden", transition:"all 0.3s" }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor=C.accent; e.currentTarget.style.transform="translateY(-4px)"; e.currentTarget.style.boxShadow="0 12px 32px rgba(0,0,0,0.12)"; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor=C.border; e.currentTarget.style.transform="none"; e.currentTarget.style.boxShadow="none"; }}
+            >
+              <img src={s.img} alt={s.title} style={{ width:"100%", display:"block" }} />
+              <div style={{ padding:"1.2rem 1.5rem" }}>
+                <div style={{ display:"flex", alignItems:"center", gap:"0.5rem", marginBottom:"0.4rem" }}>
+                  <span style={{ background:C.accent, color:"#fff", fontSize:"0.65rem", padding:"0.15rem 0.5rem", letterSpacing:"0.08em" }}>{s.tag}</span>
+                  <span style={{ fontSize:"0.7rem", color:C.textMuted }}>SAMPLE {String(i+1).padStart(2,"0")}</span>
+                </div>
+                <h3 style={{ fontSize:"1rem", fontFamily:"serif", fontWeight:400, marginBottom:"0.3rem" }}>{s.title}</h3>
+                <p style={{ fontSize:"0.82rem", color:"#888", lineHeight:1.6 }}>{s.desc}</p>
+              </div>
             </div>
-          </div>
-
-          {/* パッケージサンプル */}
-          <div style={{ background:C.white, border:`2px solid ${C.border}`, overflow:"hidden", transition:"all 0.3s" }}
-            onMouseEnter={e => { e.currentTarget.style.borderColor=C.accent; e.currentTarget.style.transform="translateY(-4px)"; e.currentTarget.style.boxShadow="0 12px 32px rgba(0,0,0,0.12)"; }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor=C.border; e.currentTarget.style.transform="none"; e.currentTarget.style.boxShadow="none"; }}
-          >
-            <img src={sakuraBoxImg} alt="パッケージデザインサンプル" style={{ width:"100%", display:"block" }} />
-            <div style={{ padding:"1.5rem" }}>
-              <div style={{ fontSize:"0.72rem", color:C.textMuted, letterSpacing:"0.2em", marginBottom:"0.5rem" }}>パッケージデザイン</div>
-              <h3 style={{ fontSize:"1.1rem", fontFamily:"serif", fontWeight:400, marginBottom:"0.8rem", lineHeight:1.5 }}>桜が届ける、春の贈りもの</h3>
-              <p style={{ fontSize:"0.88rem", color:C.textMuted, lineHeight:1.8 }}>春の季節に合わせた桜模様のギフトボックス。華やかさと上品さを兼ね備えたデザイン。</p>
-            </div>
-          </div>
-
-          {/* 名刺イメージサンプル */}
-          <div style={{ background:C.white, border:`2px solid ${C.border}`, overflow:"hidden", transition:"all 0.3s" }}
-            onMouseEnter={e => { e.currentTarget.style.borderColor=C.accent; e.currentTarget.style.transform="translateY(-4px)"; e.currentTarget.style.boxShadow="0 12px 32px rgba(0,0,0,0.12)"; }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor=C.border; e.currentTarget.style.transform="none"; e.currentTarget.style.boxShadow="none"; }}
-          >
-            <img src={meishiImg} alt="名刺作成イメージ" style={{ width:"100%", display:"block" }} />
-            <div style={{ padding:"1.5rem" }}>
-              <div style={{ fontSize:"0.72rem", color:C.textMuted, letterSpacing:"0.2em", marginBottom:"0.5rem" }}>名刺作成</div>
-              <h3 style={{ fontSize:"1.1rem", fontFamily:"serif", fontWeight:400, marginBottom:"0.8rem", lineHeight:1.5 }}>あなたの想いをこの一枚に</h3>
-              <p style={{ fontSize:"0.88rem", color:C.textMuted, lineHeight:1.8 }}>こだわりの名刺をYOICHIで。お客様のブランドを一枚に凝縮します。</p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
 

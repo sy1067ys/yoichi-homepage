@@ -19,6 +19,11 @@ import logo07 from "../assets/logo-07.png";
 import logo08 from "../assets/logo-08.png";
 import logo09 from "../assets/logo-09.png";
 import logo10 from "../assets/logo-10.png";
+import uiux01 from "../assets/uiux-01.png";
+import uiux02 from "../assets/uiux-02.png";
+import uiux03 from "../assets/uiux-03.png";
+import uiux04 from "../assets/uiux-04.png";
+import uiux05 from "../assets/uiux-05.png";
 
 const IconArrowRight = () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>);
 const IconArrowLeft = () => (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>);
@@ -134,6 +139,57 @@ function PortfolioPage({ onBack }) {
       </div>
       <footer style={{ borderTop:`1px solid ${C.border}`, padding:"2rem 1.5rem", textAlign:"center", background:C.dark, color:C.bg }}>
         <p style={{ fontSize:"0.8rem", color:"#9ca3af", letterSpacing:"0.12em" }}>© 令和八年 YOICHI</p>
+      </footer>
+    </div>
+  );
+}
+
+// ── UI/UXサンプルページ ──
+function UiuxSamplesPage({ onBack }) {
+  const samples = [
+    { img: uiux01, title: "ECサイト管理画面", desc: "売上分析ダッシュボード。直感的なグラフとKPIカードで、ビジネスの状況を一目で把握できるデザイン。", tag: "Web管理画面" },
+    { img: uiux02, title: "レストラン予約アプリ", desc: "和食レストランの予約画面。日付・時間・人数を簡単に選択できるモバイルUIデザイン。", tag: "モバイルアプリ" },
+    { img: uiux03, title: "旅館サイト LP", desc: "老舗旅館のランディングページ。和の雰囲気を大切にしながら、予約への動線を分かりやすく設計。", tag: "ランディングページ" },
+    { img: uiux04, title: "フィットネスアプリ", desc: "トレーニング管理アプリ。ダークモードで視認性を確保し、達成率をプログレスバーで可視化。", tag: "モバイルアプリ" },
+    { img: uiux05, title: "美容院予約サイト", desc: "スタイリスト一覧から直接予約できるUI。洗練されたデザインでサロンのブランドイメージを表現。", tag: "予約サイト" },
+  ];
+  return (
+    <div className="page-animate" style={{ minHeight:"100vh", background:C.bg, fontFamily:"'Georgia','Hiragino Mincho ProN',serif", color:C.dark }}>
+      <header style={{ position:"fixed", top:0, left:0, right:0, zIndex:50, background:`${C.bg}f5`, backdropFilter:"blur(8px)", borderBottom:`2px solid ${C.primary}33` }}>
+        <nav style={{ maxWidth:1200, margin:"0 auto", padding:"1rem 1.5rem", display:"flex", alignItems:"center", gap:"1rem" }}>
+          <button onClick={onBack} style={{ background:"none", border:"none", cursor:"pointer", display:"flex", alignItems:"center", gap:"0.5rem", color:C.primary, fontSize:"0.9rem", letterSpacing:"0.1em" }}><IconArrowLeft /> ホームに戻る</button>
+          <div style={{ width:1, height:20, background:C.border }} />
+          <div style={{ display:"flex", alignItems:"center", gap:"0.6rem" }}><YoichiMark size={36} /><span style={{ fontSize:"1.2rem", fontWeight:700, letterSpacing:"0.2em" }}>YOICHI<span style={{ color:C.accent }}>.</span></span></div>
+          <span style={{ color:C.textMuted, fontSize:"0.85rem", letterSpacing:"0.15em" }}>/ UI/UX SAMPLES</span>
+        </nav>
+      </header>
+      <div style={{ padding:"7rem 1.5rem 5rem", maxWidth:1000, margin:"0 auto" }}>
+        <SectionHeading en="UI/UX DESIGN SAMPLES" ja="UI/UXデザインサンプル" />
+        <p style={{ textAlign:"center", color:"#555", marginBottom:"4rem", lineHeight:1.9 }}>使いやすさと美しさを両立したUI/UXデザインのサンプルです。<br />Webサイト・アプリ・管理画面など幅広く対応いたします。</p>
+        <div style={{ display:"flex", flexDirection:"column", gap:"3rem" }}>
+          {samples.map((s, i) => (
+            <div key={i} className="anim-item" style={{ background:C.white, border:`1px solid ${C.border}`, overflow:"hidden", transition:"all 0.3s" }}
+              onMouseEnter={e => { e.currentTarget.style.boxShadow="0 8px 32px rgba(0,0,0,0.1)"; e.currentTarget.style.transform="translateY(-2px)"; }}
+              onMouseLeave={e => { e.currentTarget.style.boxShadow="none"; e.currentTarget.style.transform="none"; }}
+            >
+              <img src={s.img} alt={s.title} style={{ width:"100%", display:"block" }} />
+              <div style={{ padding:"1.5rem 2rem" }}>
+                <div style={{ display:"flex", alignItems:"center", gap:"0.75rem", marginBottom:"0.5rem" }}>
+                  <span style={{ background:C.accent, color:"#fff", fontSize:"0.7rem", padding:"0.2rem 0.6rem", letterSpacing:"0.1em" }}>{s.tag}</span>
+                  <span style={{ fontSize:"0.75rem", color:C.textMuted }}>SAMPLE {String(i+1).padStart(2,"0")}</span>
+                </div>
+                <h3 style={{ fontSize:"1.2rem", fontFamily:"serif", fontWeight:400, marginBottom:"0.5rem" }}>{s.title}</h3>
+                <p style={{ fontSize:"0.9rem", color:"#777", lineHeight:1.8 }}>{s.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div style={{ textAlign:"center", marginTop:"4rem" }}>
+          <button onClick={() => { onBack(); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }), 100); }} style={{ padding:"1rem 2.5rem", background:C.primary, color:"#fff", border:"none", cursor:"pointer", fontSize:"1rem", letterSpacing:"0.12em", fontFamily:"inherit", boxShadow:"0 4px 20px rgba(139,79,71,0.3)" }}>UI/UXデザインのご相談はこちら →</button>
+        </div>
+      </div>
+      <footer style={{ borderTop:`1px solid ${C.border}`, padding:"2rem 1.5rem", textAlign:"center", background:C.dark, color:C.bg }}>
+        <p style={{ fontSize:"0.8rem", color:"#9ca3af", letterSpacing:"0.12em" }}>© 令和八年 株式会社YOICHI</p>
       </footer>
     </div>
   );
@@ -486,6 +542,7 @@ export default function App() {
   if (page === "samples") return <SamplesPage onBack={() => goToPage("home")} />;
   if (page === "banners") return <BannerSamplesPage onBack={() => goToPage("home")} />;
   if (page === "logos") return <LogoSamplesPage onBack={() => goToPage("home")} />;
+  if (page === "uiux") return <UiuxSamplesPage onBack={() => goToPage("home")} />;
   if (page === "meishi") return <MeishiPage onBack={() => goToPage("home")} onContact={() => { goToPage("home"); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }), 100); }} />;
   if (page === "package") return <PackagePage onBack={() => goToPage("home")} onContact={() => { goToPage("home"); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }), 100); }} />;
 
@@ -572,7 +629,7 @@ export default function App() {
                 { icon:"💼", label:"名刺作成", link:"meishi" },
                 { icon:"✏️", label:"ロゴ作成", link:"logos" },
                 { icon:"📦", label:"パッケージデザイン", link:"package" },
-                { icon:"🖥️", label:"UI/UXデザイン", link:null },
+                { icon:"🖥️", label:"UI/UXデザイン", link:"uiux" },
                 { icon:"🌐", label:"ウェブサイト作成", link:null },
                 { icon:"📱", label:"アプリケーション作成", link:null },
                 { icon:"📄", label:"テンプレート作成", link:null },

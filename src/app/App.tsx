@@ -645,7 +645,7 @@ export default function App() {
           <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:0 }}>
 
             {/* STEP 1 */}
-            <div style={{ width:"100%", maxWidth:500, background:C.bg, border:`2px solid ${C.primary}`, padding:"1.5rem 2rem", textAlign:"center", position:"relative" }}>
+            <div className="flow-step" style={{ width:"100%", maxWidth:500, background:C.bg, border:`2px solid ${C.primary}`, padding:"1.5rem 2rem", textAlign:"center", position:"relative" }}>
               <span style={{ position:"absolute", top:-12, left:20, background:C.accent, color:"#fff", fontSize:"0.7rem", padding:"0.15rem 0.6rem", letterSpacing:"0.1em" }}>STEP 01</span>
               <h4 style={{ fontSize:"1.2rem", fontFamily:"serif", fontWeight:400, color:C.dark }}>ヒアリング</h4>
               <p style={{ fontSize:"0.85rem", color:"#777", marginTop:"0.4rem" }}>ご要望・イメージをお伺いします</p>
@@ -656,7 +656,7 @@ export default function App() {
             <div style={{ width:0, height:0, borderLeft:"8px solid transparent", borderRight:"8px solid transparent", borderTop:`10px solid ${C.accent}` }} />
 
             {/* STEP 2 */}
-            <div style={{ width:"100%", maxWidth:600, background:C.bg, border:`2px solid ${C.primary}`, padding:"1.5rem 2rem", textAlign:"center", position:"relative", marginTop:4 }}>
+            <div className="flow-step flow-step-wide" style={{ width:"100%", maxWidth:600, background:C.bg, border:`2px solid ${C.primary}`, padding:"1.5rem 2rem", textAlign:"center", position:"relative", marginTop:4 }}>
               <span style={{ position:"absolute", top:-12, left:20, background:C.accent, color:"#fff", fontSize:"0.7rem", padding:"0.15rem 0.6rem", letterSpacing:"0.1em" }}>STEP 02</span>
               <h4 style={{ fontSize:"1.2rem", fontFamily:"serif", fontWeight:400, color:C.dark }}>イメージ確認・ラフ案の作成</h4>
               <p style={{ fontSize:"0.85rem", color:"#777", marginTop:"0.4rem" }}>ヒアリングをもとにデザインの方向性を決定します</p>
@@ -703,7 +703,7 @@ export default function App() {
             <div style={{ width:0, height:0, borderLeft:"8px solid transparent", borderRight:"8px solid transparent", borderTop:`10px solid ${C.accent}` }} />
 
             {/* STEP 3 */}
-            <div style={{ width:"100%", maxWidth:600, background:C.bg, border:`2px solid ${C.primary}`, padding:"1.5rem 2rem", textAlign:"center", position:"relative", marginTop:4 }}>
+            <div className="flow-step flow-step-wide" style={{ width:"100%", maxWidth:600, background:C.bg, border:`2px solid ${C.primary}`, padding:"1.5rem 2rem", textAlign:"center", position:"relative", marginTop:4 }}>
               <span style={{ position:"absolute", top:-12, left:20, background:C.accent, color:"#fff", fontSize:"0.7rem", padding:"0.15rem 0.6rem", letterSpacing:"0.1em" }}>STEP 03</span>
               <h4 style={{ fontSize:"1.2rem", fontFamily:"serif", fontWeight:400, color:C.dark }}>修正対応（最大4回まで）</h4>
               <p style={{ fontSize:"0.85rem", color:"#777", marginTop:"0.4rem" }}>デザインの微調整を行います</p>
@@ -713,7 +713,7 @@ export default function App() {
             <div style={{ width:0, height:0, borderLeft:"8px solid transparent", borderRight:"8px solid transparent", borderTop:`10px solid ${C.accent}` }} />
 
             {/* STEP 4 */}
-            <div style={{ width:"100%", maxWidth:500, background:C.bg, border:`2px solid ${C.primary}`, padding:"1.5rem 2rem", textAlign:"center", position:"relative", marginTop:4 }}>
+            <div className="flow-step" style={{ width:"100%", maxWidth:500, background:C.bg, border:`2px solid ${C.primary}`, padding:"1.5rem 2rem", textAlign:"center", position:"relative", marginTop:4 }}>
               <span style={{ position:"absolute", top:-12, left:20, background:C.accent, color:"#fff", fontSize:"0.7rem", padding:"0.15rem 0.6rem", letterSpacing:"0.1em" }}>STEP 04</span>
               <h4 style={{ fontSize:"1.2rem", fontFamily:"serif", fontWeight:400, color:C.dark }}>最終デザイン確認</h4>
               <p style={{ fontSize:"0.85rem", color:"#777", marginTop:"0.4rem" }}>完成デザインを最終確認いただきます</p>
@@ -723,7 +723,7 @@ export default function App() {
             <div style={{ width:0, height:0, borderLeft:"8px solid transparent", borderRight:"8px solid transparent", borderTop:`10px solid ${C.accent}` }} />
 
             {/* STEP 5 */}
-            <div style={{ width:"100%", maxWidth:500, background:C.primary, padding:"1.5rem 2rem", textAlign:"center", position:"relative", marginTop:4 }}>
+            <div className="flow-step" style={{ width:"100%", maxWidth:500, background:C.primary, padding:"1.5rem 2rem", textAlign:"center", position:"relative", marginTop:4 }}>
               <span style={{ position:"absolute", top:-12, left:20, background:C.dark, color:"#fff", fontSize:"0.7rem", padding:"0.15rem 0.6rem", letterSpacing:"0.1em" }}>STEP 05</span>
               <h4 style={{ fontSize:"1.3rem", fontFamily:"serif", fontWeight:400, color:"#fff" }}>ご納品</h4>
               <p style={{ fontSize:"0.85rem", color:"rgba(255,255,255,0.8)", marginTop:"0.4rem" }}>完成データをお届けいたします</p>
@@ -743,11 +743,11 @@ export default function App() {
             <div style={{ borderLeft:`4px solid ${C.accent}`, paddingLeft:"1.5rem" }}>
               <p style={{ fontSize:"0.75rem", color:C.accent, letterSpacing:"0.3em", marginBottom:"0.8rem" }}>MANAGEMENT PHILOSOPHY</p>
               <h3 style={{ fontSize:"1.8rem", fontFamily:"serif", fontWeight:400, lineHeight:1.8, marginBottom:"1.5rem" }}>経営理念</h3>
-              <div style={{ display:"flex", flexDirection:"row", gap:"0.5rem", marginBottom:"1.5rem", alignItems:"center" }}>
+              <div className="philosophy-row" style={{ display:"flex", flexDirection:"row", gap:"0.5rem", marginBottom:"1.5rem", alignItems:"center" }}>
                 <p style={{ fontSize:"clamp(0.95rem,2vw,1.25rem)", fontFamily:"serif", fontWeight:400, lineHeight:1.8, color:C.dark, whiteSpace:"nowrap", margin:0 }}>発想で豊かに</p>
-                <span style={{ color:C.accent, fontSize:"0.8rem" }}>／</span>
+                <span className="philosophy-sep" style={{ color:C.accent, fontSize:"0.8rem" }}>／</span>
                 <p style={{ fontSize:"clamp(0.95rem,2vw,1.25rem)", fontFamily:"serif", fontWeight:400, lineHeight:1.8, color:C.dark, whiteSpace:"nowrap", margin:0 }}>創造でユニークに</p>
-                <span style={{ color:C.accent, fontSize:"0.8rem" }}>／</span>
+                <span className="philosophy-sep" style={{ color:C.accent, fontSize:"0.8rem" }}>／</span>
                 <p style={{ fontSize:"clamp(0.95rem,2vw,1.25rem)", fontFamily:"serif", fontWeight:400, lineHeight:1.8, color:C.dark, whiteSpace:"nowrap", margin:0 }}>ひらめきで笑顔に</p>
               </div>
               <h4 style={{ fontSize:"1.2rem", fontFamily:"serif", fontWeight:400, color:C.dark, letterSpacing:"0.15em", marginBottom:"1rem" }}>ご挨拶</h4>
@@ -972,8 +972,14 @@ export default function App() {
           .section-inner{padding:3rem 1rem!important;}
           .about-grid{grid-template-columns:1fr!important;gap:2rem!important;}
           .about-logo-box{display:none!important;}
+          .philosophy-row{flex-direction:column!important;align-items:flex-start!important;gap:0.2rem!important;}
+          .philosophy-sep{display:none!important;}
           .contact-grid{grid-template-columns:1fr!important;gap:2rem!important;}
-          .flow-branch{flex-direction:column!important;gap:1rem!important;}
+          .flow-branch{flex-direction:column!important;gap:0.5rem!important;padding:0 0.5rem!important;}
+          .flow-step{maxWidth:100%!important;max-width:100%!important;padding:1.2rem 1rem!important;box-sizing:border-box!important;}
+          .flow-step-wide{max-width:100%!important;padding:1.2rem 1rem!important;}
+          .flow-step h4{font-size:1rem!important;}
+          .flow-step p{font-size:0.8rem!important;}
           .cta-group{flex-direction:column!important;}
           .cta-group button{width:100%!important;justify-content:center!important;}
           .sns-grid{max-width:100%!important;}
@@ -991,6 +997,8 @@ export default function App() {
           .origin-card{padding:1.5rem 1rem 1.5rem 1.5rem!important;}
           .origin-heading{font-size:1.1rem!important;}
           .letter-card{padding:1.5rem!important;}
+          .flow-step{padding:1rem 0.8rem!important;}
+          .flow-step h4{font-size:0.9rem!important;}
         }
       `}</style>
     </div>

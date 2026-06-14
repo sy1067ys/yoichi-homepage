@@ -44,6 +44,11 @@ import app02 from "../assets/app-02.png";
 import app03 from "../assets/app-03.png";
 import app04 from "../assets/app-04.png";
 import app05 from "../assets/app-05.png";
+import tmpl01 from "../assets/tmpl-01.png";
+import tmpl02 from "../assets/tmpl-02.png";
+import tmpl03 from "../assets/tmpl-03.png";
+import tmpl04 from "../assets/tmpl-04.png";
+import tmpl05 from "../assets/tmpl-05.png";
 
 const IconArrowRight = () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>);
 const IconArrowLeft = () => (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>);
@@ -159,6 +164,59 @@ function PortfolioPage({ onBack }) {
       </div>
       <footer style={{ borderTop:`1px solid ${C.border}`, padding:"2rem 1.5rem", textAlign:"center", background:C.dark, color:C.bg }}>
         <p style={{ fontSize:"0.8rem", color:"#9ca3af", letterSpacing:"0.12em" }}>© 令和八年 YOICHI</p>
+      </footer>
+    </div>
+  );
+}
+
+// ── テンプレートサンプルページ ──
+function TemplateSamplesPage({ onBack }) {
+  const samples = [
+    { img: tmpl01, title:"請求書テンプレート", desc:"ネイビーのヘッダーで品格ある請求書。品目・数量・金額を見やすく整理したレイアウト。", tag:"ビジネス書類" },
+    { img: tmpl02, title:"履歴書テンプレート", desc:"グリーンのアクセントカラーで爽やかな印象。学歴・職歴・資格を整理しやすい構成。", tag:"就職・転職" },
+    { img: tmpl03, title:"プレゼン表紙テンプレート", desc:"ダークな背景にブルーのアクセント。事業計画書・提案資料の表紙に最適。", tag:"プレゼン資料" },
+    { img: tmpl04, title:"ショップカードテンプレート", desc:"表面にお店情報、裏面にスタンプカード。カフェ・飲食店に人気のデザイン。", tag:"ショップカード" },
+    { img: tmpl05, title:"SNS投稿テンプレート", desc:"Instagram・X(Twitter)の投稿用テンプレート。セール告知や新商品紹介に活用。", tag:"SNS運用" },
+  ];
+  return (
+    <div className="page-animate" style={{ minHeight:"100vh", background:C.bg, fontFamily:"'Georgia','Hiragino Mincho ProN',serif", color:C.dark }}>
+      <header style={{ position:"fixed", top:0, left:0, right:0, zIndex:50, background:`${C.bg}f5`, backdropFilter:"blur(8px)", borderBottom:`2px solid ${C.primary}33` }}>
+        <nav style={{ maxWidth:1200, margin:"0 auto", padding:"1rem 1.5rem", display:"flex", alignItems:"center", gap:"1rem" }}>
+          <button onClick={onBack} style={{ background:"none", border:"none", cursor:"pointer", display:"flex", alignItems:"center", gap:"0.5rem", color:C.primary, fontSize:"0.9rem", letterSpacing:"0.1em" }}><IconArrowLeft /> ホームに戻る</button>
+          <div style={{ width:1, height:20, background:C.border }} />
+          <div style={{ display:"flex", alignItems:"center", gap:"0.6rem" }}><YoichiMark size={36} /><span style={{ fontSize:"1.2rem", fontWeight:700, letterSpacing:"0.2em" }}>YOICHI<span style={{ color:C.accent }}>.</span></span></div>
+          <span style={{ color:C.textMuted, fontSize:"0.85rem", letterSpacing:"0.15em" }}>/ TEMPLATE SAMPLES</span>
+        </nav>
+      </header>
+      <div style={{ padding:"7rem 1.5rem 5rem", maxWidth:1000, margin:"0 auto" }}>
+        <SectionHeading en="TEMPLATE DESIGN SAMPLES" ja="テンプレートデザインサンプル" />
+        <p style={{ textAlign:"center", color:"#555", marginBottom:"4rem", lineHeight:1.9 }}>請求書・履歴書・プレゼン資料・ショップカードなど、<br />すぐに使えるテンプレートデザインのサンプルです。</p>
+        <div style={{ display:"flex", flexDirection:"column", gap:"3rem" }}>
+          {samples.map((s, i) => (
+            <div key={i} className="anim-item" style={{ background:C.white, border:`1px solid ${C.border}`, overflow:"hidden", transition:"all 0.3s" }}
+              onMouseEnter={e => { e.currentTarget.style.boxShadow="0 8px 32px rgba(0,0,0,0.1)"; e.currentTarget.style.transform="translateY(-2px)"; }}
+              onMouseLeave={e => { e.currentTarget.style.boxShadow="none"; e.currentTarget.style.transform="none"; }}
+            >
+              <div style={{ padding:"1rem", background:"#f8f8f8" }}>
+                <img src={s.img} alt={s.title} style={{ width:"100%", display:"block", maxHeight:600, objectFit:"contain" }} />
+              </div>
+              <div style={{ padding:"1.5rem 2rem" }}>
+                <div style={{ display:"flex", alignItems:"center", gap:"0.75rem", marginBottom:"0.5rem" }}>
+                  <span style={{ background:C.accent, color:"#fff", fontSize:"0.7rem", padding:"0.2rem 0.6rem", letterSpacing:"0.1em" }}>{s.tag}</span>
+                  <span style={{ fontSize:"0.75rem", color:C.textMuted }}>SAMPLE {String(i+1).padStart(2,"0")}</span>
+                </div>
+                <h3 style={{ fontSize:"1.2rem", fontFamily:"serif", fontWeight:400, marginBottom:"0.5rem" }}>{s.title}</h3>
+                <p style={{ fontSize:"0.9rem", color:"#777", lineHeight:1.8 }}>{s.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div style={{ textAlign:"center", marginTop:"4rem" }}>
+          <button onClick={() => { onBack(); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }), 100); }} style={{ padding:"1rem 2.5rem", background:C.primary, color:"#fff", border:"none", cursor:"pointer", fontSize:"1rem", letterSpacing:"0.12em", fontFamily:"inherit", boxShadow:"0 4px 20px rgba(139,79,71,0.3)" }}>テンプレート制作のご相談はこちら →</button>
+        </div>
+      </div>
+      <footer style={{ borderTop:`1px solid ${C.border}`, padding:"2rem 1.5rem", textAlign:"center", background:C.dark, color:C.bg }}>
+        <p style={{ fontSize:"0.8rem", color:"#9ca3af", letterSpacing:"0.12em" }}>© 令和八年 株式会社YOICHI</p>
       </footer>
     </div>
   );
@@ -661,6 +719,7 @@ export default function App() {
   if (page === "uiux") return <UiuxSamplesPage onBack={() => goToPage("home")} />;
   if (page === "websamples") return <WebSamplesPage onBack={() => goToPage("home")} />;
   if (page === "appsamples") return <AppSamplesPage onBack={() => goToPage("home")} />;
+  if (page === "templates") return <TemplateSamplesPage onBack={() => goToPage("home")} />;
   if (page === "meishi") return <MeishiPage onBack={() => goToPage("home")} onContact={() => { goToPage("home"); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }), 100); }} />;
   if (page === "package") return <PackagePage onBack={() => goToPage("home")} onContact={() => { goToPage("home"); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }), 100); }} />;
 
@@ -750,7 +809,7 @@ export default function App() {
                 { icon:"🖥️", label:"UI/UXデザイン", link:"uiux" },
                 { icon:"🌐", label:"ウェブサイト作成", link:"websamples" },
                 { icon:"📱", label:"アプリケーション作成", link:"appsamples" },
-                { icon:"📄", label:"テンプレート作成", link:null },
+                { icon:"📄", label:"テンプレート作成", link:"templates" },
                 { icon:"🎁", label:"雑貨デザイン", link:null },
                 { icon:"📐", label:"レイアウトデザイン", link:null },
               ].map((item, i) => (

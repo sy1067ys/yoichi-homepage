@@ -39,6 +39,11 @@ import web02 from "../assets/web-02.png";
 import web03 from "../assets/web-03.png";
 import web04 from "../assets/web-04.png";
 import web05 from "../assets/web-05.png";
+import app01 from "../assets/app-01.png";
+import app02 from "../assets/app-02.png";
+import app03 from "../assets/app-03.png";
+import app04 from "../assets/app-04.png";
+import app05 from "../assets/app-05.png";
 
 const IconArrowRight = () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>);
 const IconArrowLeft = () => (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>);
@@ -154,6 +159,59 @@ function PortfolioPage({ onBack }) {
       </div>
       <footer style={{ borderTop:`1px solid ${C.border}`, padding:"2rem 1.5rem", textAlign:"center", background:C.dark, color:C.bg }}>
         <p style={{ fontSize:"0.8rem", color:"#9ca3af", letterSpacing:"0.12em" }}>© 令和八年 YOICHI</p>
+      </footer>
+    </div>
+  );
+}
+
+// ── アプリサンプルページ ──
+function AppSamplesPage({ onBack }) {
+  const samples = [
+    { img: app01, title:"フードデリバリーアプリ", desc:"お店検索・カテゴリ分類・配達時間表示。直感的に注文できるUI設計。", tag:"フードデリバリー" },
+    { img: app02, title:"家計簿アプリ", desc:"収支グラフ・カテゴリ別支出・予算管理。お金の流れを一目で把握。", tag:"ファイナンス" },
+    { img: app03, title:"SNSアプリ", desc:"ストーリーズ・フィード投稿・リアクション。つながりを楽しむソーシャルアプリ。", tag:"SNS" },
+    { img: app04, title:"タスク管理アプリ", desc:"チェックリスト・優先度管理・進捗表示。仕事の効率を最大化するUI。", tag:"ビジネス" },
+    { img: app05, title:"天気アプリ", desc:"現在の天気・週間予報・気象情報。美しいグラデーションで見やすく表示。", tag:"ユーティリティ" },
+  ];
+  return (
+    <div className="page-animate" style={{ minHeight:"100vh", background:C.bg, fontFamily:"'Georgia','Hiragino Mincho ProN',serif", color:C.dark }}>
+      <header style={{ position:"fixed", top:0, left:0, right:0, zIndex:50, background:`${C.bg}f5`, backdropFilter:"blur(8px)", borderBottom:`2px solid ${C.primary}33` }}>
+        <nav style={{ maxWidth:1200, margin:"0 auto", padding:"1rem 1.5rem", display:"flex", alignItems:"center", gap:"1rem" }}>
+          <button onClick={onBack} style={{ background:"none", border:"none", cursor:"pointer", display:"flex", alignItems:"center", gap:"0.5rem", color:C.primary, fontSize:"0.9rem", letterSpacing:"0.1em" }}><IconArrowLeft /> ホームに戻る</button>
+          <div style={{ width:1, height:20, background:C.border }} />
+          <div style={{ display:"flex", alignItems:"center", gap:"0.6rem" }}><YoichiMark size={36} /><span style={{ fontSize:"1.2rem", fontWeight:700, letterSpacing:"0.2em" }}>YOICHI<span style={{ color:C.accent }}>.</span></span></div>
+          <span style={{ color:C.textMuted, fontSize:"0.85rem", letterSpacing:"0.15em" }}>/ APP SAMPLES</span>
+        </nav>
+      </header>
+      <div style={{ padding:"7rem 1.5rem 5rem", maxWidth:1100, margin:"0 auto" }}>
+        <SectionHeading en="APP DESIGN SAMPLES" ja="アプリデザインサンプル" />
+        <p style={{ textAlign:"center", color:"#555", marginBottom:"4rem", lineHeight:1.9 }}>モバイルアプリのUIデザインサンプルです。<br />iOS・Android両対応のデザインを制作いたします。</p>
+        <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(280px,1fr))", gap:"2rem" }}>
+          {samples.map((s, i) => (
+            <div key={i} className="anim-item" style={{ background:C.white, border:`1px solid ${C.border}`, overflow:"hidden", transition:"all 0.3s" }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor=C.accent; e.currentTarget.style.transform="translateY(-4px)"; e.currentTarget.style.boxShadow="0 12px 32px rgba(0,0,0,0.12)"; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor=C.border; e.currentTarget.style.transform="none"; e.currentTarget.style.boxShadow="none"; }}
+            >
+              <div style={{ padding:"1rem", background:"#f8f8f8" }}>
+                <img src={s.img} alt={s.title} style={{ width:"100%", display:"block", maxHeight:500, objectFit:"contain" }} />
+              </div>
+              <div style={{ padding:"1.2rem 1.5rem" }}>
+                <div style={{ display:"flex", alignItems:"center", gap:"0.5rem", marginBottom:"0.4rem" }}>
+                  <span style={{ background:C.accent, color:"#fff", fontSize:"0.65rem", padding:"0.15rem 0.5rem", letterSpacing:"0.08em" }}>{s.tag}</span>
+                  <span style={{ fontSize:"0.7rem", color:C.textMuted }}>SAMPLE {String(i+1).padStart(2,"0")}</span>
+                </div>
+                <h3 style={{ fontSize:"1rem", fontFamily:"serif", fontWeight:400, marginBottom:"0.3rem" }}>{s.title}</h3>
+                <p style={{ fontSize:"0.82rem", color:"#888", lineHeight:1.6 }}>{s.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div style={{ textAlign:"center", marginTop:"4rem" }}>
+          <button onClick={() => { onBack(); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }), 100); }} style={{ padding:"1rem 2.5rem", background:C.primary, color:"#fff", border:"none", cursor:"pointer", fontSize:"1rem", letterSpacing:"0.12em", fontFamily:"inherit", boxShadow:"0 4px 20px rgba(139,79,71,0.3)" }}>アプリ制作のご相談はこちら →</button>
+        </div>
+      </div>
+      <footer style={{ borderTop:`1px solid ${C.border}`, padding:"2rem 1.5rem", textAlign:"center", background:C.dark, color:C.bg }}>
+        <p style={{ fontSize:"0.8rem", color:"#9ca3af", letterSpacing:"0.12em" }}>© 令和八年 株式会社YOICHI</p>
       </footer>
     </div>
   );
@@ -602,6 +660,7 @@ export default function App() {
   if (page === "logos") return <LogoSamplesPage onBack={() => goToPage("home")} />;
   if (page === "uiux") return <UiuxSamplesPage onBack={() => goToPage("home")} />;
   if (page === "websamples") return <WebSamplesPage onBack={() => goToPage("home")} />;
+  if (page === "appsamples") return <AppSamplesPage onBack={() => goToPage("home")} />;
   if (page === "meishi") return <MeishiPage onBack={() => goToPage("home")} onContact={() => { goToPage("home"); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }), 100); }} />;
   if (page === "package") return <PackagePage onBack={() => goToPage("home")} onContact={() => { goToPage("home"); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }), 100); }} />;
 
@@ -690,7 +749,7 @@ export default function App() {
                 { icon:"📦", label:"パッケージデザイン", link:"package" },
                 { icon:"🖥️", label:"UI/UXデザイン", link:"uiux" },
                 { icon:"🌐", label:"ウェブサイト作成", link:"websamples" },
-                { icon:"📱", label:"アプリケーション作成", link:null },
+                { icon:"📱", label:"アプリケーション作成", link:"appsamples" },
                 { icon:"📄", label:"テンプレート作成", link:null },
                 { icon:"🎁", label:"雑貨デザイン", link:null },
                 { icon:"📐", label:"レイアウトデザイン", link:null },

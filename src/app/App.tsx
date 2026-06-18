@@ -175,11 +175,16 @@ function PortfolioPage({ onBack }) {
   );
 }
 
-// ── 雑貨デザインサンプルページ ──
+// ── 雑貨デザインサンプルページ ──// ── 雑貨デザインサンプルページ ──
 function GoodsSamplesPage({ onBack }) {
-  const designSamples = [
-   import goodsCollage from "../assets/goods-collage.png";
+  const goodsItems = [
+    { icon:"🔑", title:"アクリルキーホルダー", desc:"丸型・四角型の2パターン。桜モチーフやブランドロゴを入れたオリジナルデザイン。透明アクリルで軽量&高発色。ノベルティや記念品に人気です。", tag:"キーホルダー" },
+    { icon:"👜", title:"トートバッグ", desc:"ナチュラルなキャンバス地にタイポグラフィをあしらったデザイン。5色のカラーバリエーション展開。イベント配布やショップバッグに最適。", tag:"トートバッグ" },
+    { icon:"☕", title:"マグカップ", desc:"モーニング用とカフェ風の2デザイン。オリジナルメッセージやロゴを入れて、世界にひとつだけのマグカップを制作できます。", tag:"マグカップ" },
+    { icon:"🏷️", title:"丸型ステッカー", desc:"漢字×カラーの和モダンなステッカーセット。ノートPC・スマホ・手帳にぴったりのサイズ感。6種のモチーフから選べます。", tag:"ステッカー" },
+    { icon:"📱", title:"スマホケース", desc:"桜フラワー・ゴールドジオメトリック・クロスラインの3パターン。iPhone/Android対応。クリアケースで端末デザインも活かせます。", tag:"スマホケース" },
   ];
+
   return (
     <div className="page-animate" style={{ minHeight:"100vh", background:C.bg, fontFamily:"'Georgia','Hiragino Mincho ProN',serif", color:C.dark }}>
       <header style={{ position:"fixed", top:0, left:0, right:0, zIndex:50, background:`${C.bg}f5`, backdropFilter:"blur(8px)", borderBottom:`2px solid ${C.primary}33` }}>
@@ -213,7 +218,7 @@ function GoodsSamplesPage({ onBack }) {
           </div>
         </div>
 
-        {/* 実績紹介 */}
+        {/* 制作実績 */}
         <div style={{ background:C.white, padding:"4rem 1.5rem" }}>
           <div style={{ maxWidth:900, margin:"0 auto" }}>
             <div style={{ textAlign:"center", marginBottom:"3rem" }}>
@@ -237,28 +242,49 @@ function GoodsSamplesPage({ onBack }) {
           </div>
         </div>
 
-        {/* デザインサンプル一覧 */}
+        {/* デザインサンプル一覧（コラージュ画像） */}
         <div style={{ background:C.bg, padding:"4rem 1.5rem" }}>
           <div style={{ maxWidth:1100, margin:"0 auto" }}>
             <SectionHeading en="DESIGN SAMPLES" ja="雑貨デザインサンプル" />
-            <p style={{ textAlign:"center", color:"#555", marginBottom:"3rem", lineHeight:1.9 }}>キーホルダー以外にも、さまざまな雑貨のデザインに対応しています。</p>
-            <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(300px,1fr))", gap:"2rem" }}>
-              {designSamples.map((s, i) => (
-                <div key={i} className="anim-item" style={{ background:C.white, border:`1px solid ${C.border}`, overflow:"hidden", transition:"all 0.3s" }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor=C.accent; e.currentTarget.style.transform="translateY(-4px)"; e.currentTarget.style.boxShadow="0 12px 32px rgba(0,0,0,0.12)"; }}
+            <p style={{ textAlign:"center", color:"#555", marginBottom:"3rem", lineHeight:1.9 }}>キーホルダー以外にも、さまざまな雑貨のデザインに対応しています。<br />下記はYOICHIが制作したデザインサンプルの一覧です。</p>
+
+            {/* コラージュ画像 */}
+            <div className="anim-item" style={{ background:C.white, border:`1px solid ${C.border}`, overflow:"hidden", marginBottom:"3rem" }}>
+              <img src={goodsCollage} alt="YOICHIの雑貨デザインサンプル一覧" style={{ width:"100%", display:"block" }} />
+            </div>
+
+            {/* 各アイテム説明 */}
+            <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(280px,1fr))", gap:"1.5rem" }}>
+              {goodsItems.map((item, i) => (
+                <div key={i} className="anim-item" style={{ background:C.white, border:`1px solid ${C.border}`, padding:"1.5rem", transition:"all 0.3s", position:"relative", overflow:"hidden" }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor=C.accent; e.currentTarget.style.transform="translateY(-4px)"; e.currentTarget.style.boxShadow="0 12px 32px rgba(0,0,0,0.1)"; }}
                   onMouseLeave={e => { e.currentTarget.style.borderColor=C.border; e.currentTarget.style.transform="none"; e.currentTarget.style.boxShadow="none"; }}
                 >
-                  <div style={{ padding:"0.5rem", background:"#f8f8f8" }}><img src={s.img} alt={s.title} style={{ width:"100%", display:"block" }} /></div>
-                  <div style={{ padding:"1.2rem 1.5rem" }}>
-                    <div style={{ display:"flex", alignItems:"center", gap:"0.5rem", marginBottom:"0.4rem" }}>
-                      <span style={{ background:C.accent, color:"#fff", fontSize:"0.65rem", padding:"0.15rem 0.5rem" }}>{s.tag}</span>
-                    </div>
-                    <h3 style={{ fontSize:"1rem", fontFamily:"serif", fontWeight:400, marginBottom:"0.3rem" }}>{s.title}</h3>
-                    <p style={{ fontSize:"0.82rem", color:"#888", lineHeight:1.6 }}>{s.desc}</p>
+                  <div style={{ position:"absolute", top:0, right:0, width:80, height:80, color:C.primary, opacity:0.05, pointerEvents:"none" }}><YagasuriBg /></div>
+                  <div style={{ display:"flex", alignItems:"center", gap:"0.6rem", marginBottom:"0.8rem" }}>
+                    <span style={{ fontSize:"1.5rem" }}>{item.icon}</span>
+                    <span style={{ background:C.accent, color:"#fff", fontSize:"0.65rem", padding:"0.15rem 0.5rem", letterSpacing:"0.08em" }}>{item.tag}</span>
                   </div>
+                  <h3 style={{ fontSize:"1.05rem", fontFamily:"serif", fontWeight:400, marginBottom:"0.5rem", color:C.dark }}>{item.title}</h3>
+                  <p style={{ fontSize:"0.85rem", color:"#777", lineHeight:1.8 }}>{item.desc}</p>
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+
+        {/* 対応可能な雑貨一覧 */}
+        <div style={{ background:C.white, padding:"4rem 1.5rem" }}>
+          <div style={{ maxWidth:900, margin:"0 auto", textAlign:"center" }}>
+            <p style={{ fontSize:"0.75rem", color:C.textMuted, letterSpacing:"0.3em", marginBottom:"0.5rem" }}>AVAILABLE ITEMS</p>
+            <h3 style={{ fontSize:"clamp(1.4rem,3vw,2rem)", fontFamily:"serif", fontWeight:400, color:C.dark, marginBottom:"1rem" }}>対応可能な雑貨アイテム</h3>
+            <div style={{ width:48, height:3, background:C.accent, margin:"0 auto", marginBottom:"2rem" }} />
+            <div style={{ display:"flex", flexWrap:"wrap", justifyContent:"center", gap:"0.75rem", marginBottom:"2rem" }}>
+              {["アクリルキーホルダー","トートバッグ","マグカップ","ステッカー","スマホケース","缶バッジ","ポストカード","クリアファイル","Tシャツ","タオル","エコバッグ","ノート・手帳"].map(item => (
+                <span key={item} style={{ padding:"0.5rem 1.2rem", border:`1px solid ${C.border}`, fontSize:"0.85rem", letterSpacing:"0.08em", background:C.bg }}>{item}</span>
+              ))}
+            </div>
+            <p style={{ color:"#777", fontSize:"0.88rem", lineHeight:1.8 }}>上記以外のアイテムもご相談ください。素材やサイズ、ロット数に合わせて最適なデザインをご提案いたします。</p>
           </div>
         </div>
 

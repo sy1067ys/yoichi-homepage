@@ -51,6 +51,11 @@ import tmpl04 from "../assets/tmpl-04.png";
 import tmpl05 from "../assets/tmpl-05.png";
 import keychainPhoto from "../assets/keychain-photo.jpg";
 import goodsCollage from "../assets/goods-collage.png";
+import layout01 from "../assets/layout-01.png";
+import layout02 from "../assets/layout-02.png";
+import layout03 from "../assets/layout-03.png";
+import layout04 from "../assets/layout-04.png";
+import layout05 from "../assets/layout-05.png";
 
 const IconArrowRight = () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>);
 const IconArrowLeft = () => (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>);
@@ -829,6 +834,59 @@ function MeishiPage({ onBack, onContact }) {
   );
 }
 
+// ── レイアウトデザインサンプルページ ──
+function LayoutSamplesPage({ onBack }) {
+  const samples = [
+    { img: layout01, title:"マガジンレイアウト", desc:"ヒーロー画像・サイドバー・3カラムグリッドを組み合わせた雑誌風レイアウト。ビジュアルと文章のバランスを重視した構成です。", tag:"マガジン" },
+    { img: layout02, title:"コーポレートブロシュア", desc:"企業パンフレット向けの信頼感あるレイアウト。ミッション・サービス・実績を整理して伝える2カラム構成。", tag:"会社案内" },
+    { img: layout03, title:"イベントフライヤー", desc:"ダーク背景×アクセントカラーで目を引くイベント告知レイアウト。日時・場所・CTAを分かりやすく配置。", tag:"イベント" },
+    { img: layout04, title:"プロダクトカタログ", desc:"商品を大きく見せるメインビジュアルと、スペック・価格を整理したサイドパネル。商品一覧グリッド付き。", tag:"カタログ" },
+    { img: layout05, title:"ニュースレター・レポート", desc:"リード記事・統計データ・3カラム記事を組み合わせた情報量の多いレイアウト。社内報や定期レポートに最適。", tag:"レポート" },
+  ];
+  return (
+    <div className="page-animate" style={{ minHeight:"100vh", background:C.bg, fontFamily:"'Georgia','Hiragino Mincho ProN',serif", color:C.dark }}>
+      <header style={{ position:"fixed", top:0, left:0, right:0, zIndex:50, background:`${C.bg}f5`, backdropFilter:"blur(8px)", borderBottom:`2px solid ${C.primary}33` }}>
+        <nav style={{ maxWidth:1200, margin:"0 auto", padding:"1rem 1.5rem", display:"flex", alignItems:"center", gap:"1rem" }}>
+          <button onClick={onBack} style={{ background:"none", border:"none", cursor:"pointer", display:"flex", alignItems:"center", gap:"0.5rem", color:C.primary, fontSize:"0.9rem", letterSpacing:"0.1em" }}><IconArrowLeft /> ホームに戻る</button>
+          <div style={{ width:1, height:20, background:C.border }} />
+          <div style={{ display:"flex", alignItems:"center", gap:"0.6rem" }}><YoichiMark size={36} /><span style={{ fontSize:"1.2rem", fontWeight:700, letterSpacing:"0.2em" }}>YOICHI<span style={{ color:C.accent }}>.</span></span></div>
+          <span style={{ color:C.textMuted, fontSize:"0.85rem", letterSpacing:"0.15em" }}>/ LAYOUT SAMPLES</span>
+        </nav>
+      </header>
+      <div style={{ padding:"7rem 1.5rem 5rem", maxWidth:1000, margin:"0 auto" }}>
+        <SectionHeading en="LAYOUT DESIGN SAMPLES" ja="レイアウトデザインサンプル" />
+        <p style={{ textAlign:"center", color:"#555", marginBottom:"4rem", lineHeight:1.9 }}>マガジン・カタログ・フライヤー・レポートなど、<br />用途に合わせた情報整理と視覚的な構成をご提案いたします。</p>
+        <div style={{ display:"flex", flexDirection:"column", gap:"3rem" }}>
+          {samples.map((s, i) => (
+            <div key={i} className="anim-item" style={{ background:C.white, border:`1px solid ${C.border}`, overflow:"hidden", transition:"all 0.3s" }}
+              onMouseEnter={e => { e.currentTarget.style.boxShadow="0 8px 32px rgba(0,0,0,0.1)"; e.currentTarget.style.transform="translateY(-2px)"; }}
+              onMouseLeave={e => { e.currentTarget.style.boxShadow="none"; e.currentTarget.style.transform="none"; }}
+            >
+              <div style={{ padding:"1rem", background:"#f8f8f8" }}>
+                <img src={s.img} alt={s.title} style={{ width:"100%", display:"block", maxHeight:600, objectFit:"contain" }} />
+              </div>
+              <div style={{ padding:"1.5rem 2rem" }}>
+                <div style={{ display:"flex", alignItems:"center", gap:"0.75rem", marginBottom:"0.5rem" }}>
+                  <span style={{ background:C.accent, color:"#fff", fontSize:"0.7rem", padding:"0.2rem 0.6rem", letterSpacing:"0.1em" }}>{s.tag}</span>
+                  <span style={{ fontSize:"0.75rem", color:C.textMuted }}>SAMPLE {String(i+1).padStart(2,"0")}</span>
+                </div>
+                <h3 style={{ fontSize:"1.2rem", fontFamily:"serif", fontWeight:400, marginBottom:"0.5rem" }}>{s.title}</h3>
+                <p style={{ fontSize:"0.9rem", color:"#777", lineHeight:1.8 }}>{s.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div style={{ textAlign:"center", marginTop:"4rem" }}>
+          <button onClick={() => { onBack(); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }), 100); }} style={{ padding:"1rem 2.5rem", background:C.primary, color:"#fff", border:"none", cursor:"pointer", fontSize:"1rem", letterSpacing:"0.12em", fontFamily:"inherit", boxShadow:"0 4px 20px rgba(139,79,71,0.3)" }}>レイアウトデザインのご相談はこちら →</button>
+        </div>
+      </div>
+      <footer style={{ borderTop:`1px solid ${C.border}`, padding:"2rem 1.5rem", textAlign:"center", background:C.dark, color:C.bg }}>
+        <p style={{ fontSize:"0.8rem", color:"#9ca3af", letterSpacing:"0.12em" }}>© 令和八年 株式会社YOICHI</p>
+      </footer>
+    </div>
+  );
+}
+
 const navLinks = [
   { label:"お仕事", id:"works_detail" },
   { label:"サンプル", id:"works" },
@@ -854,6 +912,7 @@ export default function App() {
   if (page === "appsamples") return <AppSamplesPage onBack={() => goToPage("home")} />;
   if (page === "templates") return <TemplateSamplesPage onBack={() => goToPage("home")} />;
   if (page === "goods") return <GoodsSamplesPage onBack={() => goToPage("home")} />;
+  if (page === "layouts") return <LayoutSamplesPage onBack={() => goToPage("home")} />;
   if (page === "meishi") return <MeishiPage onBack={() => goToPage("home")} onContact={() => { goToPage("home"); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }), 100); }} />;
   if (page === "package") return <PackagePage onBack={() => goToPage("home")} onContact={() => { goToPage("home"); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }), 100); }} />;
 
@@ -945,7 +1004,7 @@ export default function App() {
                 { icon:"📱", label:"アプリケーション作成", link:"appsamples" },
                 { icon:"📄", label:"テンプレート作成", link:"templates" },
                 { icon:"🎁", label:"雑貨デザイン", link:"goods" },
-                { icon:"📐", label:"レイアウトデザイン", link:null },
+                { icon:"📐", label:"レイアウトデザイン", link:"layouts" },
               ].map((item, i) => (
                 <div key={i}
                   onClick={() => item.link && goToPage(item.link)}

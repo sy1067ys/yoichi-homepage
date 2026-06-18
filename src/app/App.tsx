@@ -178,11 +178,7 @@ function PortfolioPage({ onBack }) {
 // ── 雑貨デザインサンプルページ ──
 function GoodsSamplesPage({ onBack }) {
   const designSamples = [
-    { img: goods01, title:"アクリルキーホルダー", desc:"丸型・四角型の2パターン。桜モチーフやブランドロゴを入れたオリジナルデザイン。", tag:"キーホルダー" },
-    { img: goods02, title:"トートバッグ", desc:"ナチュラルなキャンバス地にタイポグラフィデザイン。5色のカラーバリエーション展開。", tag:"トートバッグ" },
-    { img: goods03, title:"マグカップ", desc:"モーニング用とカフェ風の2デザイン。オリジナルメッセージやロゴを入れられます。", tag:"マグカップ" },
-    { img: goods04, title:"ステッカーシート", desc:"9種類のモチーフを1シートに。ノートPCやスマホ、手帳に貼れるサイズ感。", tag:"ステッカー" },
-    { img: goods05, title:"スマホケース", desc:"フラワー・ジオメトリック・和モダンの3パターン。iPhone/Android対応。", tag:"スマホケース" },
+   import goodsCollage from "../assets/goods-collage.png";
   ];
   return (
     <div className="page-animate" style={{ minHeight:"100vh", background:C.bg, fontFamily:"'Georgia','Hiragino Mincho ProN',serif", color:C.dark }}>

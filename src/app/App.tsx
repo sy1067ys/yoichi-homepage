@@ -49,6 +49,12 @@ import tmpl02 from "../assets/tmpl-02.png";
 import tmpl03 from "../assets/tmpl-03.png";
 import tmpl04 from "../assets/tmpl-04.png";
 import tmpl05 from "../assets/tmpl-05.png";
+import keychainPhoto from "../assets/keychain-photo.jpg";
+import goods01 from "../assets/goods-01.png";
+import goods02 from "../assets/goods-02.png";
+import goods03 from "../assets/goods-03.png";
+import goods04 from "../assets/goods-04.png";
+import goods05 from "../assets/goods-05.png";
 
 const IconArrowRight = () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>);
 const IconArrowLeft = () => (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>);
@@ -165,6 +171,115 @@ function PortfolioPage({ onBack }) {
       <footer style={{ borderTop:`1px solid ${C.border}`, padding:"2rem 1.5rem", textAlign:"center", background:C.dark, color:C.bg }}>
         <p style={{ fontSize:"0.8rem", color:"#9ca3af", letterSpacing:"0.12em" }}>© 令和八年 YOICHI</p>
       </footer>
+    </div>
+  );
+}
+
+// ── 雑貨デザインサンプルページ ──
+function GoodsSamplesPage({ onBack }) {
+  const designSamples = [
+    { img: goods01, title:"アクリルキーホルダー", desc:"丸型・四角型の2パターン。桜モチーフやブランドロゴを入れたオリジナルデザイン。", tag:"キーホルダー" },
+    { img: goods02, title:"トートバッグ", desc:"ナチュラルなキャンバス地にタイポグラフィデザイン。5色のカラーバリエーション展開。", tag:"トートバッグ" },
+    { img: goods03, title:"マグカップ", desc:"モーニング用とカフェ風の2デザイン。オリジナルメッセージやロゴを入れられます。", tag:"マグカップ" },
+    { img: goods04, title:"ステッカーシート", desc:"9種類のモチーフを1シートに。ノートPCやスマホ、手帳に貼れるサイズ感。", tag:"ステッカー" },
+    { img: goods05, title:"スマホケース", desc:"フラワー・ジオメトリック・和モダンの3パターン。iPhone/Android対応。", tag:"スマホケース" },
+  ];
+  return (
+    <div className="page-animate" style={{ minHeight:"100vh", background:C.bg, fontFamily:"'Georgia','Hiragino Mincho ProN',serif", color:C.dark }}>
+      <header style={{ position:"fixed", top:0, left:0, right:0, zIndex:50, background:`${C.bg}f5`, backdropFilter:"blur(8px)", borderBottom:`2px solid ${C.primary}33` }}>
+        <nav style={{ maxWidth:1200, margin:"0 auto", padding:"1rem 1.5rem", display:"flex", alignItems:"center", gap:"1rem" }}>
+          <button onClick={onBack} style={{ background:"none", border:"none", cursor:"pointer", display:"flex", alignItems:"center", gap:"0.5rem", color:C.primary, fontSize:"0.9rem", letterSpacing:"0.1em" }}><IconArrowLeft /> ホームに戻る</button>
+          <div style={{ width:1, height:20, background:C.border }} />
+          <div style={{ display:"flex", alignItems:"center", gap:"0.6rem" }}><YoichiMark size={36} /><span style={{ fontSize:"1.2rem", fontWeight:700, letterSpacing:"0.2em" }}>YOICHI<span style={{ color:C.accent }}>.</span></span></div>
+          <span style={{ color:C.textMuted, fontSize:"0.85rem", letterSpacing:"0.15em" }}>/ GOODS DESIGN</span>
+        </nav>
+      </header>
+
+      <div style={{ paddingTop:"5rem" }}>
+        {/* ヒーロー：実写写真 */}
+        <div style={{ background:C.dark, padding:"4rem 1.5rem", position:"relative", overflow:"hidden" }}>
+          <div style={{ position:"absolute", inset:0, color:C.primary, opacity:0.06 }}><YagasuriBg /></div>
+          <div style={{ maxWidth:1100, margin:"0 auto", position:"relative", zIndex:1 }}>
+            <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(300px,1fr))", gap:"3rem", alignItems:"center" }}>
+              <div>
+                <p style={{ fontSize:"0.75rem", color:C.accent, letterSpacing:"0.3em", marginBottom:"1rem" }}>GOODS DESIGN</p>
+                <h2 style={{ fontSize:"clamp(1.8rem,4vw,2.8rem)", fontFamily:"serif", fontWeight:400, color:C.bg, lineHeight:1.7, marginBottom:"1.5rem" }}>想いを込めた<br />オリジナル雑貨</h2>
+                <div style={{ width:48, height:3, background:C.accent, marginBottom:"1.5rem" }} />
+                <p style={{ color:"rgba(255,255,255,0.8)", lineHeight:2.2, fontSize:"0.95rem", marginBottom:"1rem" }}>YOICHIでは、キーホルダーやトートバッグなどのオリジナル雑貨のデザインを制作しています。</p>
+                <p style={{ color:"rgba(255,255,255,0.8)", lineHeight:2.2, fontSize:"0.95rem", marginBottom:"1rem" }}>写真はYOICHIが実際に制作したアクリルキーホルダーです。矢絣（やがすり）模様をあしらったYOICHIロゴデザインと、ゴールドの高級感あるデザインの2種類をご用意しました。</p>
+                <p style={{ color:"rgba(255,255,255,0.6)", lineHeight:2, fontSize:"0.88rem" }}>ノベルティ・販促品・記念品・オリジナルグッズなど、用途に合わせたデザインをご提案いたします。</p>
+              </div>
+              <div style={{ position:"relative" }}>
+                <div style={{ position:"absolute", top:-8, left:-8, right:8, bottom:8, border:"2px solid rgba(196,80,74,0.4)" }} />
+                <img src={keychainPhoto} alt="YOICHIオリジナルアクリルキーホルダー" style={{ width:"100%", display:"block", position:"relative" }} />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 実績紹介 */}
+        <div style={{ background:C.white, padding:"4rem 1.5rem" }}>
+          <div style={{ maxWidth:900, margin:"0 auto" }}>
+            <div style={{ textAlign:"center", marginBottom:"3rem" }}>
+              <p style={{ fontSize:"0.75rem", color:C.textMuted, letterSpacing:"0.3em", marginBottom:"0.5rem" }}>ACTUAL PRODUCT</p>
+              <h3 style={{ fontSize:"clamp(1.4rem,3vw,2rem)", fontFamily:"serif", fontWeight:400, color:C.dark, marginBottom:"1rem" }}>制作実績：アクリルキーホルダー</h3>
+              <div style={{ width:48, height:3, background:C.accent, margin:"0 auto" }} />
+            </div>
+            <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(250px,1fr))", gap:"1.5rem", marginBottom:"3rem" }}>
+              {[
+                { title:"矢絣×YOICHIロゴ（丸型）", desc:"日本の伝統文様「矢絣」を背景に、YOICHIのブランドロゴを配置。和モダンな雰囲気を演出しています。" },
+                { title:"ゴールド×YOICHIロゴ（角型）", desc:"黒地にゴールドの矢絣模様とYOICHIロゴを組み合わせた高級感あるデザイン。特別なノベルティに最適です。" },
+                { title:"アクリル素材の特徴", desc:"透明度の高いアクリル素材を使用。軽くて丈夫なため、カバンやポーチ、鍵につけて日常使いできます。" },
+              ].map((item, i) => (
+                <div key={i} style={{ background:C.bg, border:`1px solid ${C.border}`, padding:"1.5rem", position:"relative" }}>
+                  <div style={{ width:28, height:3, background:C.accent, marginBottom:"1rem" }} />
+                  <h4 style={{ fontSize:"1rem", fontFamily:"serif", fontWeight:400, color:C.dark, marginBottom:"0.6rem" }}>{item.title}</h4>
+                  <p style={{ fontSize:"0.85rem", color:"#777", lineHeight:1.8 }}>{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* デザインサンプル一覧 */}
+        <div style={{ background:C.bg, padding:"4rem 1.5rem" }}>
+          <div style={{ maxWidth:1100, margin:"0 auto" }}>
+            <SectionHeading en="DESIGN SAMPLES" ja="雑貨デザインサンプル" />
+            <p style={{ textAlign:"center", color:"#555", marginBottom:"3rem", lineHeight:1.9 }}>キーホルダー以外にも、さまざまな雑貨のデザインに対応しています。</p>
+            <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(300px,1fr))", gap:"2rem" }}>
+              {designSamples.map((s, i) => (
+                <div key={i} className="anim-item" style={{ background:C.white, border:`1px solid ${C.border}`, overflow:"hidden", transition:"all 0.3s" }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor=C.accent; e.currentTarget.style.transform="translateY(-4px)"; e.currentTarget.style.boxShadow="0 12px 32px rgba(0,0,0,0.12)"; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor=C.border; e.currentTarget.style.transform="none"; e.currentTarget.style.boxShadow="none"; }}
+                >
+                  <div style={{ padding:"0.5rem", background:"#f8f8f8" }}><img src={s.img} alt={s.title} style={{ width:"100%", display:"block" }} /></div>
+                  <div style={{ padding:"1.2rem 1.5rem" }}>
+                    <div style={{ display:"flex", alignItems:"center", gap:"0.5rem", marginBottom:"0.4rem" }}>
+                      <span style={{ background:C.accent, color:"#fff", fontSize:"0.65rem", padding:"0.15rem 0.5rem" }}>{s.tag}</span>
+                    </div>
+                    <h3 style={{ fontSize:"1rem", fontFamily:"serif", fontWeight:400, marginBottom:"0.3rem" }}>{s.title}</h3>
+                    <p style={{ fontSize:"0.82rem", color:"#888", lineHeight:1.6 }}>{s.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div style={{ background:C.primary, padding:"3rem 1.5rem", textAlign:"center", position:"relative", overflow:"hidden" }}>
+          <div style={{ position:"absolute", inset:0, color:"#fff", opacity:0.06 }}><YagasuriBg /></div>
+          <div style={{ position:"relative" }}>
+            <p style={{ color:"#fff", fontSize:"1.2rem", fontFamily:"serif", marginBottom:"0.5rem" }}>オリジナル雑貨、作りませんか？</p>
+            <p style={{ color:"rgba(255,255,255,0.7)", fontSize:"0.88rem", marginBottom:"1.5rem" }}>ノベルティ・販促品・記念品など、お気軽にご相談ください</p>
+            <button onClick={() => { onBack(); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }), 100); }} style={{ padding:"1rem 2.5rem", background:"#fff", color:C.primary, border:"none", cursor:"pointer", fontSize:"1rem", letterSpacing:"0.12em", fontFamily:"inherit", fontWeight:700 }}>雑貨デザインのご相談はこちら →</button>
+          </div>
+        </div>
+
+        <footer style={{ background:C.dark, padding:"2rem 1.5rem", textAlign:"center" }}>
+          <p style={{ fontSize:"0.8rem", color:"#9ca3af", letterSpacing:"0.12em" }}>© 令和八年 株式会社YOICHI</p>
+        </footer>
+      </div>
     </div>
   );
 }
@@ -720,6 +835,7 @@ export default function App() {
   if (page === "websamples") return <WebSamplesPage onBack={() => goToPage("home")} />;
   if (page === "appsamples") return <AppSamplesPage onBack={() => goToPage("home")} />;
   if (page === "templates") return <TemplateSamplesPage onBack={() => goToPage("home")} />;
+  if (page === "goods") return <GoodsSamplesPage onBack={() => goToPage("home")} />;
   if (page === "meishi") return <MeishiPage onBack={() => goToPage("home")} onContact={() => { goToPage("home"); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }), 100); }} />;
   if (page === "package") return <PackagePage onBack={() => goToPage("home")} onContact={() => { goToPage("home"); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }), 100); }} />;
 
@@ -810,7 +926,7 @@ export default function App() {
                 { icon:"🌐", label:"ウェブサイト作成", link:"websamples" },
                 { icon:"📱", label:"アプリケーション作成", link:"appsamples" },
                 { icon:"📄", label:"テンプレート作成", link:"templates" },
-                { icon:"🎁", label:"雑貨デザイン", link:null },
+                { icon:"🎁", label:"雑貨デザイン", link:"goods" },
                 { icon:"📐", label:"レイアウトデザイン", link:null },
               ].map((item, i) => (
                 <div key={i}

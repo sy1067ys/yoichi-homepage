@@ -56,6 +56,11 @@ import layout02 from "../assets/layout-02.png";
 import layout03 from "../assets/layout-03.png";
 import layout04 from "../assets/layout-04.png";
 import layout05 from "../assets/layout-05.png";
+import diagram01 from "../assets/diagram-01.png";
+import diagram02 from "../assets/diagram-02.png";
+import diagram03 from "../assets/diagram-03.png";
+import diagram04 from "../assets/diagram-04.png";
+import diagram05 from "../assets/diagram-05.png";
 
 const IconArrowRight = () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>);
 const IconArrowLeft = () => (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>);
@@ -887,6 +892,59 @@ function LayoutSamplesPage({ onBack }) {
   );
 }
 
+// ── 図解デザインサンプルページ ──
+function DiagramSamplesPage({ onBack }) {
+  const samples = [
+    { img: diagram01, title:"プロセスフロー図解", desc:"サービス提供やプロジェクト進行のステップを視覚的に表現。矢印と番号で流れを一目で把握できるフロー図です。", tag:"フロー図" },
+    { img: diagram02, title:"比較チャート図解", desc:"プラン・商品・サービスの違いを横並びで比較。バーグラフとドット評価で定量的に差を見せるインフォグラフィック。", tag:"比較図" },
+    { img: diagram03, title:"組織図・体制図", desc:"企業や団体の組織構造を階層的に表現。チーム構成・人員数・担当領域を一覧で把握できるデザイン。", tag:"組織図" },
+    { img: diagram04, title:"タイムライン図解", desc:"プロジェクトのロードマップやスケジュールを時系列で表現。四半期ごとのマイルストーンを視覚化。", tag:"タイムライン" },
+    { img: diagram05, title:"データダッシュボード", desc:"KPI・棒グラフ・ドーナツチャート・進捗バー・トレンドラインを組み合わせた総合的なデータ可視化デザイン。", tag:"データ可視化" },
+  ];
+  return (
+    <div className="page-animate" style={{ minHeight:"100vh", background:C.bg, fontFamily:"'Georgia','Hiragino Mincho ProN',serif", color:C.dark }}>
+      <header style={{ position:"fixed", top:0, left:0, right:0, zIndex:50, background:`${C.bg}f5`, backdropFilter:"blur(8px)", borderBottom:`2px solid ${C.primary}33` }}>
+        <nav style={{ maxWidth:1200, margin:"0 auto", padding:"1rem 1.5rem", display:"flex", alignItems:"center", gap:"1rem" }}>
+          <button onClick={onBack} style={{ background:"none", border:"none", cursor:"pointer", display:"flex", alignItems:"center", gap:"0.5rem", color:C.primary, fontSize:"0.9rem", letterSpacing:"0.1em" }}><IconArrowLeft /> ホームに戻る</button>
+          <div style={{ width:1, height:20, background:C.border }} />
+          <div style={{ display:"flex", alignItems:"center", gap:"0.6rem" }}><YoichiMark size={36} /><span style={{ fontSize:"1.2rem", fontWeight:700, letterSpacing:"0.2em" }}>YOICHI<span style={{ color:C.accent }}>.</span></span></div>
+          <span style={{ color:C.textMuted, fontSize:"0.85rem", letterSpacing:"0.15em" }}>/ DIAGRAM SAMPLES</span>
+        </nav>
+      </header>
+      <div style={{ padding:"7rem 1.5rem 5rem", maxWidth:1000, margin:"0 auto" }}>
+        <SectionHeading en="DIAGRAM DESIGN SAMPLES" ja="図解デザインサンプル" />
+        <p style={{ textAlign:"center", color:"#555", marginBottom:"4rem", lineHeight:1.9 }}>複雑な情報をわかりやすく伝える図解・インフォグラフィックのデザインサンプルです。<br />フロー図・比較表・組織図・タイムラインなど、用途に合わせてご提案いたします。</p>
+        <div style={{ display:"flex", flexDirection:"column", gap:"3rem" }}>
+          {samples.map((s, i) => (
+            <div key={i} className="anim-item" style={{ background:C.white, border:`1px solid ${C.border}`, overflow:"hidden", transition:"all 0.3s" }}
+              onMouseEnter={e => { e.currentTarget.style.boxShadow="0 8px 32px rgba(0,0,0,0.1)"; e.currentTarget.style.transform="translateY(-2px)"; }}
+              onMouseLeave={e => { e.currentTarget.style.boxShadow="none"; e.currentTarget.style.transform="none"; }}
+            >
+              <div style={{ padding:"1rem", background:"#f8f8f8" }}>
+                <img src={s.img} alt={s.title} style={{ width:"100%", display:"block", maxHeight:600, objectFit:"contain" }} />
+              </div>
+              <div style={{ padding:"1.5rem 2rem" }}>
+                <div style={{ display:"flex", alignItems:"center", gap:"0.75rem", marginBottom:"0.5rem" }}>
+                  <span style={{ background:C.accent, color:"#fff", fontSize:"0.7rem", padding:"0.2rem 0.6rem", letterSpacing:"0.1em" }}>{s.tag}</span>
+                  <span style={{ fontSize:"0.75rem", color:C.textMuted }}>SAMPLE {String(i+1).padStart(2,"0")}</span>
+                </div>
+                <h3 style={{ fontSize:"1.2rem", fontFamily:"serif", fontWeight:400, marginBottom:"0.5rem" }}>{s.title}</h3>
+                <p style={{ fontSize:"0.9rem", color:"#777", lineHeight:1.8 }}>{s.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div style={{ textAlign:"center", marginTop:"4rem" }}>
+          <button onClick={() => { onBack(); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }), 100); }} style={{ padding:"1rem 2.5rem", background:C.primary, color:"#fff", border:"none", cursor:"pointer", fontSize:"1rem", letterSpacing:"0.12em", fontFamily:"inherit", boxShadow:"0 4px 20px rgba(139,79,71,0.3)" }}>図解デザインのご相談はこちら →</button>
+        </div>
+      </div>
+      <footer style={{ borderTop:`1px solid ${C.border}`, padding:"2rem 1.5rem", textAlign:"center", background:C.dark, color:C.bg }}>
+        <p style={{ fontSize:"0.8rem", color:"#9ca3af", letterSpacing:"0.12em" }}>© 令和八年 株式会社YOICHI</p>
+      </footer>
+    </div>
+  );
+}
+
 const navLinks = [
   { label:"お仕事", id:"works_detail" },
   { label:"サンプル", id:"works" },
@@ -913,6 +971,7 @@ export default function App() {
   if (page === "templates") return <TemplateSamplesPage onBack={() => goToPage("home")} />;
   if (page === "goods") return <GoodsSamplesPage onBack={() => goToPage("home")} />;
   if (page === "layouts") return <LayoutSamplesPage onBack={() => goToPage("home")} />;
+  if (page === "diagrams") return <DiagramSamplesPage onBack={() => goToPage("home")} />;
   if (page === "meishi") return <MeishiPage onBack={() => goToPage("home")} onContact={() => { goToPage("home"); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }), 100); }} />;
   if (page === "package") return <PackagePage onBack={() => goToPage("home")} onContact={() => { goToPage("home"); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }), 100); }} />;
 
@@ -1005,6 +1064,7 @@ export default function App() {
                 { icon:"📄", label:"テンプレート作成", link:"templates" },
                 { icon:"🎁", label:"雑貨デザイン", link:"goods" },
                 { icon:"📐", label:"レイアウトデザイン", link:"layouts" },
+                { icon:"📊", label:"図解デザイン", link:"diagrams" },
               ].map((item, i) => (
                 <div key={i}
                   onClick={() => item.link && goToPage(item.link)}

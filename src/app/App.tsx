@@ -1322,34 +1322,34 @@ export default function App() {
         <div style={{ maxWidth:1200, margin:"0 auto", position:"relative", zIndex:1 }}>
           <SectionHeading en="FOLLOW US" ja="SNS" />
           <p style={{ textAlign:"center", color:C.textMuted, marginBottom:"3rem", lineHeight:1.9 }}>日々の制作風景やデザインの想いを発信しています。<br />ぜひフォローしてください。</p>
-          <div className="sns-grid" style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(280px,1fr))", gap:"2rem", maxWidth:1100, margin:"0 auto" }}>
+          <div className="sns-grid" style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:"2rem", maxWidth:1100, margin:"0 auto" }}>
             <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" onMouseEnter={() => setHoveredSns("ig")} onMouseLeave={() => setHoveredSns(null)} style={{ textDecoration:"none", display:"block" }}>
-              <div style={{ background:hoveredSns==="ig"?"linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045)":C.white, border:`2px solid ${hoveredSns==="ig"?"transparent":C.border}`, padding:"2.5rem 2rem", transition:"all 0.3s", position:"relative", overflow:"hidden", transform:hoveredSns==="ig"?"translateY(-4px)":"none", boxShadow:hoveredSns==="ig"?"0 12px 32px rgba(131,58,180,0.25)":"none" }}>
+              <div style={{ background:hoveredSns==="ig"?"linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045)":C.white, border:`2px solid ${hoveredSns==="ig"?"transparent":C.border}`, padding:"2.5rem 2rem", transition:"all 0.3s", position:"relative", overflow:"hidden", transform:hoveredSns==="ig"?"translateY(-4px)":"none", boxShadow:hoveredSns==="ig"?"0 12px 32px rgba(131,58,180,0.25)":"none", height:"100%", display:"flex", flexDirection:"column" }}>
                 <div style={{ display:"flex", alignItems:"center", gap:"1rem", marginBottom:"1rem" }}>
-                  <div style={{ width:52, height:52, background:hoveredSns==="ig"?"rgba(255,255,255,0.2)":"linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045)", borderRadius:"12px", display:"flex", alignItems:"center", justifyContent:"center" }}><IconInstagram color="#fff" size={26} /></div>
+                  <div style={{ width:52, height:52, background:hoveredSns==="ig"?"rgba(255,255,255,0.2)":"linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045)", borderRadius:"12px", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}><IconInstagram color="#fff" size={26} /></div>
                   <div><div style={{ fontWeight:700, fontSize:"1.1rem", color:hoveredSns==="ig"?"#fff":C.dark }}>Instagram</div><div style={{ fontSize:"0.8rem", color:hoveredSns==="ig"?"rgba(255,255,255,0.8)":C.textMuted }}>@yoichi_design</div></div>
                 </div>
-                <p style={{ fontSize:"0.88rem", color:hoveredSns==="ig"?"rgba(255,255,255,0.9)":"#555", lineHeight:1.8 }}>制作の舞台裏や完成作品を毎日更新。和の美意識を大切にしたビジュアルをお届けします。</p>
+                <p style={{ fontSize:"0.88rem", color:hoveredSns==="ig"?"rgba(255,255,255,0.9)":"#555", lineHeight:1.8, flex:1 }}>制作の舞台裏や完成作品を毎日更新。和の美意識を大切にしたビジュアルをお届けします。</p>
                 <div style={{ marginTop:"1.2rem", display:"flex", alignItems:"center", gap:"0.4rem", color:hoveredSns==="ig"?"#fff":C.accent, fontSize:"0.82rem", letterSpacing:"0.1em" }}>フォローする <IconExternalLink size={13} /></div>
               </div>
             </a>
             <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" onMouseEnter={() => setHoveredSns("x")} onMouseLeave={() => setHoveredSns(null)} style={{ textDecoration:"none", display:"block" }}>
-              <div style={{ background:hoveredSns==="x"?"#000":C.white, border:`2px solid ${hoveredSns==="x"?"#000":C.border}`, padding:"2.5rem 2rem", transition:"all 0.3s", position:"relative", overflow:"hidden", transform:hoveredSns==="x"?"translateY(-4px)":"none", boxShadow:hoveredSns==="x"?"0 12px 32px rgba(0,0,0,0.2)":"none" }}>
+              <div style={{ background:hoveredSns==="x"?"#000":C.white, border:`2px solid ${hoveredSns==="x"?"#000":C.border}`, padding:"2.5rem 2rem", transition:"all 0.3s", position:"relative", overflow:"hidden", transform:hoveredSns==="x"?"translateY(-4px)":"none", boxShadow:hoveredSns==="x"?"0 12px 32px rgba(0,0,0,0.2)":"none", height:"100%", display:"flex", flexDirection:"column" }}>
                 <div style={{ display:"flex", alignItems:"center", gap:"1rem", marginBottom:"1rem" }}>
-                  <div style={{ width:52, height:52, background:hoveredSns==="x"?"rgba(255,255,255,0.15)":"#000", borderRadius:"12px", display:"flex", alignItems:"center", justifyContent:"center" }}><IconTwitter color="#fff" size={26} /></div>
+                  <div style={{ width:52, height:52, background:hoveredSns==="x"?"rgba(255,255,255,0.15)":"#000", borderRadius:"12px", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}><IconTwitter color="#fff" size={26} /></div>
                   <div><div style={{ fontWeight:700, fontSize:"1.1rem", color:hoveredSns==="x"?"#fff":C.dark }}>X (Twitter)</div><div style={{ fontSize:"0.8rem", color:hoveredSns==="x"?"rgba(255,255,255,0.6)":C.textMuted }}>@yoichi_design</div></div>
                 </div>
-                <p style={{ fontSize:"0.88rem", color:hoveredSns==="x"?"rgba(255,255,255,0.85)":"#555", lineHeight:1.8 }}>デザインの考え方や業界の最新情報を発信。お気軽にリプライやDMもどうぞ。</p>
+                <p style={{ fontSize:"0.88rem", color:hoveredSns==="x"?"rgba(255,255,255,0.85)":"#555", lineHeight:1.8, flex:1 }}>デザインの考え方や業界の最新情報を発信。お気軽にリプライやDMもどうぞ。</p>
                 <div style={{ marginTop:"1.2rem", display:"flex", alignItems:"center", gap:"0.4rem", color:hoveredSns==="x"?"#fff":C.accent, fontSize:"0.82rem", letterSpacing:"0.1em" }}>フォローする <IconExternalLink size={13} /></div>
               </div>
             </a>
             <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer" onMouseEnter={() => setHoveredSns("tk")} onMouseLeave={() => setHoveredSns(null)} style={{ textDecoration:"none", display:"block" }}>
-              <div style={{ background:hoveredSns==="tk"?"linear-gradient(135deg,#00f2ea,#ff0050)":C.white, border:`2px solid ${hoveredSns==="tk"?"transparent":C.border}`, padding:"2.5rem 2rem", transition:"all 0.3s", position:"relative", overflow:"hidden", transform:hoveredSns==="tk"?"translateY(-4px)":"none", boxShadow:hoveredSns==="tk"?"0 12px 32px rgba(255,0,80,0.25)":"none" }}>
+              <div style={{ background:hoveredSns==="tk"?"linear-gradient(135deg,#00f2ea,#ff0050)":C.white, border:`2px solid ${hoveredSns==="tk"?"transparent":C.border}`, padding:"2.5rem 2rem", transition:"all 0.3s", position:"relative", overflow:"hidden", transform:hoveredSns==="tk"?"translateY(-4px)":"none", boxShadow:hoveredSns==="tk"?"0 12px 32px rgba(255,0,80,0.25)":"none", height:"100%", display:"flex", flexDirection:"column" }}>
                 <div style={{ display:"flex", alignItems:"center", gap:"1rem", marginBottom:"1rem" }}>
-                  <div style={{ width:52, height:52, background:hoveredSns==="tk"?"rgba(255,255,255,0.2)":"linear-gradient(135deg,#00f2ea,#ff0050)", borderRadius:"12px", display:"flex", alignItems:"center", justifyContent:"center" }}><IconTikTok color="#fff" size={26} /></div>
+                  <div style={{ width:52, height:52, background:hoveredSns==="tk"?"rgba(255,255,255,0.2)":"linear-gradient(135deg,#00f2ea,#ff0050)", borderRadius:"12px", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}><IconTikTok color="#fff" size={26} /></div>
                   <div><div style={{ fontWeight:700, fontSize:"1.1rem", color:hoveredSns==="tk"?"#fff":C.dark }}>TikTok</div><div style={{ fontSize:"0.8rem", color:hoveredSns==="tk"?"rgba(255,255,255,0.8)":C.textMuted }}>@yoichi_design</div></div>
                 </div>
-                <p style={{ fontSize:"0.88rem", color:hoveredSns==="tk"?"rgba(255,255,255,0.9)":"#555", lineHeight:1.8 }}>デザインの制作過程やビフォーアフターを動画で公開中。ぜひチェックしてください。</p>
+                <p style={{ fontSize:"0.88rem", color:hoveredSns==="tk"?"rgba(255,255,255,0.9)":"#555", lineHeight:1.8, flex:1 }}>デザインの制作過程やビフォーアフターを動画で公開中。ぜひチェックしてください。</p>
                 <div style={{ marginTop:"1.2rem", display:"flex", alignItems:"center", gap:"0.4rem", color:hoveredSns==="tk"?"#fff":C.accent, fontSize:"0.82rem", letterSpacing:"0.1em" }}>フォローする <IconExternalLink size={13} /></div>
               </div>
             </a>
@@ -1362,9 +1362,9 @@ export default function App() {
         <div style={{ maxWidth:1200, margin:"0 auto", position:"relative", zIndex:1 }}>
           <SectionHeading en="CONTACT" ja="お問い合わせ" />
           <p style={{ textAlign:"center", color:"#555", maxWidth:600, margin:"0 auto 3rem", lineHeight:1.9 }}>ご相談、お見積もりなど、お気軽にお問い合わせくださいませ</p>
-          <div className="contact-grid" style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))", gap:"3rem" }}>
+          <div className="contact-grid" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"3rem", alignItems:"start" }}>
             <div style={{ display:"flex", flexDirection:"column", gap:"1.5rem" }}>
-              <ContactCard icon={IconMail} title="電子郵便"><a href="mailto:info@yoichi.co.jp" style={{ color:"#555", textDecoration:"none" }}>info@yoichi.co.jp</a></ContactCard>
+              <ContactCard icon={IconMail} title="電子郵便"><a href="mailto:yoichi08107@gmail.com" style={{ color:"#555", textDecoration:"none" }}>yoichi08107@gmail.com</a></ContactCard>
               <ContactCard icon={IconPhone} title="電話番号"><a href="tel:+81-3-1234-5678" style={{ color:"#555", textDecoration:"none" }}>〇三（一二三四）五六七八</a><p style={{ fontSize:"0.85rem", color:C.textMuted, marginTop:4 }}>営業時間：平日 9:00 - 18:00</p></ContactCard>
               <ContactCard icon={IconMapPin} title="所在地"><p style={{ color:"#555", lineHeight:1.8, fontSize:"0.95rem" }}>〒150-0001<br />東京都渋谷区神宮前一丁目二番三号<br />和デザインビルディング 五階</p></ContactCard>
               {/* 公式LINE */}
@@ -1470,7 +1470,7 @@ export default function App() {
           .flow-step p{font-size:0.75rem!important;}
           .cta-group{flex-direction:column!important;}
           .cta-group button{width:100%!important;justify-content:center!important;}
-          .sns-grid{max-width:100%!important;}
+          .sns-grid{max-width:100%!important;grid-template-columns:1fr!important;}
           .origin-card{padding:2rem 1.5rem 2rem 2rem!important;}
           .distance-box{flex-direction:column!important;gap:0.75rem!important;}
           .distance-divider{width:100%!important;height:1px!important;}

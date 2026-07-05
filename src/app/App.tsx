@@ -1240,7 +1240,7 @@ export default function App() {
               <h4 style={{ fontSize:"1.2rem", fontFamily:"serif", fontWeight:400, color:C.dark, letterSpacing:"0.15em", marginBottom:"1rem" }}>ご挨拶</h4>
               {["私たちYOICHIは、「想いをカタチに」をモットーに、お客様一人ひとりの想いをデザインとしてカタチにしています。","私たちの提供する商品・サービスは、その一つ一つに心を込め、お客様と共に作り上げる一つの芸術作品です。","お客様との出会いは私たちにとって新たな物語の始まりです。それぞれのお客様のビジョンを理解し、共に創造する過程は私たちにとって大きなやりがいであり、誇りです。","お客様の夢を実現するために、私たちは常に全力を尽くします。共に歩む中で築かれる信頼と絆は、私たちの大切な財産です。","これからも、お客様と共に新しい価値観を生み出し、感動を共有できる瞬間を創り続けていきます。"].map((p,i) => (<p key={i} style={{ color:"#555", lineHeight:2, marginBottom:"1rem", fontSize:"0.95rem" }}>{p}</p>))}
               <div style={{ background:C.bg, padding:"1.5rem", borderLeft:`2px solid ${C.accent}`, marginTop:"1.5rem" }}>
-                {[["会社名","YOICHI"],["設立","2026年"],["代表","横山 真一郎"],["副代表","住谷 永人"]].map(([k,v]) => (<div key={k} style={{ display:"flex", gap:"1rem", marginBottom:"0.6rem", fontSize:"0.95rem" }}><span style={{ color:C.textMuted, minWidth:72 }}>{k}</span><span>{v}</span></div>))}
+                {[["会社名","YOICHI"],["設立","2026年"],["代表","横山 真一郎"],["副代表","住谷 永人"]].map(([k,v]) => (<div key={k} style={{ display:"flex", gap:"1rem", marginBottom:"0.6rem", fontSize:"0.95rem" }}><span style={{ color:C.textMuted, minWidth:72 }}>{k}</span><span style={{ fontFamily:"'Helvetica Neue',Arial,sans-serif", letterSpacing:"0.03em" }}>{v}</span></div>))}
               </div>
             </div>
             <div className="about-logo-box" style={{ position:"relative", maxWidth:400, margin:"0 auto" }}>
@@ -1364,8 +1364,8 @@ export default function App() {
           <p style={{ textAlign:"center", color:"#555", maxWidth:600, margin:"0 auto 3rem", lineHeight:1.9 }}>ご相談、お見積もりなど、お気軽にお問い合わせくださいませ</p>
           <div className="contact-grid" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"3rem", alignItems:"start" }}>
             <div style={{ display:"flex", flexDirection:"column", gap:"1.5rem" }}>
-              <ContactCard icon={IconMail} title="電子郵便"><a href="mailto:yoichi08107@gmail.com" style={{ color:"#555", textDecoration:"none" }}>yoichi08107@gmail.com</a></ContactCard>
-              <ContactCard icon={IconPhone} title="代表携帯"><a href="tel:080-1360-7951" style={{ color:"#555", textDecoration:"none" }}>080-1360-7951</a><p style={{ fontSize:"0.85rem", color:C.textMuted, marginTop:4 }}>営業時間：平日 9:00 - 18:00</p></ContactCard>
+              <ContactCard icon={IconMail} title="電子郵便"><a href="mailto:yoichi08107@gmail.com" style={{ color:"#555", textDecoration:"none", fontSize:"0.95rem", fontFamily:"'Helvetica Neue',Arial,sans-serif", letterSpacing:"0.03em" }}>yoichi08107@gmail.com</a></ContactCard>
+              <ContactCard icon={IconPhone} title="代表携帯"><a href="tel:080-1360-7951" style={{ color:"#555", textDecoration:"none", fontSize:"0.95rem", fontFamily:"'Helvetica Neue',Arial,sans-serif", letterSpacing:"0.03em" }}>080-1360-7951</a><p style={{ fontSize:"0.85rem", color:C.textMuted, marginTop:4 }}>営業時間：平日 9:00 - 18:00</p></ContactCard>
               <ContactCard icon={IconMapPin} title="所在地"><p style={{ color:"#555", lineHeight:1.8, fontSize:"0.95rem" }}>〒150-0001<br />東京都渋谷区神宮前一丁目二番三号<br />和デザインビルディング 五階</p></ContactCard>
               {/* 公式LINE */}
               <a href="https://line.me/" target="_blank" rel="noopener noreferrer" style={{ textDecoration:"none", display:"block" }}>

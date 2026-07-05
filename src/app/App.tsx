@@ -1365,7 +1365,7 @@ export default function App() {
           <div className="contact-grid" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"3rem", alignItems:"start" }}>
             <div style={{ display:"flex", flexDirection:"column", gap:"1.5rem" }}>
               <ContactCard icon={IconMail} title="電子郵便"><a href="mailto:yoichi08107@gmail.com" style={{ color:"#555", textDecoration:"none" }}>yoichi08107@gmail.com</a></ContactCard>
-              <ContactCard icon={IconPhone} title="電話番号"><a href="tel:+81-3-1234-5678" style={{ color:"#555", textDecoration:"none" }}>〇三（一二三四）五六七八</a><p style={{ fontSize:"0.85rem", color:C.textMuted, marginTop:4 }}>営業時間：平日 9:00 - 18:00</p></ContactCard>
+              <ContactCard icon={IconPhone} title="代表携帯"><a href="tel:080-1360-7951" style={{ color:"#555", textDecoration:"none" }}>080-1360-7951</a><p style={{ fontSize:"0.85rem", color:C.textMuted, marginTop:4 }}>営業時間：平日 9:00 - 18:00</p></ContactCard>
               <ContactCard icon={IconMapPin} title="所在地"><p style={{ color:"#555", lineHeight:1.8, fontSize:"0.95rem" }}>〒150-0001<br />東京都渋谷区神宮前一丁目二番三号<br />和デザインビルディング 五階</p></ContactCard>
               {/* 公式LINE */}
               <a href="https://line.me/" target="_blank" rel="noopener noreferrer" style={{ textDecoration:"none", display:"block" }}>

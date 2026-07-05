@@ -127,60 +127,6 @@ function ContactCard({ icon: Icon, title, children }) {
   );
 }
 
-const PORTFOLIO_ITEMS = [
-  { id:1, title:"老舗和菓子店のブランド刷新", category:"意匠", tag:"Branding", grad:"linear-gradient(135deg,#8b4f47,#6d3d37)", desc:"創業100年の和菓子店のロゴ・パッケージを全面リニューアル。伝統を守りながら現代的な感覚を取り入れたデザインに。" },
-  { id:2, title:"旅館予約サイトの体験設計", category:"図案", tag:"UI/UX", grad:"linear-gradient(135deg,#5e8c6a,#4a6e56)", desc:"老舗旅館のオンライン予約システムをゼロから設計。ユーザー離脱率を40%改善。" },
-  { id:3, title:"日本酒メーカーのVI開発", category:"意匠", tag:"Branding", grad:"linear-gradient(135deg,#c4504a,#9d3f36)", desc:"蔵元の世界観をビジュアルに落とし込んだVI。海外展開を見据えたバイリンガル対応。" },
-  { id:4, title:"伝統工芸ECの利用体験改善", category:"図案", tag:"UI/UX", grad:"linear-gradient(135deg,#6b5d4f,#554a3f)", desc:"職人の技を伝えるECサイトのUX改善。購入率が2.3倍に向上。" },
-  { id:5, title:"茶道具メーカーのカタログ", category:"装飾", tag:"Print", grad:"linear-gradient(135deg,#4a6e6b,#3a5856)", desc:"和の美意識を活かしたプロダクトカタログ。余白と素材感を大切にしたデザイン。" },
-  { id:6, title:"神社の御朱印帳デザイン", category:"装飾", tag:"Print", grad:"linear-gradient(135deg,#7a5c3a,#5e4528)", desc:"地域の神社向けに特別デザインした御朱印帳。伝統文様を現代的にアレンジ。" },
-];
-const FILTERS = ["すべて","意匠","図案","装飾"];
-
-function PortfolioPage({ onBack }) {
-  const [active, setActive] = useState("すべて");
-  const [hovered, setHovered] = useState(null);
-  const filtered = active === "すべて" ? PORTFOLIO_ITEMS : PORTFOLIO_ITEMS.filter(p => p.category === active);
-  return (
-    <div className="page-animate" style={{ minHeight:"100vh", background:C.bg, fontFamily:"'Georgia','Hiragino Mincho ProN',serif", color:C.dark }}>
-      <header style={{ position:"fixed", top:0, left:0, right:0, zIndex:50, background:`${C.bg}f5`, backdropFilter:"blur(8px)", borderBottom:`2px solid ${C.primary}33` }}>
-        <nav style={{ maxWidth:1200, margin:"0 auto", padding:"1rem 1.5rem", display:"flex", alignItems:"center", gap:"1rem" }}>
-          <button onClick={onBack} style={{ background:"none", border:"none", cursor:"pointer", display:"flex", alignItems:"center", gap:"0.5rem", color:C.primary, fontSize:"0.9rem", letterSpacing:"0.1em" }}><IconArrowLeft /> ホームに戻る</button>
-          <div style={{ width:1, height:20, background:C.border }} />
-          <div style={{ display:"flex", alignItems:"center", gap:"0.6rem" }}><YoichiMark size={36} /><span style={{ fontSize:"1.2rem", fontWeight:700, letterSpacing:"0.2em" }}>YOICHI<span style={{ color:C.accent }}>.</span></span></div>
-          <span style={{ color:C.textMuted, fontSize:"0.85rem", letterSpacing:"0.15em" }}>/ PORTFOLIO</span>
-        </nav>
-      </header>
-      <div style={{ padding:"7rem 1.5rem 5rem", maxWidth:1200, margin:"0 auto" }}>
-        <SectionHeading en="PORTFOLIO" ja="制作実績" />
-        <div style={{ display:"flex", justifyContent:"center", gap:"0.75rem", marginBottom:"3rem", flexWrap:"wrap" }}>
-          {FILTERS.map(f => (<button key={f} onClick={() => setActive(f)} style={{ padding:"0.5rem 1.4rem", border:`2px solid ${active===f?C.accent:C.border}`, background:active===f?C.accent:"transparent", color:active===f?"#fff":C.dark, cursor:"pointer", fontSize:"0.85rem", letterSpacing:"0.12em", transition:"all 0.2s", fontFamily:"serif" }}>{f}</button>))}
-        </div>
-        <div className="portfolio-grid" style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(300px,1fr))", gap:"2rem" }}>
-          {filtered.map(p => (
-            <div key={p.id} onMouseEnter={() => setHovered(p.id)} onMouseLeave={() => setHovered(null)} style={{ background:C.white, border:`2px solid ${hovered===p.id?C.accent:C.border}`, transition:"all 0.3s", transform:hovered===p.id?"translateY(-4px)":"none", boxShadow:hovered===p.id?"0 12px 32px rgba(0,0,0,0.12)":"none", overflow:"hidden" }}>
-              <div style={{ height:200, background:p.grad, position:"relative", overflow:"hidden" }}>
-                <div style={{ position:"absolute", top:0, right:0, width:160, height:160, color:"#fff", opacity:0.1 }}><YagasuriBg /></div>
-                <div style={{ position:"absolute", top:16, right:16, width:40, height:40, border:"1px solid rgba(255,255,255,0.3)", transform:"rotate(45deg)" }} />
-                <div style={{ position:"absolute", bottom:16, left:16 }}><span style={{ background:"rgba(255,255,255,0.2)", color:"#fff", fontSize:"0.72rem", padding:"0.2rem 0.6rem", letterSpacing:"0.12em" }}>{p.tag}</span></div>
-              </div>
-              <div style={{ padding:"1.5rem" }}>
-                <div style={{ fontSize:"0.72rem", color:C.textMuted, letterSpacing:"0.2em", marginBottom:"0.5rem" }}>{p.category}</div>
-                <h3 style={{ fontSize:"1.1rem", fontFamily:"serif", fontWeight:400, marginBottom:"0.8rem", lineHeight:1.5 }}>{p.title}</h3>
-                <p style={{ fontSize:"0.88rem", color:C.textMuted, lineHeight:1.8 }}>{p.desc}</p>
-                <div style={{ marginTop:"1rem", display:"flex", alignItems:"center", gap:"0.4rem", color:C.accent, fontSize:"0.82rem", letterSpacing:"0.1em", opacity:hovered===p.id?1:0, transition:"opacity 0.3s" }}><IconExternalLink size={14} /> 詳細を見る</div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-      <footer style={{ borderTop:`1px solid ${C.border}`, padding:"2rem 1.5rem", textAlign:"center", background:C.dark, color:C.bg }}>
-        <p style={{ fontSize:"0.8rem", color:"#9ca3af", letterSpacing:"0.12em" }}>© 令和八年 YOICHI</p>
-      </footer>
-    </div>
-  );
-}
-
 // ── 雑貨デザインサンプルページ ──
 function GoodsSamplesPage({ onBack }) {
   const goodsItems = [
@@ -984,7 +930,6 @@ export default function App() {
     } catch { setFormStatus("error"); }
   };
 
-  if (page === "portfolio") return <PortfolioPage onBack={() => goToPage("home")} />;
   if (page === "samples") return <SamplesPage onBack={() => goToPage("home")} />;
   if (page === "banners") return <BannerSamplesPage onBack={() => goToPage("home")} />;
   if (page === "logos") return <LogoSamplesPage onBack={() => goToPage("home")} />;
@@ -1021,7 +966,6 @@ export default function App() {
           </div>
           <div className="nav-desktop">
             {navLinks.map(l => (<button key={l.id} onClick={() => scrollTo(l.id)} style={{ background:"none", border:"none", cursor:"pointer", fontSize:"0.9rem", letterSpacing:"0.12em", color:C.dark, fontFamily:"inherit", transition:"color 0.2s" }} onMouseEnter={e => e.currentTarget.style.color=C.accent} onMouseLeave={e => e.currentTarget.style.color=C.dark}>{l.label}</button>))}
-            <button onClick={() => goToPage("portfolio")} style={{ background:"none", border:"none", cursor:"pointer", fontSize:"0.9rem", letterSpacing:"0.12em", color:C.dark, fontFamily:"inherit", transition:"color 0.2s" }} onMouseEnter={e => e.currentTarget.style.color=C.accent} onMouseLeave={e => e.currentTarget.style.color=C.dark}>Portfolio</button>
             <button onClick={() => scrollTo("contact")} style={{ padding:"0.55rem 1.4rem", background:C.primary, color:"#fff", border:"none", cursor:"pointer", letterSpacing:"0.12em", fontSize:"0.88rem", fontFamily:"inherit", transition:"background 0.2s" }} onMouseEnter={e => e.currentTarget.style.background=C.deep} onMouseLeave={e => e.currentTarget.style.background=C.primary}>お問い合わせ</button>
           </div>
           <button className="nav-hamburger" onClick={() => setMenuOpen(!menuOpen)} style={{ background:"none", border:"none", cursor:"pointer" }}>
@@ -1030,8 +974,8 @@ export default function App() {
         </nav>
         {menuOpen && (
           <div style={{ background:C.bg, borderTop:`1px solid ${C.border}`, padding:"1rem 1.5rem" }}>
-            {[...navLinks, { label:"Portfolio", id:"portfolio" }, { label:"お問い合わせ", id:"contact" }].map(l => (
-              <button key={l.id} onClick={() => l.id==="portfolio"?(goToPage("portfolio"),setMenuOpen(false)):scrollTo(l.id)} style={{ display:"block", width:"100%", textAlign:"left", padding:"0.75rem 0", background:"none", border:"none", cursor:"pointer", fontSize:"1rem", letterSpacing:"0.1em", fontFamily:"inherit", color:C.dark, borderBottom:`1px solid ${C.border}` }}>{l.label}</button>
+            {[...navLinks, { label:"お問い合わせ", id:"contact" }].map(l => (
+              <button key={l.id} onClick={() => scrollTo(l.id)} style={{ display:"block", width:"100%", textAlign:"left", padding:"0.75rem 0", background:"none", border:"none", cursor:"pointer", fontSize:"1rem", letterSpacing:"0.1em", fontFamily:"inherit", color:C.dark, borderBottom:`1px solid ${C.border}` }}>{l.label}</button>
             ))}
           </div>
         )}
@@ -1433,10 +1377,8 @@ export default function App() {
           <div style={{ display:"flex", alignItems:"center", gap:"1rem" }}><YoichiMark size={52} dark={true} /><span style={{ fontSize:"1.8rem", letterSpacing:"0.2em", fontWeight:700 }}>YOICHI</span></div>
           <p style={{ fontSize:"0.85rem", color:"#9ca3af", letterSpacing:"0.05em" }}>想いをカタチに、笑顔をそばに、繋がりを大切に</p>
           <div className="footer-links" style={{ display:"flex", gap:"2rem", flexWrap:"wrap", justifyContent:"center" }}>
-            {[...navLinks,{ label:"Portfolio", id:"portfolio" },{ label:"お問い合わせ", id:"contact" }].map(l => (
-              l.id==="portfolio"
-                ? <button key="portfolio" onClick={() => goToPage("portfolio")} style={{ background:"none", border:"none", color:"#9ca3af", cursor:"pointer", fontSize:"0.85rem", letterSpacing:"0.12em", fontFamily:"inherit" }}>Portfolio</button>
-                : <button key={l.id} onClick={() => scrollTo(l.id)} style={{ background:"none", border:"none", color:"#9ca3af", cursor:"pointer", fontSize:"0.85rem", letterSpacing:"0.12em", fontFamily:"inherit" }}>{l.label}</button>
+            {[...navLinks,{ label:"お問い合わせ", id:"contact" }].map(l => (
+              <button key={l.id} onClick={() => scrollTo(l.id)} style={{ background:"none", border:"none", color:"#9ca3af", cursor:"pointer", fontSize:"0.85rem", letterSpacing:"0.12em", fontFamily:"inherit" }}>{l.label}</button>
             ))}
           </div>
           <div style={{ display:"flex", gap:"1rem" }}>
@@ -1507,7 +1449,7 @@ export default function App() {
           .letter-grid{grid-template-columns:1fr!important;}
           .works-grid{grid-template-columns:1fr!important;}
           .services-grid{grid-template-columns:1fr!important;}
-          .portfolio-grid{grid-template-columns:1fr!important;}
+          
           .footer-links{gap:1rem!important;}
         }
         @media(max-width:480px){

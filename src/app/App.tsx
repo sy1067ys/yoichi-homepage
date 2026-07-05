@@ -960,6 +960,29 @@ export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [hoveredWork, setHoveredWork] = useState(null);
   const [hoveredSns, setHoveredSns] = useState(null);
+  const [formData, setFormData] = useState({ name:"", furigana:"", company:"", email:"", message:"" });
+  const [formStatus, setFormStatus] = useState("idle"); // idle | sending | sent | error
+  const handleFormChange = (key, val) => setFormData(p => ({ ...p, [key]: val }));
+  const handleFormSubmit = async () => {
+    if (!formData.name || !formData.email || !formData.message) { alert("お名前・メールアドレス・お問い合わせ内容は必須です。"); return; }
+    setFormStatus("sending");
+    try {
+      const res = await fetch("https://formsubmit.co/ajax/yoichi08107@gmail.com", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({
+          _subject: `【YOICHI】${formData.name}様からのお問い合わせ`,
+          "お名前": formData.name,
+          "フリガナ": formData.furigana,
+          "会社名": formData.company,
+          "メールアドレス": formData.email,
+          "お問い合わせ内容": formData.message,
+        }),
+      });
+      if (res.ok) { setFormStatus("sent"); setFormData({ name:"", furigana:"", company:"", email:"", message:"" }); }
+      else setFormStatus("error");
+    } catch { setFormStatus("error"); }
+  };
 
   if (page === "portfolio") return <PortfolioPage onBack={() => goToPage("home")} />;
   if (page === "samples") return <SamplesPage onBack={() => goToPage("home")} />;
@@ -1364,9 +1387,8 @@ export default function App() {
           <p style={{ textAlign:"center", color:"#555", maxWidth:600, margin:"0 auto 3rem", lineHeight:1.9 }}>ご相談、お見積もりなど、お気軽にお問い合わせくださいませ</p>
           <div className="contact-grid" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"3rem", alignItems:"start" }}>
             <div style={{ display:"flex", flexDirection:"column", gap:"1.5rem" }}>
-              <ContactCard icon={IconMail} title="電子郵便"><a href="mailto:yoichi08107@gmail.com" style={{ color:"#555", textDecoration:"none", fontSize:"0.95rem", fontFamily:"'Helvetica Neue',Arial,sans-serif", letterSpacing:"0.03em" }}>yoichi08107@gmail.com</a></ContactCard>
+              <ContactCard icon={IconMail} title="メールアドレス"><a href="mailto:yoichi08107@gmail.com" style={{ color:"#555", textDecoration:"none", fontSize:"0.95rem", fontFamily:"'Helvetica Neue',Arial,sans-serif", letterSpacing:"0.03em" }}>yoichi08107@gmail.com</a></ContactCard>
               <ContactCard icon={IconPhone} title="代表携帯"><a href="tel:080-1360-7951" style={{ color:"#555", textDecoration:"none", fontSize:"0.95rem", fontFamily:"'Helvetica Neue',Arial,sans-serif", letterSpacing:"0.03em" }}>080-1360-7951</a><p style={{ fontSize:"0.85rem", color:C.textMuted, marginTop:4 }}>営業時間：平日 9:00 - 18:00</p></ContactCard>
-              <ContactCard icon={IconMapPin} title="所在地"><p style={{ color:"#555", lineHeight:1.8, fontSize:"0.95rem" }}>〒150-0001<br />東京都渋谷区神宮前一丁目二番三号<br />和デザインビルディング 五階</p></ContactCard>
               {/* 公式LINE */}
               <a href="https://line.me/" target="_blank" rel="noopener noreferrer" style={{ textDecoration:"none", display:"block" }}>
                 <div style={{ display:"flex", gap:"1rem", background:"#06C755", padding:"1.5rem", position:"relative", overflow:"hidden", transition:"all 0.2s", cursor:"pointer" }}
@@ -1386,11 +1408,18 @@ export default function App() {
             </div>
             <div style={{ background:C.bg, padding:"2rem", border:`2px solid ${C.border}`, position:"relative", overflow:"hidden" }}>
               <div style={{ display:"flex", flexDirection:"column", gap:"1.2rem", position:"relative" }}>
-                {[{ label:"お名前", type:"text", ph:"山田 太郎" },{ label:"メールアドレス", type:"email", ph:"example@email.com" }].map(f => (
-                  <div key={f.label}><label style={{ display:"block", marginBottom:"0.5rem", letterSpacing:"0.1em", fontSize:"0.95rem" }}>{f.label}</label><input type={f.type} placeholder={f.ph} style={{ width:"100%", padding:"0.75rem 1rem", border:`2px solid ${C.border}`, background:C.white, fontSize:"0.95rem", outline:"none", boxSizing:"border-box", transition:"border-color 0.2s", fontFamily:"inherit" }} onFocus={e => e.target.style.borderColor=C.accent} onBlur={e => e.target.style.borderColor=C.border} /></div>
+                {[
+                  { key:"name", label:"お名前 *", type:"text", ph:"山田 太郎" },
+                  { key:"furigana", label:"フリガナ", type:"text", ph:"ヤマダ タロウ" },
+                  { key:"company", label:"会社名", type:"text", ph:"株式会社〇〇" },
+                  { key:"email", label:"メールアドレス *", type:"email", ph:"example@email.com" },
+                ].map(f => (
+                  <div key={f.key}><label style={{ display:"block", marginBottom:"0.5rem", letterSpacing:"0.1em", fontSize:"0.95rem" }}>{f.label}</label><input type={f.type} placeholder={f.ph} value={formData[f.key]} onChange={e => handleFormChange(f.key, e.target.value)} style={{ width:"100%", padding:"0.75rem 1rem", border:`2px solid ${C.border}`, background:C.white, fontSize:"0.95rem", outline:"none", boxSizing:"border-box", transition:"border-color 0.2s", fontFamily:"inherit" }} onFocus={e => e.target.style.borderColor=C.accent} onBlur={e => e.target.style.borderColor=C.border} /></div>
                 ))}
-                <div><label style={{ display:"block", marginBottom:"0.5rem", letterSpacing:"0.1em", fontSize:"0.95rem" }}>お問い合わせ内容</label><textarea rows={5} placeholder="ご相談内容をご記入ください" style={{ width:"100%", padding:"0.75rem 1rem", border:`2px solid ${C.border}`, background:C.white, fontSize:"0.95rem", outline:"none", resize:"vertical", fontFamily:"inherit", boxSizing:"border-box", transition:"border-color 0.2s" }} onFocus={e => e.target.style.borderColor=C.accent} onBlur={e => e.target.style.borderColor=C.border} /></div>
-                <button style={{ padding:"1rem", background:C.primary, color:"#fff", border:"none", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", gap:"0.5rem", letterSpacing:"0.12em", fontSize:"0.95rem", fontFamily:"inherit", transition:"background 0.2s" }} onMouseEnter={e => e.currentTarget.style.background=C.deep} onMouseLeave={e => e.currentTarget.style.background=C.primary}><span>送信する</span><IconArrowRight /></button>
+                <div><label style={{ display:"block", marginBottom:"0.5rem", letterSpacing:"0.1em", fontSize:"0.95rem" }}>お問い合わせ内容 *</label><textarea rows={5} placeholder="ご相談内容をご記入ください" value={formData.message} onChange={e => handleFormChange("message", e.target.value)} style={{ width:"100%", padding:"0.75rem 1rem", border:`2px solid ${C.border}`, background:C.white, fontSize:"0.95rem", outline:"none", resize:"vertical", fontFamily:"inherit", boxSizing:"border-box", transition:"border-color 0.2s" }} onFocus={e => e.target.style.borderColor=C.accent} onBlur={e => e.target.style.borderColor=C.border} /></div>
+                {formStatus==="sent" && <p style={{ color:"#16a34a", fontSize:"0.9rem", textAlign:"center", padding:"0.5rem", background:"#f0fdf4", border:"1px solid #bbf7d0" }}>送信が完了しました。お問い合わせありがとうございます。</p>}
+                {formStatus==="error" && <p style={{ color:"#dc2626", fontSize:"0.9rem", textAlign:"center", padding:"0.5rem", background:"#fef2f2", border:"1px solid #fecaca" }}>送信に失敗しました。時間をおいて再度お試しください。</p>}
+                <button onClick={handleFormSubmit} disabled={formStatus==="sending"} style={{ padding:"1rem", background:formStatus==="sending"?"#aaa":C.primary, color:"#fff", border:"none", cursor:formStatus==="sending"?"not-allowed":"pointer", display:"flex", alignItems:"center", justifyContent:"center", gap:"0.5rem", letterSpacing:"0.12em", fontSize:"0.95rem", fontFamily:"inherit", transition:"background 0.2s", opacity:formStatus==="sending"?0.7:1 }} onMouseEnter={e => { if(formStatus!=="sending") e.currentTarget.style.background=C.deep; }} onMouseLeave={e => { if(formStatus!=="sending") e.currentTarget.style.background=C.primary; }}><span>{formStatus==="sending"?"送信中...":"送信する"}</span>{formStatus!=="sending" && <IconArrowRight />}</button>
               </div>
             </div>
           </div>

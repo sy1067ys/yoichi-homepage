@@ -61,6 +61,7 @@ import diagram02 from "../assets/diagram-02.png";
 import diagram03 from "../assets/diagram-03.png";
 import diagram04 from "../assets/diagram-04.png";
 import diagram05 from "../assets/diagram-05.png";
+import vellenceLogo from "../assets/vellence-logo.png";
 
 const IconArrowRight = () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>);
 const IconArrowLeft = () => (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>);
@@ -76,6 +77,9 @@ const IconX = () => (<svg width="24" height="24" viewBox="0 0 24 24" fill="none"
 const IconExternalLink = ({ size = 13 }) => (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>);
 
 const C = { bg:"#f5f2ed", white:"#ffffff", dark:"#3a3230", primary:"#8b4f47", accent:"#c4504a", deep:"#6d3d37", border:"#d4c5b0", textMuted:"#6b7280" };
+
+// VELLENCEブランド専用カラー
+const V = { bg:"#0a0a0a", panel:"#141414", gold:"#c9a24b", goldLight:"#e0c274", silver:"#c7c9cc", charcoal:"#2b2b2b", ivory:"#e9e3d6", textMuted:"#9a9a9a" };
 
 function YagasuriBg({ className = "" }) {
   return (
@@ -127,6 +131,261 @@ function ContactCard({ icon: Icon, title, children }) {
   );
 }
 
+// ── Myuuiブランド紹介ページ ──
+function MyuuiPage({ onBack }) {
+  const letters = [
+    { l:"My", ja:"私", desc:"なりたい私、自分軸" },
+    { l:"yu", ja:"夢", desc:"「これしてみたい！」という気持ち" },
+    { l:"u", ja:"自由", desc:"それを自由に選ぶこと" },
+    { l:"u", ja:"勇気", desc:"努力の過程、一歩踏み出す力" },
+    { l:"i", ja:"愛", desc:"その選択も、その先の未来も愛せるように" },
+  ];
+  return (
+    <div className="page-animate" style={{ minHeight:"100vh", background:"#fdf6f2", fontFamily:"'Georgia','Hiragino Mincho ProN',serif", color:C.dark }}>
+      <header style={{ position:"fixed", top:0, left:0, right:0, zIndex:50, background:"rgba(253,246,242,0.92)", backdropFilter:"blur(8px)", borderBottom:"2px solid #f0c9c9" }}>
+        <nav style={{ maxWidth:1200, margin:"0 auto", padding:"1rem 1.5rem", display:"flex", alignItems:"center", gap:"1rem" }}>
+          <button onClick={onBack} style={{ background:"none", border:"none", cursor:"pointer", display:"flex", alignItems:"center", gap:"0.5rem", color:"#c47a8a", fontSize:"0.9rem", letterSpacing:"0.1em" }}><IconArrowLeft /> ホームに戻る</button>
+          <div style={{ width:1, height:20, background:"#f0c9c9" }} />
+          <span style={{ fontSize:"1.2rem", fontWeight:700, letterSpacing:"0.25em", color:"#b05a72" }}>Myuui</span>
+          <span style={{ color:"#c9a3ad", fontSize:"0.85rem", letterSpacing:"0.15em" }}>/ OUR BRAND</span>
+        </nav>
+      </header>
+
+      <div style={{ paddingTop:"7rem" }}>
+        {/* ヒーロー：タグライン */}
+        <div style={{ maxWidth:800, margin:"0 auto", padding:"1rem 1.5rem 4rem", textAlign:"center" }}>
+          <p style={{ fontSize:"0.75rem", color:"#c47a8a", letterSpacing:"0.3em", marginBottom:"1.5rem" }}>APPAREL BRAND</p>
+          <h1 style={{ fontSize:"clamp(2.5rem,7vw,4rem)", fontWeight:700, letterSpacing:"0.15em", color:"#3a3230", marginBottom:"2rem" }}>Myuui</h1>
+          <p style={{ fontSize:"clamp(1.2rem,3vw,1.6rem)", lineHeight:2, color:"#5a4a4a", fontFamily:"serif" }}>
+            ー私の夢は、自由に選ぶの。<br />勇気を添えた未来も、愛せるようにー
+          </p>
+        </div>
+
+        {/* 名前の由来 */}
+        <div style={{ background:"#fff", padding:"4rem 1.5rem" }}>
+          <div style={{ maxWidth:1000, margin:"0 auto" }}>
+            <SectionHeading en="NAME MEANING" ja="Myuuiの由来" />
+            <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(180px,1fr))", gap:"1.2rem", marginBottom:"3rem" }}>
+              {letters.map((item, i) => (
+                <div key={i} style={{ background:"#fdf6f2", border:"1px solid #f0c9c9", padding:"1.8rem 1.2rem", textAlign:"center" }}>
+                  <div style={{ fontSize:"2.2rem", fontWeight:700, color:"#c47a8a", marginBottom:"0.5rem", fontFamily:"serif" }}>{item.l}</div>
+                  <div style={{ width:24, height:2, background:"#c47a8a", margin:"0 auto 0.8rem" }} />
+                  <div style={{ fontSize:"1rem", fontWeight:700, color:"#3a3230", marginBottom:"0.4rem" }}>{item.ja}</div>
+                  <p style={{ fontSize:"0.8rem", color:"#8a7a7a", lineHeight:1.6 }}>{item.desc}</p>
+                </div>
+              ))}
+            </div>
+            <p style={{ textAlign:"center", color:"#8a7a7a", fontSize:"0.85rem", lineHeight:2, marginBottom:"1rem" }}>
+              「うぅ…」という隠れた響きには、夢を叶えるために必要な努力の過程を。<br />
+              最後の「i」には、ブランドから着る人への依頼(メッセージ)を込めています。
+            </p>
+            <p style={{ textAlign:"center", color:"#b05a72", fontSize:"0.9rem", fontWeight:700, letterSpacing:"0.1em" }}>
+              最初の「M」と最後の「i」をつなげると「み」＝ 未来
+            </p>
+          </div>
+        </div>
+
+        {/* ストーリー */}
+        <div style={{ background:"#fdf6f2", padding:"4rem 1.5rem" }}>
+          <div style={{ maxWidth:820, margin:"0 auto" }}>
+            <SectionHeading en="OUR STORY" ja="Myuuiが伝えたいこと" />
+            <div style={{ display:"flex", flexDirection:"column", gap:"1.5rem" }}>
+              {[
+                "心に生まれた夢(トキメキ)を、自由に選ぶ。",
+                "それを実現するための勇気を、そっと添える。",
+                "一歩踏み出したり、努力したり、迷ったり、時にはしんどさも味わいながら。",
+                "その選択も、その選択の先にある別の未来も、愛せるように。",
+              ].map((text, i) => (
+                <div key={i} style={{ display:"flex", alignItems:"center", gap:"1.2rem" }}>
+                  <div style={{ width:36, height:36, borderRadius:"50%", background:"#c47a8a", color:"#fff", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, fontSize:"0.9rem", fontWeight:700 }}>{i+1}</div>
+                  <p style={{ fontSize:"1rem", color:"#4a3a3a", lineHeight:1.9 }}>{text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div style={{ background:"#c47a8a", padding:"3rem 1.5rem", textAlign:"center" }}>
+          <p style={{ color:"#fff", fontSize:"1.15rem", fontFamily:"serif", marginBottom:"0.4rem" }}>Myuuiについてのお問い合わせ</p>
+          <p style={{ color:"rgba(255,255,255,0.8)", fontSize:"0.85rem", marginBottom:"1.5rem" }}>ブランドに関するご相談はお気軽にどうぞ</p>
+          <button onClick={() => { onBack(); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }), 100); }} style={{ padding:"1rem 2.5rem", background:"#fff", color:"#c47a8a", border:"none", cursor:"pointer", fontSize:"1rem", letterSpacing:"0.12em", fontFamily:"inherit", fontWeight:700 }}>お問い合わせはこちら →</button>
+        </div>
+
+        <footer style={{ background:C.dark, padding:"2rem 1.5rem", textAlign:"center" }}>
+          <p style={{ fontSize:"0.8rem", color:"#9ca3af", letterSpacing:"0.12em" }}>© 令和八年 YOICHI</p>
+        </footer>
+      </div>
+    </div>
+  );
+}
+
+// ── VELLENCEブランド紹介ページ ──
+function VellencePage({ onBack }) {
+  const nameParts = [
+    { en:"VELVET", ja:"ベルベット", desc:"柔らかさ、上質さ、深みのある色気" },
+    { en:"EXCELLENCE", ja:"エクセレンス", desc:"卓越した品質、高い完成度、妥協しない姿勢" },
+  ];
+  const logoMeaning = [
+    { title:"黒い直線部分", desc:"男性らしい強さ、意志、自信" },
+    { title:"シルバーの曲線部分", desc:"柔らかさ、余裕、色気、上質さ" },
+    { title:"上へ広がる形", desc:"成長、可能性、存在感" },
+    { title:"下へまとまる形", desc:"自分の軸、集中力、信念" },
+  ];
+  const colors = [
+    { name:"ブラック", desc:"威厳・自信・重厚感", hex:"#0a0a0a" },
+    { name:"チャコール", desc:"都会的・落ち着き・知性", hex:"#2b2b2b" },
+    { name:"シルバー", desc:"洗練・品質・未来感", hex:"#c7c9cc" },
+    { name:"アイボリー", desc:"温かさ・余裕・上品さ", hex:"#e9e3d6" },
+  ];
+  const packageItems = [
+    "マットブラックの箱：重厚で特別感のある印象",
+    "シルバーのロゴ：控えめながら高品質",
+    "黒いリボン：男性向けの落ち着いた華やかさ",
+    "アイボリーの薄紙：商品を開く瞬間に温かさを加える",
+    "メッセージカード：ブランドの考え方を伝える",
+  ];
+
+  return (
+    <div className="page-animate" style={{ minHeight:"100vh", background:V.bg, fontFamily:"'Georgia','Hiragino Mincho ProN',serif", color:V.ivory }}>
+      <header style={{ position:"fixed", top:0, left:0, right:0, zIndex:50, background:"rgba(10,10,10,0.9)", backdropFilter:"blur(8px)", borderBottom:`1px solid ${V.gold}44` }}>
+        <nav style={{ maxWidth:1200, margin:"0 auto", padding:"1rem 1.5rem", display:"flex", alignItems:"center", gap:"1rem" }}>
+          <button onClick={onBack} style={{ background:"none", border:"none", cursor:"pointer", display:"flex", alignItems:"center", gap:"0.5rem", color:V.gold, fontSize:"0.9rem", letterSpacing:"0.1em" }}><IconArrowLeft /> ホームに戻る</button>
+          <div style={{ width:1, height:20, background:`${V.gold}55` }} />
+          <span style={{ fontSize:"1.2rem", fontWeight:700, letterSpacing:"0.3em", color:V.gold }}>VELLENCE</span>
+          <span style={{ color:V.textMuted, fontSize:"0.85rem", letterSpacing:"0.15em" }}>/ OUR BRAND</span>
+        </nav>
+      </header>
+
+      <div style={{ paddingTop:"5rem" }}>
+        {/* ヒーロー：ロゴ */}
+        <div style={{ padding:"3rem 1.5rem 2rem", textAlign:"center" }}>
+          <img src={vellenceLogo} alt="VELLENCE" style={{ maxWidth:280, width:"100%", margin:"0 auto", display:"block" }} />
+          <p style={{ fontSize:"0.85rem", color:V.textMuted, letterSpacing:"0.3em", marginTop:"1.5rem" }}>MENS LUXURY BRAND</p>
+        </div>
+
+        {/* タグライン */}
+        <div style={{ maxWidth:700, margin:"0 auto", padding:"2rem 1.5rem 4rem", textAlign:"center" }}>
+          <p style={{ fontSize:"clamp(1.3rem,3.5vw,1.8rem)", color:V.goldLight, letterSpacing:"0.1em", fontFamily:"serif", marginBottom:"0.8rem" }}>DEFINE YOUR PRESENCE.</p>
+          <p style={{ fontSize:"1rem", color:V.textMuted, letterSpacing:"0.15em" }}>存在を、完成させる。</p>
+        </div>
+
+        {/* ブランドコンセプト */}
+        <div style={{ background:V.panel, padding:"4rem 1.5rem" }}>
+          <div style={{ maxWidth:800, margin:"0 auto", textAlign:"center" }}>
+            <p style={{ fontSize:"0.75rem", color:V.gold, letterSpacing:"0.3em", marginBottom:"1rem" }}>CONCEPT</p>
+            <h2 style={{ fontSize:"clamp(1.6rem,4vw,2.4rem)", color:V.ivory, fontFamily:"serif", fontWeight:400, marginBottom:"2rem" }}>静かな強さを、纏う。</h2>
+            <p style={{ color:V.textMuted, lineHeight:2.1, fontSize:"0.95rem" }}>
+              VELLENCEが目指すのは、ロゴや装飾を大きく見せる派手な高級感ではありません。<br />
+              素材の質、シルエット、縫製、細かなデザインによって、着る人の品格を自然に引き出すブランドです。<br /><br />
+              「ブランドが目立つ服」ではなく、「着ている男性自身が魅力的に見える服」を作ります。
+            </p>
+          </div>
+        </div>
+
+        {/* 名前に込めた意味 */}
+        <div style={{ padding:"4rem 1.5rem" }}>
+          <div style={{ maxWidth:900, margin:"0 auto" }}>
+            <p style={{ textAlign:"center", fontSize:"0.75rem", color:V.gold, letterSpacing:"0.3em", marginBottom:"0.6rem" }}>NAME MEANING</p>
+            <h2 style={{ textAlign:"center", fontSize:"clamp(1.4rem,3vw,2rem)", color:V.ivory, fontFamily:"serif", fontWeight:400, marginBottom:"3rem" }}>名前に込めた意味</h2>
+            <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))", gap:"1.5rem", marginBottom:"2rem" }}>
+              {nameParts.map((item, i) => (
+                <div key={i} style={{ background:V.panel, border:`1px solid ${V.gold}33`, padding:"2rem" }}>
+                  <div style={{ fontSize:"1.4rem", color:V.gold, letterSpacing:"0.1em", fontWeight:700, marginBottom:"0.3rem" }}>{item.en}</div>
+                  <div style={{ fontSize:"0.85rem", color:V.textMuted, marginBottom:"1rem" }}>（{item.ja}）</div>
+                  <p style={{ fontSize:"0.9rem", color:V.ivory, lineHeight:1.8 }}>{item.desc}</p>
+                </div>
+              ))}
+            </div>
+            <p style={{ textAlign:"center", color:V.textMuted, fontSize:"0.9rem", lineHeight:1.9, maxWidth:600, margin:"0 auto" }}>
+              VELLENCEには、強さだけでなく、柔らかさや余裕も持つ、品格ある男性という意味が込められています。
+            </p>
+          </div>
+        </div>
+
+        {/* ロゴマークの意味 */}
+        <div style={{ background:V.panel, padding:"4rem 1.5rem" }}>
+          <div style={{ maxWidth:900, margin:"0 auto" }}>
+            <p style={{ textAlign:"center", fontSize:"0.75rem", color:V.gold, letterSpacing:"0.3em", marginBottom:"0.6rem" }}>LOGO</p>
+            <h2 style={{ textAlign:"center", fontSize:"clamp(1.4rem,3vw,2rem)", color:V.ivory, fontFamily:"serif", fontWeight:400, marginBottom:"3rem" }}>ロゴマークの意味</h2>
+            <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))", gap:"1.2rem" }}>
+              {logoMeaning.map((item, i) => (
+                <div key={i} style={{ background:V.bg, border:`1px solid ${V.gold}33`, padding:"1.5rem" }}>
+                  <div style={{ width:28, height:2, background:V.gold, marginBottom:"1rem" }} />
+                  <h4 style={{ fontSize:"0.95rem", color:V.ivory, marginBottom:"0.6rem" }}>{item.title}</h4>
+                  <p style={{ fontSize:"0.82rem", color:V.textMuted, lineHeight:1.7 }}>{item.desc}</p>
+                </div>
+              ))}
+            </div>
+            <p style={{ textAlign:"center", color:V.textMuted, fontSize:"0.88rem", lineHeight:1.9, marginTop:"2.5rem", maxWidth:600, marginLeft:"auto", marginRight:"auto" }}>
+              強さと柔らかさという、VELLENCEの2つの魅力を一つの「V」で表現しています。
+            </p>
+          </div>
+        </div>
+
+        {/* ブランドカラー */}
+        <div style={{ padding:"4rem 1.5rem" }}>
+          <div style={{ maxWidth:900, margin:"0 auto" }}>
+            <p style={{ textAlign:"center", fontSize:"0.75rem", color:V.gold, letterSpacing:"0.3em", marginBottom:"0.6rem" }}>COLOR</p>
+            <h2 style={{ textAlign:"center", fontSize:"clamp(1.4rem,3vw,2rem)", color:V.ivory, fontFamily:"serif", fontWeight:400, marginBottom:"3rem" }}>ブランドカラー</h2>
+            <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(180px,1fr))", gap:"1.2rem", marginBottom:"2rem" }}>
+              {colors.map((c, i) => (
+                <div key={i} style={{ background:V.panel, border:`1px solid ${V.gold}33`, overflow:"hidden" }}>
+                  <div style={{ height:80, background:c.hex, borderBottom:`1px solid ${V.gold}33` }} />
+                  <div style={{ padding:"1rem" }}>
+                    <div style={{ fontSize:"0.95rem", color:V.ivory, marginBottom:"0.3rem" }}>{c.name}</div>
+                    <p style={{ fontSize:"0.78rem", color:V.textMuted }}>{c.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <p style={{ textAlign:"center", color:V.textMuted, fontSize:"0.88rem" }}>黒一色で冷たくなりすぎないように、シルバーとアイボリーで柔らかな高級感を加えています。</p>
+          </div>
+        </div>
+
+        {/* 箱・袋・リボンの考え方 */}
+        <div style={{ background:V.panel, padding:"4rem 1.5rem" }}>
+          <div style={{ maxWidth:700, margin:"0 auto" }}>
+            <p style={{ textAlign:"center", fontSize:"0.75rem", color:V.gold, letterSpacing:"0.3em", marginBottom:"0.6rem" }}>PACKAGE</p>
+            <h2 style={{ textAlign:"center", fontSize:"clamp(1.4rem,3vw,2rem)", color:V.ivory, fontFamily:"serif", fontWeight:400, marginBottom:"2.5rem" }}>箱・袋・リボンの考え方</h2>
+            <p style={{ textAlign:"center", color:V.textMuted, fontSize:"0.9rem", lineHeight:1.9, marginBottom:"2.5rem" }}>VELLENCEでは、商品だけでなく、箱を開ける時間もブランド体験の一部にします。</p>
+            <div style={{ display:"flex", flexDirection:"column", gap:"1rem" }}>
+              {packageItems.map((item, i) => (
+                <div key={i} style={{ display:"flex", alignItems:"center", gap:"1rem", background:V.bg, border:`1px solid ${V.gold}22`, padding:"1rem 1.5rem" }}>
+                  <div style={{ width:6, height:6, borderRadius:"50%", background:V.gold, flexShrink:0 }} />
+                  <p style={{ fontSize:"0.88rem", color:V.ivory }}>{item}</p>
+                </div>
+              ))}
+            </div>
+            <p style={{ textAlign:"center", color:V.textMuted, fontSize:"0.85rem", marginTop:"2rem" }}>プレゼントとして受け取ったときにも、「大切に扱われている」と感じられるパッケージを目指します。</p>
+          </div>
+        </div>
+
+        {/* まとめ */}
+        <div style={{ padding:"4rem 1.5rem" }}>
+          <div style={{ maxWidth:750, margin:"0 auto", textAlign:"center" }}>
+            <p style={{ fontSize:"0.75rem", color:V.gold, letterSpacing:"0.3em", marginBottom:"1.5rem" }}>ABOUT VELLENCE</p>
+            <p style={{ color:V.ivory, lineHeight:2.1, fontSize:"0.95rem" }}>
+              VELLENCEは、「静かな強さを、纏う。」をコンセプトにしたメンズラグジュアリーブランドです。強さを象徴する直線と、柔らかさを象徴する曲線。その両方を服とロゴに取り入れ、着る人の自信、余裕、品格を自然に引き出します。派手に飾るのではなく、素材と仕立てで存在感を生み出す。それがVELLENCEの考える新しいラグジュアリーです。
+            </p>
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div style={{ background:V.gold, padding:"3rem 1.5rem", textAlign:"center" }}>
+          <p style={{ color:"#1a1a1a", fontSize:"1.15rem", fontFamily:"serif", marginBottom:"0.4rem" }}>VELLENCEについてのお問い合わせ</p>
+          <p style={{ color:"rgba(0,0,0,0.6)", fontSize:"0.85rem", marginBottom:"1.5rem" }}>ブランドに関するご相談はお気軽にどうぞ</p>
+          <button onClick={() => { onBack(); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }), 100); }} style={{ padding:"1rem 2.5rem", background:"#0a0a0a", color:V.gold, border:"none", cursor:"pointer", fontSize:"1rem", letterSpacing:"0.12em", fontFamily:"inherit", fontWeight:700 }}>お問い合わせはこちら →</button>
+        </div>
+
+        <footer style={{ background:"#050505", padding:"2rem 1.5rem", textAlign:"center", borderTop:`1px solid ${V.gold}22` }}>
+          <p style={{ fontSize:"0.8rem", color:"#6b6b6b", letterSpacing:"0.12em" }}>© 令和八年 YOICHI</p>
+        </footer>
+      </div>
+    </div>
+  );
+}
+
 // ── 雑貨デザインサンプルページ ──
 function GoodsSamplesPage({ onBack }) {
   const goodsItems = [
@@ -149,7 +408,6 @@ function GoodsSamplesPage({ onBack }) {
       </header>
 
       <div style={{ paddingTop:"5rem" }}>
-        {/* ヒーロー：実写写真 */}
         <div style={{ background:C.dark, padding:"4rem 1.5rem", position:"relative", overflow:"hidden" }}>
           <div style={{ position:"absolute", inset:0, color:C.primary, opacity:0.06 }}><YagasuriBg /></div>
           <div style={{ maxWidth:1100, margin:"0 auto", position:"relative", zIndex:1 }}>
@@ -170,7 +428,6 @@ function GoodsSamplesPage({ onBack }) {
           </div>
         </div>
 
-        {/* 制作実績 */}
         <div style={{ background:C.white, padding:"4rem 1.5rem" }}>
           <div style={{ maxWidth:900, margin:"0 auto" }}>
             <div style={{ textAlign:"center", marginBottom:"3rem" }}>
@@ -194,18 +451,15 @@ function GoodsSamplesPage({ onBack }) {
           </div>
         </div>
 
-        {/* デザインサンプル一覧（コラージュ画像） */}
         <div style={{ background:C.bg, padding:"4rem 1.5rem" }}>
           <div style={{ maxWidth:1100, margin:"0 auto" }}>
             <SectionHeading en="DESIGN SAMPLES" ja="雑貨デザインサンプル" />
             <p style={{ textAlign:"center", color:"#555", marginBottom:"3rem", lineHeight:1.9 }}>キーホルダー以外にも、さまざまな雑貨のデザインに対応しています。<br />下記はYOICHIが制作したデザインサンプルの一覧です。</p>
 
-            {/* コラージュ画像 */}
             <div className="anim-item" style={{ background:C.white, border:`1px solid ${C.border}`, overflow:"hidden", marginBottom:"3rem" }}>
               <img src={goodsCollage} alt="YOICHIの雑貨デザインサンプル一覧" style={{ width:"100%", display:"block" }} />
             </div>
 
-            {/* 各アイテム説明 */}
             <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(280px,1fr))", gap:"1.5rem" }}>
               {goodsItems.map((item, i) => (
                 <div key={i} className="anim-item" style={{ background:C.white, border:`1px solid ${C.border}`, padding:"1.5rem", transition:"all 0.3s", position:"relative", overflow:"hidden" }}
@@ -225,7 +479,6 @@ function GoodsSamplesPage({ onBack }) {
           </div>
         </div>
 
-        {/* 対応可能な雑貨一覧 */}
         <div style={{ background:C.white, padding:"4rem 1.5rem" }}>
           <div style={{ maxWidth:900, margin:"0 auto", textAlign:"center" }}>
             <p style={{ fontSize:"0.75rem", color:C.textMuted, letterSpacing:"0.3em", marginBottom:"0.5rem" }}>AVAILABLE ITEMS</p>
@@ -240,7 +493,6 @@ function GoodsSamplesPage({ onBack }) {
           </div>
         </div>
 
-        {/* CTA */}
         <div style={{ background:C.primary, padding:"3rem 1.5rem", textAlign:"center", position:"relative", overflow:"hidden" }}>
           <div style={{ position:"absolute", inset:0, color:"#fff", opacity:0.06 }}><YagasuriBg /></div>
           <div style={{ position:"relative" }}>
@@ -648,7 +900,6 @@ function PackagePage({ onBack, onContact }) {
       </header>
 
       <div style={{ paddingTop:"5rem" }}>
-        {/* 広告画像をそのまま大きく表示 */}
         <div style={{ maxWidth:700, margin:"0 auto", padding:"2rem 1.5rem" }}>
           <img
             src={sakuraBoxImg}
@@ -657,7 +908,6 @@ function PackagePage({ onBack, onContact }) {
           />
         </div>
 
-        {/* 詳細コンテンツ */}
         <div style={{ background:"#fff", padding:"5rem 1.5rem", position:"relative" }}>
           <div style={{ position:"absolute", top:0, left:0, right:0, height:3, background:"linear-gradient(to right,#e8a0b0,#c4504a)" }} />
           <div style={{ maxWidth:900, margin:"0 auto" }}>
@@ -673,7 +923,6 @@ function PackagePage({ onBack, onContact }) {
               心に残るパッケージデザインを制作いたします。
             </p>
 
-            {/* 特徴カード */}
             <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(260px,1fr))", gap:"1.5rem", marginBottom:"4rem" }}>
               {[
                 { title:"オリジナルデザイン", desc:"ブランドの世界観を表現した唯一無二のパッケージをご提案します。" },
@@ -689,7 +938,6 @@ function PackagePage({ onBack, onContact }) {
               ))}
             </div>
 
-            {/* CTA */}
             <div style={{ textAlign:"center" }}>
               <button
                 onClick={onContact}
@@ -723,7 +971,6 @@ function MeishiPage({ onBack, onContact }) {
       </header>
 
       <div style={{ paddingTop:"6rem" }}>
-        {/* ヒーロー：画像を大きく */}
         <div style={{ maxWidth:800, margin:"0 auto", padding:"2rem 1.5rem 4rem" }}>
           <div style={{ position:"relative" }}>
             <div style={{ position:"absolute", top:-12, left:-12, right:12, bottom:12, border:`2px solid ${C.accent}`, opacity:0.3 }} />
@@ -731,7 +978,6 @@ function MeishiPage({ onBack, onContact }) {
           </div>
         </div>
 
-        {/* 詳細コンテンツ */}
         <div style={{ background:C.bg, padding:"5rem 1.5rem", position:"relative" }}>
           <div style={{ position:"absolute", top:0, left:0, right:0, height:3, background:`linear-gradient(to right,${C.accent},${C.primary})` }} />
           <div style={{ maxWidth:900, margin:"0 auto" }}>
@@ -747,7 +993,6 @@ function MeishiPage({ onBack, onContact }) {
               こだわりの一枚を制作いたします。
             </p>
 
-            {/* 特徴カード */}
             <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(260px,1fr))", gap:"1.5rem", marginBottom:"4rem" }}>
               {[
                 { title:"オリジナルデザイン", desc:"テンプレートではなく、お客様だけの唯一無二のデザインをご提案します。" },
@@ -764,7 +1009,6 @@ function MeishiPage({ onBack, onContact }) {
               ))}
             </div>
 
-            {/* CTA */}
             <div style={{ textAlign:"center" }}>
               <button
                 onClick={onContact}
@@ -776,7 +1020,6 @@ function MeishiPage({ onBack, onContact }) {
           </div>
         </div>
 
-        {/* フッター */}
         <footer style={{ background:C.dark, padding:"2rem 1.5rem", textAlign:"center", borderTop:`1px solid rgba(255,255,255,0.1)` }}>
           <p style={{ fontSize:"0.8rem", color:"#9ca3af", letterSpacing:"0.12em" }}>© 令和八年 YOICHI</p>
         </footer>
@@ -894,6 +1137,7 @@ function DiagramSamplesPage({ onBack }) {
 const navLinks = [
   { label:"お仕事", id:"works_detail" },
   { label:"サンプル", id:"works" },
+  { label:"自社ブランド", id:"brands" },
   { label:"ご納品の流れ", id:"flow" },
   { label:"会社概要", id:"about" },
   { label:"由来", id:"origin" },
@@ -942,6 +1186,8 @@ export default function App() {
   if (page === "diagrams") return <DiagramSamplesPage onBack={() => goToPage("home")} />;
   if (page === "meishi") return <MeishiPage onBack={() => goToPage("home")} onContact={() => { goToPage("home"); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }), 100); }} />;
   if (page === "package") return <PackagePage onBack={() => goToPage("home")} onContact={() => { goToPage("home"); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }), 100); }} />;
+  if (page === "myuui") return <MyuuiPage onBack={() => goToPage("home")} />;
+  if (page === "vellence") return <VellencePage onBack={() => goToPage("home")} />;
 
   const scrollTo = (id) => { document.getElementById(id)?.scrollIntoView({ behavior:"smooth" }); setMenuOpen(false); };
 
@@ -1018,7 +1264,6 @@ export default function App() {
             <p style={{ textAlign:"center", color:"#555", lineHeight:1.9, marginBottom:"3rem", fontSize:"1rem" }}>
               デザインのお仕事をメインにしています。
             </p>
-            {/* お仕事グリッド */}
             <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(200px,1fr))", gap:"1.2rem", marginBottom:"3rem" }}>
               {[
                 { icon:"🖼️", label:"バナー作成", link:"banners" },
@@ -1045,7 +1290,6 @@ export default function App() {
                 </div>
               ))}
             </div>
-            {/* その他ご相談 */}
             <div style={{ background:C.primary, padding:"2rem 2.5rem", display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:"1rem", position:"relative", overflow:"hidden" }}>
               <div style={{ position:"absolute", inset:0, color:"#fff", opacity:0.08 }}><YagasuriBg /></div>
               <div style={{ position:"relative" }}>
@@ -1070,7 +1314,6 @@ export default function App() {
           <SectionHeading en="IMAGE SAMPLE" ja="イメージサンプル" />
           <p style={{ textAlign:"center", color:"#555", marginBottom:"3rem", lineHeight:1.9 }}>YOICHIが制作したデザインのイメージサンプルをご覧ください。</p>
 
-          {/* サンプル画像を大きく表示 */}
           <div style={{ maxWidth:900, margin:"0 auto 3rem", cursor:"pointer", position:"relative" }}
             onClick={() => goToPage("samples")}
             onMouseEnter={e => { e.currentTarget.style.transform="translateY(-4px)"; e.currentTarget.style.boxShadow="0 16px 48px rgba(0,0,0,0.15)"; }}
@@ -1089,38 +1332,68 @@ export default function App() {
         </div>
       </section>
 
+      {/* ── 自社ブランド ── */}
+      <section id="brands" style={{ padding:"5rem 1.5rem", background:C.white, position:"relative", overflow:"hidden" }}>
+        <div style={{ position:"absolute", top:0, left:0, right:0, height:1, background:`linear-gradient(to right,transparent,${C.accent}55,transparent)` }} />
+        <div style={{ position:"absolute", top:10, right:10, width:180, height:180, color:C.primary, opacity:0.05 }}><YagasuriBg /></div>
+        <div style={{ maxWidth:1100, margin:"0 auto", position:"relative", zIndex:1 }}>
+          <SectionHeading en="OUR BRANDS" ja="自社ブランド" />
+          <p style={{ textAlign:"center", color:"#555", marginBottom:"3rem", lineHeight:1.9 }}>YOICHIが展開するオリジナルブランドをご紹介します。</p>
+
+          <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(320px,1fr))", gap:"2rem" }}>
+            {/* Myuui カード */}
+            <div onClick={() => goToPage("myuui")}
+              style={{ background:"#fdf6f2", border:"2px solid #f0c9c9", padding:"2.5rem 2rem", cursor:"pointer", transition:"all 0.3s", position:"relative", overflow:"hidden" }}
+              onMouseEnter={e => { e.currentTarget.style.transform="translateY(-4px)"; e.currentTarget.style.boxShadow="0 16px 40px rgba(196,122,138,0.2)"; }}
+              onMouseLeave={e => { e.currentTarget.style.transform="none"; e.currentTarget.style.boxShadow="none"; }}
+            >
+              <p style={{ fontSize:"0.7rem", color:"#c47a8a", letterSpacing:"0.3em", marginBottom:"1rem" }}>APPAREL BRAND</p>
+              <h3 style={{ fontSize:"2rem", fontWeight:700, letterSpacing:"0.1em", color:"#3a3230", marginBottom:"1rem" }}>Myuui</h3>
+              <p style={{ fontSize:"0.9rem", color:"#8a7a7a", lineHeight:1.9, marginBottom:"1.5rem" }}>ー私の夢は、自由に選ぶの。<br />勇気を添えた未来も、愛せるようにー</p>
+              <span style={{ fontSize:"0.85rem", color:"#c47a8a", letterSpacing:"0.1em" }}>ブランドを見る →</span>
+            </div>
+
+            {/* VELLENCE カード */}
+            <div onClick={() => goToPage("vellence")}
+              style={{ background:"#0a0a0a", border:`2px solid ${V.gold}55`, padding:"2.5rem 2rem", cursor:"pointer", transition:"all 0.3s", position:"relative", overflow:"hidden" }}
+              onMouseEnter={e => { e.currentTarget.style.transform="translateY(-4px)"; e.currentTarget.style.boxShadow="0 16px 40px rgba(201,162,75,0.25)"; }}
+              onMouseLeave={e => { e.currentTarget.style.transform="none"; e.currentTarget.style.boxShadow="none"; }}
+            >
+              <p style={{ fontSize:"0.7rem", color:V.gold, letterSpacing:"0.3em", marginBottom:"1rem" }}>MENS LUXURY BRAND</p>
+              <h3 style={{ fontSize:"2rem", fontWeight:700, letterSpacing:"0.2em", color:V.ivory, marginBottom:"1rem" }}>VELLENCE</h3>
+              <p style={{ fontSize:"0.9rem", color:V.textMuted, lineHeight:1.9, marginBottom:"1.5rem" }}>静かな強さを、纏う。<br />DEFINE YOUR PRESENCE.</p>
+              <span style={{ fontSize:"0.85rem", color:V.gold, letterSpacing:"0.1em" }}>ブランドを見る →</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── ご納品までの流れ ── */}
       <section id="flow" style={{ padding:"5rem 1.5rem", background:C.white, position:"relative", overflow:"hidden" }}>
         <div style={{ position:"absolute", top:0, left:0, right:0, height:1, background:`linear-gradient(to right,transparent,${C.accent}55,transparent)` }} />
         <div style={{ maxWidth:900, margin:"0 auto", position:"relative", zIndex:1 }}>
           <SectionHeading en="DELIVERY FLOW" ja="ご納品までの流れ" />
 
-          {/* フローチャート */}
           <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:0 }}>
 
-            {/* STEP 1 */}
             <div className="flow-step" style={{ width:"100%", maxWidth:500, background:C.bg, border:`2px solid ${C.primary}`, padding:"1.5rem 2rem", textAlign:"center", position:"relative" }}>
               <span style={{ position:"absolute", top:-12, left:20, background:C.accent, color:"#fff", fontSize:"0.7rem", padding:"0.15rem 0.6rem", letterSpacing:"0.1em" }}>STEP 01</span>
               <h4 style={{ fontSize:"1.2rem", fontFamily:"serif", fontWeight:400, color:C.dark }}>ヒアリング</h4>
               <p style={{ fontSize:"0.85rem", color:"#777", marginTop:"0.4rem" }}>ご要望・イメージをお伺いします</p>
             </div>
 
-            {/* 矢印 */}
             <div style={{ width:2, height:30, background:C.accent }} />
             <div style={{ width:0, height:0, borderLeft:"8px solid transparent", borderRight:"8px solid transparent", borderTop:`10px solid ${C.accent}` }} />
 
-            {/* STEP 2 */}
             <div className="flow-step flow-step-wide" style={{ width:"100%", maxWidth:600, background:C.bg, border:`2px solid ${C.primary}`, padding:"1.5rem 2rem", textAlign:"center", position:"relative", marginTop:4 }}>
               <span style={{ position:"absolute", top:-12, left:20, background:C.accent, color:"#fff", fontSize:"0.7rem", padding:"0.15rem 0.6rem", letterSpacing:"0.1em" }}>STEP 02</span>
               <h4 style={{ fontSize:"1.2rem", fontFamily:"serif", fontWeight:400, color:C.dark }}>イメージ確認・ラフ案の作成</h4>
               <p style={{ fontSize:"0.85rem", color:"#777", marginTop:"0.4rem" }}>ヒアリングをもとにデザインの方向性を決定します</p>
             </div>
 
-            {/* 分岐矢印 */}
             <div style={{ width:2, height:20, background:C.accent }} />
             <div className="flow-branch" style={{ display:"flex", width:"100%", maxWidth:600, gap:"2rem", justifyContent:"center" }}>
 
-              {/* 左ルート：イメージ合致 */}
               <div style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", gap:0 }}>
                 <div style={{ width:0, height:0, borderLeft:"8px solid transparent", borderRight:"8px solid transparent", borderTop:`10px solid ${C.accent}` }} />
                 <div style={{ width:"100%", background:"#fff", border:`2px solid ${C.border}`, padding:"1rem", textAlign:"center", marginTop:4 }}>
@@ -1133,7 +1406,6 @@ export default function App() {
                 </div>
               </div>
 
-              {/* 右ルート：ご提案 */}
               <div style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", gap:0 }}>
                 <div style={{ width:0, height:0, borderLeft:"8px solid transparent", borderRight:"8px solid transparent", borderTop:`10px solid ${C.accent}` }} />
                 <div style={{ width:"100%", background:"#fff", border:`2px solid ${C.border}`, padding:"1rem", textAlign:"center", marginTop:4 }}>
@@ -1152,11 +1424,9 @@ export default function App() {
               </div>
             </div>
 
-            {/* 合流矢印 */}
             <div style={{ width:2, height:30, background:C.accent, marginTop:4 }} />
             <div style={{ width:0, height:0, borderLeft:"8px solid transparent", borderRight:"8px solid transparent", borderTop:`10px solid ${C.accent}` }} />
 
-            {/* STEP 3 */}
             <div className="flow-step flow-step-wide" style={{ width:"100%", maxWidth:600, background:C.bg, border:`2px solid ${C.primary}`, padding:"1.5rem 2rem", textAlign:"center", position:"relative", marginTop:4 }}>
               <span style={{ position:"absolute", top:-12, left:20, background:C.accent, color:"#fff", fontSize:"0.7rem", padding:"0.15rem 0.6rem", letterSpacing:"0.1em" }}>STEP 03</span>
               <h4 style={{ fontSize:"1.2rem", fontFamily:"serif", fontWeight:400, color:C.dark }}>修正対応（最大4回まで）</h4>
@@ -1166,7 +1436,6 @@ export default function App() {
             <div style={{ width:2, height:30, background:C.accent }} />
             <div style={{ width:0, height:0, borderLeft:"8px solid transparent", borderRight:"8px solid transparent", borderTop:`10px solid ${C.accent}` }} />
 
-            {/* STEP 4 */}
             <div className="flow-step" style={{ width:"100%", maxWidth:500, background:C.bg, border:`2px solid ${C.primary}`, padding:"1.5rem 2rem", textAlign:"center", position:"relative", marginTop:4 }}>
               <span style={{ position:"absolute", top:-12, left:20, background:C.accent, color:"#fff", fontSize:"0.7rem", padding:"0.15rem 0.6rem", letterSpacing:"0.1em" }}>STEP 04</span>
               <h4 style={{ fontSize:"1.2rem", fontFamily:"serif", fontWeight:400, color:C.dark }}>最終デザイン確認</h4>
@@ -1176,7 +1445,6 @@ export default function App() {
             <div style={{ width:2, height:30, background:C.accent }} />
             <div style={{ width:0, height:0, borderLeft:"8px solid transparent", borderRight:"8px solid transparent", borderTop:`10px solid ${C.accent}` }} />
 
-            {/* STEP 5 */}
             <div className="flow-step" style={{ width:"100%", maxWidth:500, background:C.primary, padding:"1.5rem 2rem", textAlign:"center", position:"relative", marginTop:4 }}>
               <span style={{ position:"absolute", top:-12, left:20, background:C.dark, color:"#fff", fontSize:"0.7rem", padding:"0.15rem 0.6rem", letterSpacing:"0.1em" }}>STEP 05</span>
               <h4 style={{ fontSize:"1.3rem", fontFamily:"serif", fontWeight:400, color:"#fff" }}>ご納品</h4>
@@ -1184,7 +1452,6 @@ export default function App() {
             </div>
           </div>
 
-          {/* 注釈 */}
           <p style={{ textAlign:"center", color:C.accent, fontSize:"0.85rem", marginTop:"2.5rem", lineHeight:1.8 }}>※製品や仕様によって流れが変わる場合がございます。</p>
         </div>
       </section>
@@ -1333,7 +1600,6 @@ export default function App() {
             <div style={{ display:"flex", flexDirection:"column", gap:"1.5rem" }}>
               <ContactCard icon={IconMail} title="メールアドレス"><a href="mailto:yoichi08107@gmail.com" style={{ color:"#555", textDecoration:"none", fontSize:"0.95rem", fontFamily:"'Helvetica Neue',Arial,sans-serif", letterSpacing:"0.03em" }}>yoichi08107@gmail.com</a></ContactCard>
               <ContactCard icon={IconPhone} title="代表携帯"><a href="tel:080-1360-7951" style={{ color:"#555", textDecoration:"none", fontSize:"0.95rem", fontFamily:"'Helvetica Neue',Arial,sans-serif", letterSpacing:"0.03em" }}>080-1360-7951</a></ContactCard>
-              {/* 公式LINE */}
               <a href="https://line.me/" target="_blank" rel="noopener noreferrer" style={{ textDecoration:"none", display:"block" }}>
                 <div style={{ display:"flex", gap:"1rem", background:"#06C755", padding:"1.5rem", position:"relative", overflow:"hidden", transition:"all 0.2s", cursor:"pointer" }}
                   onMouseEnter={e => { e.currentTarget.style.transform="translateY(-2px)"; e.currentTarget.style.boxShadow="0 6px 20px rgba(6,199,85,0.3)"; }}

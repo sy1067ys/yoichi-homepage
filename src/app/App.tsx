@@ -1137,7 +1137,6 @@ function DiagramSamplesPage({ onBack }) {
 const navLinks = [
   { label:"お仕事", id:"works_detail" },
   { label:"サンプル", id:"works" },
-  { label:"自社ブランド", id:"brands" },
   { label:"ご納品の流れ", id:"flow" },
   { label:"会社概要", id:"about" },
   { label:"由来", id:"origin" },
@@ -1186,8 +1185,6 @@ export default function App() {
   if (page === "diagrams") return <DiagramSamplesPage onBack={() => goToPage("home")} />;
   if (page === "meishi") return <MeishiPage onBack={() => goToPage("home")} onContact={() => { goToPage("home"); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }), 100); }} />;
   if (page === "package") return <PackagePage onBack={() => goToPage("home")} onContact={() => { goToPage("home"); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }), 100); }} />;
-  if (page === "myuui") return <MyuuiPage onBack={() => goToPage("home")} />;
-  if (page === "vellence") return <VellencePage onBack={() => goToPage("home")} />;
 
   const scrollTo = (id) => { document.getElementById(id)?.scrollIntoView({ behavior:"smooth" }); setMenuOpen(false); };
 
@@ -1328,42 +1325,6 @@ export default function App() {
 
           <div style={{ textAlign:"center" }}>
             <button onClick={() => goToPage("samples")} style={{ padding:"1rem 2.5rem", background:"transparent", color:C.primary, border:`2px solid ${C.primary}`, cursor:"pointer", letterSpacing:"0.12em", fontSize:"0.95rem", fontFamily:"inherit", transition:"all 0.2s", display:"inline-flex", alignItems:"center", gap:"0.5rem" }} onMouseEnter={e => { e.currentTarget.style.background=C.primary; e.currentTarget.style.color="#fff"; }} onMouseLeave={e => { e.currentTarget.style.background="transparent"; e.currentTarget.style.color=C.primary; }}>すべてのサンプルを見る <IconArrowRight /></button>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 自社ブランド ── */}
-      <section id="brands" style={{ padding:"5rem 1.5rem", background:C.white, position:"relative", overflow:"hidden" }}>
-        <div style={{ position:"absolute", top:0, left:0, right:0, height:1, background:`linear-gradient(to right,transparent,${C.accent}55,transparent)` }} />
-        <div style={{ position:"absolute", top:10, right:10, width:180, height:180, color:C.primary, opacity:0.05 }}><YagasuriBg /></div>
-        <div style={{ maxWidth:1100, margin:"0 auto", position:"relative", zIndex:1 }}>
-          <SectionHeading en="OUR BRANDS" ja="自社ブランド" />
-          <p style={{ textAlign:"center", color:"#555", marginBottom:"3rem", lineHeight:1.9 }}>YOICHIが展開するオリジナルブランドをご紹介します。</p>
-
-          <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(320px,1fr))", gap:"2rem" }}>
-            {/* Myuui カード */}
-            <div onClick={() => goToPage("myuui")}
-              style={{ background:"#fdf6f2", border:"2px solid #f0c9c9", padding:"2.5rem 2rem", cursor:"pointer", transition:"all 0.3s", position:"relative", overflow:"hidden" }}
-              onMouseEnter={e => { e.currentTarget.style.transform="translateY(-4px)"; e.currentTarget.style.boxShadow="0 16px 40px rgba(196,122,138,0.2)"; }}
-              onMouseLeave={e => { e.currentTarget.style.transform="none"; e.currentTarget.style.boxShadow="none"; }}
-            >
-              <p style={{ fontSize:"0.7rem", color:"#c47a8a", letterSpacing:"0.3em", marginBottom:"1rem" }}>APPAREL BRAND</p>
-              <h3 style={{ fontSize:"2rem", fontWeight:700, letterSpacing:"0.1em", color:"#3a3230", marginBottom:"1rem" }}>Myuui</h3>
-              <p style={{ fontSize:"0.9rem", color:"#8a7a7a", lineHeight:1.9, marginBottom:"1.5rem" }}>ー私の夢は、自由に選ぶの。<br />勇気を添えた未来も、愛せるようにー</p>
-              <span style={{ fontSize:"0.85rem", color:"#c47a8a", letterSpacing:"0.1em" }}>ブランドを見る →</span>
-            </div>
-
-            {/* VELLENCE カード */}
-            <div onClick={() => goToPage("vellence")}
-              style={{ background:"#0a0a0a", border:`2px solid ${V.gold}55`, padding:"2.5rem 2rem", cursor:"pointer", transition:"all 0.3s", position:"relative", overflow:"hidden" }}
-              onMouseEnter={e => { e.currentTarget.style.transform="translateY(-4px)"; e.currentTarget.style.boxShadow="0 16px 40px rgba(201,162,75,0.25)"; }}
-              onMouseLeave={e => { e.currentTarget.style.transform="none"; e.currentTarget.style.boxShadow="none"; }}
-            >
-              <p style={{ fontSize:"0.7rem", color:V.gold, letterSpacing:"0.3em", marginBottom:"1rem" }}>MENS LUXURY BRAND</p>
-              <h3 style={{ fontSize:"2rem", fontWeight:700, letterSpacing:"0.2em", color:V.ivory, marginBottom:"1rem" }}>VELLENCE</h3>
-              <p style={{ fontSize:"0.9rem", color:V.textMuted, lineHeight:1.9, marginBottom:"1.5rem" }}>静かな強さを、纏う。<br />DEFINE YOUR PRESENCE.</p>
-              <span style={{ fontSize:"0.85rem", color:V.gold, letterSpacing:"0.1em" }}>ブランドを見る →</span>
-            </div>
           </div>
         </div>
       </section>

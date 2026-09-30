@@ -1444,6 +1444,9 @@ export default function App() {
               <div style={{ position:"relative", overflow:"hidden", aspectRatio:"1" }}>
                 <img src={yokoyamaPhoto} alt="代表 横山真一郎" style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }} />
               </div>
+              <p style={{ textAlign:"center", marginTop:"1rem", fontSize:"0.95rem", color:C.dark, letterSpacing:"0.1em" }}>
+                代表　横山 真一郎
+              </p>
             </div>
           </div>
         </div>

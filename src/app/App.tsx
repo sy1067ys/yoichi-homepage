@@ -1,5 +1,6 @@
 import { useState } from "react";
 import yoichiLogo from "../assets/yoichi-logo.png";
+import yokoyamaPhoto from "../assets/yokoyama-photo.jpg";
 import meishiImg from "../assets/meishi.png";
 import sakuraBoxImg from "../assets/sakura-box-ad.png";
 import meishiSampleImg from "../assets/meishi-sample.png";
@@ -1440,9 +1441,8 @@ export default function App() {
             </div>
             <div className="about-logo-box" style={{ position:"relative", maxWidth:400, margin:"0 auto" }}>
               <div style={{ position:"absolute", top:-16, left:-16, right:16, bottom:16, border:`2px solid ${C.accent}`, opacity:0.25 }} />
-              <div style={{ position:"relative", background:C.primary, padding:"4rem", display:"flex", alignItems:"center", justifyContent:"center", aspectRatio:"1" }}>
-                <div style={{ position:"absolute", inset:0, color:"#fff", opacity:0.1 }}><YagasuriBg /></div>
-                <YoichiMark size={160} dark={true} />
+              <div style={{ position:"relative", overflow:"hidden", aspectRatio:"1" }}>
+                <img src={yokoyamaPhoto} alt="代表 横山真一郎" style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }} />
               </div>
             </div>
           </div>

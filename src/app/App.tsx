@@ -1441,12 +1441,16 @@ export default function App() {
             </div>
             <div className="about-logo-box" style={{ position:"relative", maxWidth:400, margin:"0 auto" }}>
               <div style={{ position:"absolute", top:-16, left:-16, right:16, bottom:16, border:`2px solid ${C.accent}`, opacity:0.25 }} />
-              <div style={{ position:"relative", overflow:"hidden", aspectRatio:"1" }}>
-                <img src={yokoyamaPhoto} alt="代表 横山真一郎" style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }} />
+              <div style={{ position:"relative", background:C.white, boxShadow:"0 12px 32px rgba(0,0,0,0.08)" }}>
+                <div style={{ overflow:"hidden", aspectRatio:"1" }}>
+                  <img src={yokoyamaPhoto} alt="代表 横山真一郎" style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }} />
+                </div>
+                <div style={{ padding:"1.5rem", textAlign:"center" }}>
+                  <div style={{ width:32, height:2, background:C.accent, margin:"0 auto 0.8rem" }} />
+                  <p style={{ fontSize:"0.75rem", color:C.textMuted, letterSpacing:"0.25em", marginBottom:"0.5rem" }}>代表</p>
+                  <p style={{ fontSize:"1.15rem", fontFamily:"serif", fontWeight:400, color:C.dark, letterSpacing:"0.15em" }}>横山 真一郎</p>
+                </div>
               </div>
-              <p style={{ textAlign:"center", marginTop:"1rem", fontSize:"0.95rem", color:C.dark, letterSpacing:"0.1em" }}>
-                代表　横山 真一郎
-              </p>
             </div>
           </div>
         </div>

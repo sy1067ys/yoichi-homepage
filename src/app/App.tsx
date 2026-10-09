@@ -185,9 +185,9 @@ function FocusPage({ onBack }) {
                 <img src={focusLogo} alt="FOCUS ロゴタイプ" style={{ width:"min(320px,90%)", height:"auto", display:"block" }} />
                 <p style={{ fontSize:"0.75rem", color:sub, letterSpacing:"0.15em" }}>ロゴタイプ</p>
               </div>
-              <div style={{ background:ink, border:`1px solid ${ink}`, padding:"3rem 1.5rem", display:"flex", flexDirection:"column", alignItems:"center", gap:"1.5rem" }}>
-                <img src={focusSymbol} alt="FOCUS シンボルマーク" style={{ width:140, height:"auto", display:"block", filter:"invert(1)" }} />
-                <p style={{ fontSize:"0.75rem", color:"#aaa", letterSpacing:"0.15em" }}>シンボルマーク</p>
+              <div style={{ background:"#fff", border:`1px solid ${line}`, padding:"3rem 1.5rem", display:"flex", flexDirection:"column", alignItems:"center", gap:"1.5rem" }}>
+                <img src={focusSymbol} alt="FOCUS シンボルマーク" style={{ width:140, height:"auto", display:"block" }} />
+                <p style={{ fontSize:"0.75rem", color:sub, letterSpacing:"0.15em" }}>シンボルマーク</p>
               </div>
             </div>
             <p style={{ textAlign:"center", color:sub, fontSize:"0.85rem", lineHeight:2, marginTop:"2.5rem", fontWeight:300 }}>

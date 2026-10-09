@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import yoichiLogo from "../assets/yoichi-logo.png";
 import meishiImg from "../assets/meishi.png";
 import sakuraBoxImg from "../assets/sakura-box-ad.png";
@@ -996,7 +996,11 @@ const navLinks = [
 
 export default function App() {
   const [page, setPage] = useState("home");
-  const goToPage = (p) => { setPage(p); window.scrollTo(0, 0); };
+  const goToPage = (p) => { setPage(p); };
+  // ページ切り替え後、必ず一番上から表示する（ホームに戻る時は元の位置処理が別途動作）
+  useEffect(() => {
+    window.scrollTo({ top:0, left:0, behavior:"instant" as ScrollBehavior });
+  }, [page]);
   const [menuOpen, setMenuOpen] = useState(false);
   const [hoveredWork, setHoveredWork] = useState(null);
   const [hoveredSns, setHoveredSns] = useState(null);

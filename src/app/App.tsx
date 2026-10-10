@@ -995,46 +995,16 @@ const navLinks = [
   { label:"SNS", id:"sns" },
 ];
 
-// 矢絣（やがすり）の帯
-function YagasuriBand() {
-  return (
-    <svg width="100%" height="44" aria-hidden="true" style={{ display:"block" }}>
-      <defs>
-        <pattern id="yh-yagasuri" x="0" y="0" width="22" height="44" patternUnits="userSpaceOnUse">
-          <path d="M0 11 L11 0 L22 11 M0 22 L11 11 L22 22 M0 33 L11 22 L22 33 M0 44 L11 33 L22 44" fill="none" stroke="currentColor" strokeWidth="1.4" />
-          <path d="M11 0 V44" stroke="currentColor" strokeWidth="1.4" />
-        </pattern>
-      </defs>
-      <rect width="100%" height="44" fill="url(#yh-yagasuri)" />
-    </svg>
-  );
-}
-
-// 的（まと）：朱と生成りの同心円
-function TargetRings({ outline = false }) {
-  const radii = [100, 78, 56, 34, 12];
-  return (
-    <svg viewBox="0 0 200 200" width="100%" height="100%" aria-hidden="true" style={{ display:"block" }}>
-      {radii.map((r, i) => outline
-        ? <circle key={r} cx="100" cy="100" r={r} fill="none" stroke="currentColor" strokeWidth="0.6" />
-        : <circle key={r} cx="100" cy="100" r={r} fill={i % 2 === 0 ? "var(--shu)" : "var(--washi)"} />
-      )}
-    </svg>
-  );
-}
-
-function HomeHeading({ children }) {
-  return <h2 className="yh-h2"><span className="yh-dot" aria-hidden="true" />{children}</h2>;
-}
-
 export default function App() {
   const [page, setPage] = useState("home");
   const goToPage = (p) => { setPage(p); };
-  // ページ切り替え後、必ず一番上から表示する
+  // ページ切り替え後、必ず一番上から表示する（ホームに戻る時は元の位置処理が別途動作）
   useEffect(() => {
     window.scrollTo({ top:0, left:0, behavior:"instant" as ScrollBehavior });
   }, [page]);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [hoveredWork, setHoveredWork] = useState(null);
+  const [hoveredSns, setHoveredSns] = useState(null);
   const [formData, setFormData] = useState({ name:"", furigana:"", company:"", email:"", message:"" });
   const [formStatus, setFormStatus] = useState("idle"); // idle | sending | sent | error
   const handleFormChange = (key, val) => setFormData(p => ({ ...p, [key]: val }));
@@ -1075,20 +1045,6 @@ export default function App() {
 
   const scrollTo = (id) => { document.getElementById(id)?.scrollIntoView({ behavior:"smooth" }); setMenuOpen(false); };
 
-  const works = [
-    { label:"バナー作成", link:"banners" },
-    { label:"名刺作成", link:"meishi" },
-    { label:"ロゴ作成", link:"logos" },
-    { label:"パッケージデザイン", link:"package" },
-    { label:"UI/UXデザイン", link:"uiux" },
-    { label:"ウェブサイト作成", link:"websamples" },
-    { label:"アプリケーション作成", link:"appsamples" },
-    { label:"テンプレート作成", link:"templates" },
-    { label:"雑貨デザイン", link:"goods" },
-    { label:"レイアウトデザイン", link:"layouts" },
-    { label:"図解デザイン", link:"diagrams" },
-  ];
-
   const originItems = [
     { letter:"Y", word:"Yume（夢）", desc:"お客様の夢やビジョンを共に描き、デザインの力で現実へと近づける存在でありたいという想いを込めています。" },
     { letter:"O", word:"Omoi（想い）", desc:"「想いをカタチに」というモットーの根幹。お客様一人ひとりの想いを丁寧に受け取り、形にすることを大切にしています。" },
@@ -1098,351 +1054,251 @@ export default function App() {
     { letter:"I", word:"Ichi（一・市）", desc:"「一期一会」の精神で、お客様との出会いを唯一無二のものとして大切にします。すべての出会いが新たな物語の始まりです。" },
   ];
 
-  const sns = [
-    { name:"Instagram", handle:"@yoichi_design", href:"https://www.instagram.com/", Icon:IconInstagram, desc:"制作の舞台裏や完成作品を毎日更新。和の美意識を大切にしたビジュアルをお届けします。" },
-    { name:"X (Twitter)", handle:"@yoichi_design", href:"https://twitter.com/", Icon:IconTwitter, desc:"デザインの考え方や業界の最新情報を発信。お気軽にリプライやDMもどうぞ。" },
-    { name:"TikTok", handle:"@yoichi_design", href:"https://www.tiktok.com/", Icon:IconTikTok, desc:"デザインの制作過程やビフォーアフターを動画で公開中。ぜひチェックしてください。" },
-  ];
-
   return (
-    <div className="yh">
-      <style>{`@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap');`}</style>
-      <style>{`
-        .yh{
-          --washi:#f5f2ed; --paper:#fbfaf7; --sumi:#262120; --cha:#8b4f47; --shu:#c4504a; --line:#d9cfc0; --mute:#6f6660;
-          --mincho:'Shippori Mincho','Hiragino Mincho ProN','Yu Mincho',serif;
-          --gothic:'Zen Kaku Gothic New','Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;
-          --gutter:clamp(20px,5vw,64px);
-          min-height:100vh; background:var(--washi); color:var(--sumi); font-family:var(--gothic); overflow-x:hidden;
-          font-size:16px; line-height:1.9;
-        }
-        .yh :where(*){box-sizing:border-box;margin:0;padding:0;}
-        .yh{scroll-behavior:smooth;}
-        html{scroll-behavior:smooth;}
-        .yh :where(button){font-family:inherit;color:inherit;cursor:pointer;background:none;border:none;text-align:left;}
-        .yh :where(a){color:inherit;text-decoration:none;}
-        .yh :focus-visible{outline:2px solid var(--shu);outline-offset:3px;}
-        .yh ::placeholder{color:#aaa39b;}
-        .yh-wrap{max-width:1180px;margin:0 auto;padding:0 var(--gutter);}
-        .yh-section{padding:clamp(64px,10vw,128px) 0;position:relative;}
-        .yh-section--paper{background:var(--paper);}
-        .yh-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,6vw,96px);align-items:start;}
-        .yh-side{position:sticky;top:112px;}
-        .yh-h2{font-family:var(--mincho);font-weight:600;font-size:clamp(1.55rem,2.5vw,2.1rem);line-height:1.5;letter-spacing:0.06em;display:flex;align-items:center;gap:0.7em;}
-        .yh-dot{width:0.55em;height:0.55em;border-radius:50%;background:var(--shu);flex-shrink:0;box-shadow:0 0 0 0.16em var(--washi),0 0 0 0.2em var(--shu);}
-        .yh-section--paper .yh-dot{box-shadow:0 0 0 0.16em var(--paper),0 0 0 0.2em var(--shu);}
-        .yh-lead{margin-top:1.4rem;color:var(--mute);font-size:0.95rem;line-height:2;max-width:26em;}
-        .yh-btn{display:inline-flex;align-items:center;gap:0.6rem;padding:1rem 2.2rem;background:var(--sumi);color:#fff !important;letter-spacing:0.14em;font-size:0.92rem;transition:background .2s;}
-        .yh-btn:hover{background:var(--shu);}
-        .yh-link{display:inline-block;padding:0.2rem 0;border-bottom:1px solid currentColor;letter-spacing:0.12em;font-size:0.92rem;transition:color .2s;}
-        .yh-link:hover{color:var(--shu);}
+    <div style={{ minHeight:"100vh", background:C.bg, fontFamily:"'Georgia','Hiragino Mincho ProN',serif", color:C.dark, overflowX:"hidden" }}>
+      <div style={{ position:"fixed", inset:0, pointerEvents:"none", opacity:0.4, color:C.primary, zIndex:0 }}><YagasuriBg /></div>
 
-        /* header */
-        .yh-header{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(245,242,237,0.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
-        .yh-nav{max-width:1180px;margin:0 auto;padding:0.8rem var(--gutter);display:flex;align-items:center;justify-content:space-between;}
-        .yh-brand{display:flex;align-items:center;gap:0.7rem;}
-        .yh-brand span{font-family:var(--mincho);font-weight:800;font-size:1.3rem;letter-spacing:0.22em;line-height:1;}
-        .yh-links{display:flex;align-items:center;gap:1.7rem;}
-        .yh-links button{font-size:0.86rem;letter-spacing:0.1em;transition:color .2s;}
-        .yh-links button:hover{color:var(--shu);}
-        .yh-links .yh-cta{padding:0.55rem 1.3rem;background:var(--sumi);color:#fff;}
-        .yh-links .yh-cta:hover{background:var(--shu);color:#fff;}
-        .yh-burger{display:none;}
-        .yh-mobile{display:none;}
-
-        /* hero */
-        .yh-hero{position:relative;min-height:100vh;min-height:100svh;overflow:hidden;--T:min(74vh,52vw);}
-        .yh-target{position:absolute;width:var(--T);height:var(--T);right:calc(var(--T) * -0.16);top:calc(34% - var(--T) / 2);}
-        .yh-arrow{position:absolute;left:0;right:calc(var(--T) * 0.34);top:34%;height:2px;background:var(--sumi);animation:yh-shoot 1.3s cubic-bezier(.16,.8,.2,1) .25s both;}
-        .yh-arrow::after{content:"";position:absolute;right:-2px;top:50%;transform:translateY(-50%);border-left:20px solid var(--sumi);border-top:7px solid transparent;border-bottom:7px solid transparent;}
-        .yh-arrow svg{position:absolute;left:9%;top:50%;transform:translateY(-50%);}
-        @keyframes yh-shoot{from{transform:translateX(-108%);}to{transform:translateX(0);}}
-        .yh-hero-inner{position:relative;z-index:2;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:7rem var(--gutter) clamp(40px,7vh,88px);max-width:1180px;margin:0 auto;}
-        .yh-kicker{font-size:0.88rem;color:var(--cha);letter-spacing:0.18em;margin-bottom:1.6rem;}
-        .yh-h1{font-family:var(--mincho);font-weight:600;font-size:clamp(2rem,4.6vw,4.4rem);line-height:1.55;letter-spacing:0.1em;}
-        .yh-hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:1.8rem;margin-top:2.6rem;}
-
-        /* works */
-        .yh-rows{border-top:1px solid var(--sumi);}
-        .yh-row{display:flex;align-items:center;justify-content:space-between;width:100%;padding:1.15rem 0.2rem;border-bottom:1px solid var(--line);font-family:var(--mincho);font-weight:600;font-size:clamp(1.05rem,1.8vw,1.3rem);letter-spacing:0.1em;transition:padding .25s,color .2s,background .2s;}
-        .yh-row svg{color:var(--shu);opacity:0;transform:translateX(-8px);transition:opacity .25s,transform .25s;}
-        .yh-row:hover,.yh-row:focus-visible{padding-left:1rem;color:var(--shu);}
-        .yh-row:hover svg,.yh-row:focus-visible svg{opacity:1;transform:none;}
-        .yh-other{margin-top:2rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;}
-        .yh-other p{font-family:var(--mincho);font-size:1.05rem;letter-spacing:0.08em;}
-        .yh-other small{display:block;color:var(--mute);font-family:var(--gothic);font-size:0.85rem;letter-spacing:0.04em;}
-
-        /* samples */
-        .yh-samples-img{display:block;width:100%;cursor:pointer;border:1px solid var(--line);background:#fff;transition:transform .35s,box-shadow .35s;}
-        .yh-samples-img:hover{transform:translateY(-4px);box-shadow:0 18px 44px rgba(38,33,32,0.14);}
-        .yh-samples-img img{display:block;width:100%;height:auto;}
-
-        /* brands */
-        .yh-brand-card{display:block;width:100%;padding:clamp(32px,5vw,64px) clamp(20px,4vw,48px);background:#fff;border:1px solid var(--sumi);text-align:center;transition:transform .3s,box-shadow .3s;}
-        .yh-brand-card:hover{transform:translateY(-4px);box-shadow:0 18px 44px rgba(38,33,32,0.14);}
-        .yh-brand-card img{display:block;width:min(300px,80%);height:auto;margin:0 auto 1.4rem;}
-        .yh-brand-card .tag{font-family:'Helvetica Neue',Arial,sans-serif;color:#555;letter-spacing:0.12em;font-weight:300;margin-bottom:1.6rem;}
-        .yh-brand-card .go{font-size:0.85rem;letter-spacing:0.16em;border-bottom:1px solid var(--sumi);padding-bottom:2px;}
-
-        /* flow */
-        .yh-steps{list-style:none;position:relative;}
-        .yh-steps::before{content:"";position:absolute;left:19px;top:20px;bottom:20px;width:1px;background:var(--line);}
-        .yh-step{position:relative;padding:0 0 2.8rem 4.2rem;}
-        .yh-step:last-child{padding-bottom:0;}
-        .yh-step-no{position:absolute;left:0;top:0;width:40px;height:40px;border-radius:50%;background:var(--paper);border:1px solid var(--sumi);display:flex;align-items:center;justify-content:center;font-family:var(--mincho);font-weight:600;font-size:0.95rem;}
-        .yh-step--end .yh-step-no{background:var(--shu);border-color:var(--shu);color:#fff;}
-        .yh-step h3{font-family:var(--mincho);font-weight:600;font-size:1.25rem;letter-spacing:0.08em;line-height:1.6;padding-top:0.3rem;}
-        .yh-step p{color:var(--mute);font-size:0.92rem;margin-top:0.2rem;}
-        .yh-branch{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.2rem;}
-        .yh-branch div{border:1px solid var(--line);background:#fff;padding:1rem 1.1rem;}
-        .yh-branch b{display:block;font-weight:700;font-size:0.82rem;color:var(--cha);letter-spacing:0.08em;margin-bottom:0.4rem;}
-        .yh-branch span{display:block;font-size:0.85rem;line-height:1.9;}
-        .yh-note{margin-top:2.4rem;color:var(--shu);font-size:0.85rem;}
-
-        /* about */
-        .yh-creed{font-family:var(--mincho);font-weight:600;font-size:clamp(1.7rem,3.6vw,2.8rem);line-height:1.7;letter-spacing:0.1em;}
-        .yh-creed span{display:block;}
-        .yh-greet{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,6vw,96px);margin-top:clamp(48px,7vw,88px);align-items:start;}
-        .yh-greet p{margin-bottom:1.1rem;color:#4b433f;font-size:0.95rem;line-height:2.1;max-width:34em;}
-        .yh-dl{border-top:1px solid var(--sumi);}
-        .yh-dl div{display:flex;gap:1.5rem;padding:0.95rem 0;border-bottom:1px solid var(--line);}
-        .yh-dl dt{min-width:5.5em;color:var(--mute);font-size:0.88rem;}
-        .yh-dl dd{font-family:var(--mincho);font-weight:600;letter-spacing:0.06em;}
-        .yh-logo-block{margin-top:2rem;background:var(--sumi);aspect-ratio:1.6;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
-        .yh-logo-block .yh-ya{position:absolute;inset:0;color:var(--shu);opacity:0.28;}
-        .yh-logo-block .yh-badge{position:relative;background:var(--washi);padding:1.2rem;border-radius:50%;}
-
-        /* origin */
-        .yh-origin{background:var(--sumi);color:var(--washi);overflow:hidden;}
-        .yh-origin .yh-dot{box-shadow:0 0 0 0.16em var(--sumi),0 0 0 0.2em var(--shu);}
-        .yh-origin-ring{position:absolute;right:-12vw;top:-8vw;width:min(70vw,720px);aspect-ratio:1;color:rgba(245,242,237,0.12);pointer-events:none;}
-        .yh-origin-head{position:relative;max-width:42rem;}
-        .yh-origin-head h3{font-family:var(--mincho);font-weight:600;font-size:clamp(1.4rem,2.6vw,2rem);letter-spacing:0.08em;line-height:1.7;margin:1.8rem 0 1.6rem;}
-        .yh-origin-head p{color:#d8d0c6;line-height:2.2;font-size:0.97rem;}
-        .yh-origin-head strong{font-weight:700;color:#fff;}
-        .yh-dist{display:flex;align-items:baseline;gap:1.4rem;margin:2.2rem 0;padding:1.4rem 0;border-top:1px solid rgba(245,242,237,0.25);border-bottom:1px solid rgba(245,242,237,0.25);}
-        .yh-dist b{font-family:var(--mincho);font-weight:800;font-size:clamp(2.4rem,6vw,4rem);line-height:1;color:var(--shu);white-space:nowrap;}
-        .yh-dist span{color:#d8d0c6;font-size:0.92rem;line-height:2;}
-        .yh-letters{position:relative;margin-top:clamp(56px,8vw,104px);display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(32px,6vw,96px);}
-        .yh-letter{display:grid;grid-template-columns:3.4rem 1fr;gap:1.2rem;padding:1.6rem 0;border-top:1px solid rgba(245,242,237,0.25);}
-        .yh-letter b{font-family:var(--mincho);font-weight:800;font-size:2.6rem;line-height:1;color:var(--shu);}
-        .yh-letter h4{font-family:var(--mincho);font-weight:600;font-size:1.05rem;letter-spacing:0.08em;margin-bottom:0.4rem;}
-        .yh-letter p{color:#c9c0b5;font-size:0.88rem;line-height:2;}
-        .yh-oath{position:relative;margin-top:clamp(48px,7vw,88px);font-family:var(--mincho);font-weight:600;font-size:clamp(1.15rem,2.4vw,1.7rem);line-height:2;letter-spacing:0.08em;max-width:30em;}
-
-        /* sns */
-        .yh-sns a{display:grid;grid-template-columns:3rem minmax(0,1fr) auto;gap:1.2rem;align-items:center;padding:1.5rem 0.2rem;border-bottom:1px solid var(--line);transition:padding .25s,color .2s;}
-        .yh-sns{border-top:1px solid var(--sumi);}
-        .yh-sns a:hover{padding-left:1rem;color:var(--shu);}
-        .yh-sns h3{font-family:var(--mincho);font-weight:600;font-size:1.15rem;letter-spacing:0.08em;}
-        .yh-sns small{display:block;color:var(--mute);font-size:0.78rem;letter-spacing:0.06em;}
-        .yh-sns p{color:#555;font-size:0.86rem;line-height:1.9;margin-top:0.3rem;}
-        .yh-sns .ext{font-size:0.8rem;letter-spacing:0.1em;display:flex;align-items:center;gap:0.35rem;white-space:nowrap;}
-
-        /* contact */
-        .yh-contact-item{padding:1.2rem 0;border-bottom:1px solid var(--line);}
-        .yh-contact-item:first-of-type{border-top:1px solid var(--sumi);}
-        .yh-contact-item small{display:block;color:var(--mute);font-size:0.8rem;letter-spacing:0.08em;}
-        .yh-contact-item a{font-family:var(--mincho);font-weight:600;font-size:1.2rem;letter-spacing:0.06em;word-break:break-all;}
-        .yh-line{display:flex;align-items:center;gap:1rem;margin-top:1.6rem;padding:1.2rem 1.4rem;background:#06C755;color:#fff !important;transition:filter .2s;}
-        .yh-line:hover{filter:brightness(0.95);}
-        .yh-line b{display:block;letter-spacing:0.1em;}
-        .yh-line span{font-size:0.82rem;opacity:0.92;}
-        .yh-form{display:flex;flex-direction:column;gap:1.6rem;}
-        .yh-field label{display:block;font-size:0.85rem;letter-spacing:0.08em;color:var(--mute);margin-bottom:0.3rem;}
-        .yh-field input,.yh-field textarea{width:100%;padding:0.6rem 0.1rem;border:none;border-bottom:1px solid var(--sumi);background:transparent;font-family:inherit;font-size:1rem;color:var(--sumi);border-radius:0;outline:none;transition:border-color .2s;}
-        .yh-field input:focus,.yh-field textarea:focus{border-bottom-color:var(--shu);box-shadow:0 1px 0 var(--shu);}
-        .yh-field textarea{resize:vertical;min-height:7.5rem;}
-        .yh-msg{padding:0.8rem 1rem;font-size:0.9rem;}
-        .yh-msg--ok{background:#f0fdf4;border:1px solid #bbf7d0;color:#166534;}
-        .yh-msg--ng{background:#fef2f2;border:1px solid #fecaca;color:#991b1b;}
-        .yh-submit{align-self:flex-start;}
-        .yh-submit:disabled{opacity:0.6;cursor:not-allowed;}
-
-        /* footer */
-        .yh-footer{background:var(--sumi);color:var(--washi);}
-        .yh-footer-inner{max-width:1180px;margin:0 auto;padding:3rem var(--gutter);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.5rem;}
-        .yh-footer .yh-brand span{font-size:1.4rem;}
-        .yh-footer-links{display:flex;flex-wrap:wrap;gap:0.4rem 1.4rem;}
-        .yh-footer-links button{font-size:0.8rem;letter-spacing:0.1em;color:#b9afa4;}
-        .yh-footer-links button:hover{color:#fff;}
-        .yh-copy{width:100%;color:#8c8279;font-size:0.76rem;letter-spacing:0.12em;border-top:1px solid rgba(245,242,237,0.15);padding-top:1.4rem;}
-
-        @media (max-width:900px){
-          .yh-links{display:none;}
-          .yh-burger{display:flex;align-items:center;}
-          .yh-mobile{display:block;background:var(--washi);border-top:1px solid var(--line);padding:0.5rem var(--gutter) 1rem;}
-          .yh-mobile button{display:block;width:100%;padding:0.9rem 0;border-bottom:1px solid var(--line);font-size:1rem;letter-spacing:0.1em;}
-          .yh-grid,.yh-greet{grid-template-columns:1fr;}
-          .yh-side{position:static;}
-          .yh-letters{grid-template-columns:1fr;}
-        }
-        @media (max-width:768px){
-          .about-grid{grid-template-columns:1fr !important;gap:2rem !important;}
-            .philosophy-row{flex-direction:column !important;align-items:flex-start !important;gap:0.2rem !important;}
-          .philosophy-sep{display:none !important;}
-        }
-        @media (max-width:720px){
-          .yh-hero{--T:80vw;}
-          .yh-target{top:calc(25% - var(--T) / 2);right:calc(var(--T) * -0.22);}
-          .yh-arrow{top:25%;right:calc(var(--T) * 0.28);}
-          .yh-hero-inner{padding-top:6rem;}
-          .yh-branch{grid-template-columns:1fr;}
-          .yh-dist{flex-direction:column;gap:0.6rem;}
-          .yh-sns a{grid-template-columns:2.4rem minmax(0,1fr);}
-          .yh-sns .ext{display:none;}
-        }
-        @media (prefers-reduced-motion:reduce){
-          .yh-arrow{animation:none;}
-          .yh-row,.yh-row svg,.yh-samples-img,.yh-brand-card,.yh-sns a{transition:none;}
-          html,.yh{scroll-behavior:auto;}
-        }
-      `}</style>
-
-      <header className="yh-header">
-        <nav className="yh-nav" aria-label="メインメニュー">
-          <button className="yh-brand" onClick={() => scrollTo("hero")} aria-label="トップへ戻る">
-            <YoichiMark size={40} />
-            <span>YOICHI</span>
-          </button>
-          <div className="yh-links">
-            {navLinks.map(l => (<button key={l.id} onClick={() => scrollTo(l.id)}>{l.label}</button>))}
-            <button className="yh-cta" onClick={() => scrollTo("contact")}>お問い合わせ</button>
+      <header style={{ position:"fixed", top:0, left:0, right:0, zIndex:50, background:`${C.bg}f5`, backdropFilter:"blur(8px)", borderBottom:`2px solid ${C.primary}33` }}>
+        <nav style={{ maxWidth:1200, margin:"0 auto", padding:"1rem 1.5rem", display:"flex", alignItems:"center", justifyContent:"space-between" }}>
+          <div style={{ display:"flex", alignItems:"center", gap:"0.75rem", cursor:"pointer" }} onClick={() => scrollTo("hero")}>
+            <YoichiMark size={44} />
+            <div style={{ fontSize:"1.4rem", letterSpacing:"0.2em", fontWeight:700, lineHeight:1 }}>YOICHI</div>
           </div>
-          <button className="yh-burger" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? "メニューを閉じる" : "メニューを開く"} aria-expanded={menuOpen}>
+          <div className="nav-desktop">
+            {navLinks.map(l => (<button key={l.id} onClick={() => scrollTo(l.id)} style={{ background:"none", border:"none", cursor:"pointer", fontSize:"0.9rem", letterSpacing:"0.12em", color:C.dark, fontFamily:"inherit", transition:"color 0.2s" }} onMouseEnter={e => e.currentTarget.style.color=C.accent} onMouseLeave={e => e.currentTarget.style.color=C.dark}>{l.label}</button>))}
+            <button onClick={() => scrollTo("contact")} style={{ padding:"0.55rem 1.4rem", background:C.primary, color:"#fff", border:"none", cursor:"pointer", letterSpacing:"0.12em", fontSize:"0.88rem", fontFamily:"inherit", transition:"background 0.2s" }} onMouseEnter={e => e.currentTarget.style.background=C.deep} onMouseLeave={e => e.currentTarget.style.background=C.primary}>お問い合わせ</button>
+          </div>
+          <button className="nav-hamburger" onClick={() => setMenuOpen(!menuOpen)} style={{ background:"none", border:"none", cursor:"pointer" }}>
             {menuOpen ? <IconX /> : <IconMenu />}
           </button>
         </nav>
         {menuOpen && (
-          <div className="yh-mobile">
+          <div style={{ background:C.bg, borderTop:`1px solid ${C.border}`, padding:"1rem 1.5rem" }}>
             {[...navLinks, { label:"お問い合わせ", id:"contact" }].map(l => (
-              <button key={l.id} onClick={() => scrollTo(l.id)}>{l.label}</button>
+              <button key={l.id} onClick={() => scrollTo(l.id)} style={{ display:"block", width:"100%", textAlign:"left", padding:"0.75rem 0", background:"none", border:"none", cursor:"pointer", fontSize:"1rem", letterSpacing:"0.1em", fontFamily:"inherit", color:C.dark, borderBottom:`1px solid ${C.border}` }}>{l.label}</button>
             ))}
           </div>
         )}
       </header>
 
-      {/* ── ヒーロー：的と一本の矢 ── */}
-      <section id="hero" className="yh-hero">
-        <div className="yh-target"><TargetRings /></div>
-        <div className="yh-arrow" aria-hidden="true">
-          <svg width="46" height="26" viewBox="0 0 46 26" fill="none" stroke="#262120" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M2 2 L12 13 L2 24" /><path d="M14 2 L24 13 L14 24" /><path d="M26 2 L36 13 L26 24" />
-          </svg>
-        </div>
-        <div className="yh-hero-inner">
-          <p className="yh-kicker">栃木発のデザイン会社　YOICHI</p>
-          <h1 className="yh-h1">
-            想いをカタチに<br />笑顔をそばに<br />繋がりを大切に
-          </h1>
-          <div className="yh-hero-actions">
-            <button className="yh-btn" onClick={() => scrollTo("contact")}>ご相談はこちら</button>
-            <button className="yh-link" onClick={() => scrollTo("works")}>イメージサンプルを見る</button>
+      <section id="hero" style={{ minHeight:"100vh", display:"flex", alignItems:"center", position:"relative", overflow:"hidden" }}>
+        <div style={{ position:"absolute", top:"20%", left:"20%", width:320, height:320, color:C.accent, opacity:0.12, pointerEvents:"none" }}><YagasuriBg /></div>
+        <div style={{ position:"absolute", bottom:"5%", right:"5%", width:200, height:200, color:C.primary, opacity:0.08, pointerEvents:"none" }}><YagasuriBg /></div>
+        <div style={{ position:"absolute", top:0, right:"40%", width:1, height:"100%", background:`linear-gradient(to bottom,transparent,${C.accent}30,transparent)`, transform:"rotate(15deg)", pointerEvents:"none" }} />
+        <div style={{ maxWidth:1200, margin:"0 auto", padding:"8rem 1.5rem 5rem", position:"relative", zIndex:1, width:"100%" }}>
+          <div style={{ maxWidth:780 }}>
+            <div className="hero-lockup" style={{ display:"flex", alignItems:"center", gap:"1.5rem", marginBottom:"3rem" }}>
+              <YoichiMark size={250} />
+              <div>
+                <h1 style={{ fontSize:"clamp(2.5rem,6vw,4.5rem)", letterSpacing:"0.2em", fontWeight:700, marginBottom:"0.4rem", lineHeight:1 }}>YOICHI</h1>
+                <div style={{ height:4, width:96, background:C.accent }} />
+              </div>
+            </div>
+            <div style={{ position:"relative", marginBottom:"2.5rem" }}>
+              <div style={{ position:"absolute", left:-8, top:-8, width:80, height:80, color:C.accent, opacity:0.15 }}><YagasuriBg /></div>
+              <div style={{ borderLeft:`4px solid ${C.accent}`, paddingLeft:"1.2rem", position:"relative" }}>
+                {["想いをカタチに","笑顔をそばに","繋がりを大切に"].map((line,i) => (<p key={i} style={{ fontSize:"clamp(1.6rem,4vw,2.8rem)", fontFamily:"serif", fontWeight:400, lineHeight:1.75, color:C.dark, margin:0 }}>{line}</p>))}
+              </div>
+            </div>
+            <div className="cta-group" style={{ display:"flex", flexWrap:"wrap", gap:"1rem", paddingLeft:"1.2rem" }}>
+              <button onClick={() => scrollTo("contact")} style={{ padding:"1rem 2rem", background:C.primary, color:"#fff", border:"none", cursor:"pointer", display:"flex", alignItems:"center", gap:"0.5rem", letterSpacing:"0.12em", fontSize:"0.95rem", fontFamily:"inherit", transition:"background 0.2s", boxShadow:"0 4px 20px rgba(139,79,71,0.3)" }} onMouseEnter={e => e.currentTarget.style.background=C.deep} onMouseLeave={e => e.currentTarget.style.background=C.primary}>ご相談はこちら <IconArrowRight /></button>
+              <button onClick={() => scrollTo("works")} style={{ padding:"1rem 2rem", background:"transparent", color:C.primary, border:`2px solid ${C.primary}`, cursor:"pointer", letterSpacing:"0.12em", fontSize:"0.95rem", fontFamily:"inherit", transition:"all 0.2s" }} onMouseEnter={e => { e.currentTarget.style.background=C.primary; e.currentTarget.style.color="#fff"; }} onMouseLeave={e => { e.currentTarget.style.background="transparent"; e.currentTarget.style.color=C.primary; }}>イメージサンプル</button>
+            </div>
           </div>
         </div>
       </section>
 
-      <div style={{ color:"var(--shu)", opacity:0.85 }}><YagasuriBand /></div>
-
       {/* ── YOICHIのお仕事 ── */}
-      <section id="works_detail" className="yh-section">
-        <div className="yh-wrap yh-grid">
-          <div className="yh-side">
-            <HomeHeading>YOICHIのお仕事</HomeHeading>
-            <p className="yh-lead">デザインのお仕事をメインにしています。気になる項目を選ぶと、制作サンプルをご覧いただけます。</p>
-          </div>
-          <div>
-            <div className="yh-rows">
-              {works.map(w => (
-                <button key={w.link} className="yh-row" onClick={() => goToPage(w.link)}>
-                  <span>{w.label}</span>
-                  <IconArrowRight />
-                </button>
+      <section id="works_detail" style={{ padding:"5rem 1.5rem", background:C.white, position:"relative", overflow:"hidden" }}>
+        <div style={{ position:"absolute", top:0, left:0, right:0, height:1, background:`linear-gradient(to right,transparent,${C.accent}55,transparent)` }} />
+        <div style={{ position:"absolute", top:10, right:10, width:200, height:200, color:C.primary, opacity:0.06 }}><YagasuriBg /></div>
+        <div style={{ maxWidth:1200, margin:"0 auto", position:"relative", zIndex:1 }}>
+          <SectionHeading en="WHAT WE DO" ja="YOICHIのお仕事" />
+          <div style={{ maxWidth:860, margin:"0 auto" }}>
+            <p style={{ textAlign:"center", color:"#555", lineHeight:1.9, marginBottom:"3rem", fontSize:"1rem" }}>
+              デザインのお仕事をメインにしています。
+            </p>
+            <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(200px,1fr))", gap:"1.2rem", marginBottom:"3rem" }}>
+              {[
+                { icon:"🖼️", label:"バナー作成", link:"banners" },
+                { icon:"💼", label:"名刺作成", link:"meishi" },
+                { icon:"✏️", label:"ロゴ作成", link:"logos" },
+                { icon:"📦", label:"パッケージデザイン", link:"package" },
+                { icon:"🖥️", label:"UI/UXデザイン", link:"uiux" },
+                { icon:"🌐", label:"ウェブサイト作成", link:"websamples" },
+                { icon:"📱", label:"アプリケーション作成", link:"appsamples" },
+                { icon:"📄", label:"テンプレート作成", link:"templates" },
+                { icon:"🎁", label:"雑貨デザイン", link:"goods" },
+                { icon:"📐", label:"レイアウトデザイン", link:"layouts" },
+                { icon:"📊", label:"図解デザイン", link:"diagrams" },
+              ].map((item, i) => (
+                <div key={i}
+                  onClick={() => item.link && goToPage(item.link)}
+                  style={{ background:C.bg, border:`1px solid ${item.link ? C.accent : C.border}`, padding:"1.2rem 1rem", display:"flex", alignItems:"center", gap:"0.75rem", transition:"all 0.2s", position:"relative", overflow:"hidden", cursor:item.link?"pointer":"default" }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor=C.accent; e.currentTarget.style.background=C.white; e.currentTarget.style.transform="translateY(-2px)"; e.currentTarget.style.boxShadow="0 6px 20px rgba(0,0,0,0.08)"; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor=item.link?C.accent:C.border; e.currentTarget.style.background=C.bg; e.currentTarget.style.transform="none"; e.currentTarget.style.boxShadow="none"; }}
+                >
+                  <span style={{ fontSize:"1.5rem" }}>{item.icon}</span>
+                  <span style={{ fontSize:"0.9rem", color:item.link?C.accent:C.dark, letterSpacing:"0.05em", fontFamily:"serif", fontWeight:item.link?700:400 }}>{item.label}</span>
+                  {item.link && <span style={{ marginLeft:"auto", fontSize:"0.75rem", color:C.accent }}>→</span>}
+                </div>
               ))}
             </div>
-            <div className="yh-other">
-              <p>その他、気軽にご相談ください<small>上記以外のご要望もお気軽にどうぞ</small></p>
-              <button className="yh-link" onClick={() => scrollTo("contact")}>お問い合わせはこちら</button>
+            <div style={{ background:C.primary, padding:"2rem 2.5rem", display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:"1rem", position:"relative", overflow:"hidden" }}>
+              <div style={{ position:"absolute", inset:0, color:"#fff", opacity:0.08 }}><YagasuriBg /></div>
+              <div style={{ position:"relative" }}>
+                <p style={{ color:"#fff", fontSize:"1.1rem", fontFamily:"serif", fontWeight:400, letterSpacing:"0.08em" }}>その他、気軽にご相談ください‼</p>
+                <p style={{ color:"rgba(255,255,255,0.75)", fontSize:"0.85rem", marginTop:"0.3rem" }}>上記以外のご要望もお気軽にどうぞ</p>
+              </div>
+              <button
+                onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" })}
+                style={{ padding:"0.75rem 1.8rem", background:"#fff", color:C.primary, border:"none", cursor:"pointer", fontSize:"0.9rem", letterSpacing:"0.12em", fontFamily:"inherit", fontWeight:700, transition:"all 0.2s", position:"relative", flexShrink:0 }}
+                onMouseEnter={e => { e.currentTarget.style.background=C.bg; }}
+                onMouseLeave={e => { e.currentTarget.style.background="#fff"; }}
+              >お問い合わせはこちら →</button>
             </div>
           </div>
         </div>
       </section>
 
       {/* ── イメージサンプル ── */}
-      <section id="works" className="yh-section yh-section--paper">
-        <div className="yh-wrap">
-          <HomeHeading>イメージサンプル</HomeHeading>
-          <p className="yh-lead" style={{ maxWidth:"none", marginBottom:"2.4rem" }}>YOICHIが制作したデザインのイメージサンプルをご覧ください。</p>
-          <button className="yh-samples-img" onClick={() => goToPage("samples")} aria-label="すべてのサンプルを見る">
-            <img src={samplesHeroImg} alt="YOICHI デザインサンプル" />
-          </button>
-          <div style={{ marginTop:"2rem" }}>
-            <button className="yh-link" onClick={() => goToPage("samples")}>すべてのサンプルを見る</button>
+      <section id="works" style={{ padding:"5rem 1.5rem", background:C.bg, position:"relative", overflow:"hidden" }}>
+        <div style={{ position:"absolute", top:0, left:0, right:0, height:1, background:`linear-gradient(to right,transparent,${C.accent}55,transparent)` }} />
+        <div style={{ maxWidth:1100, margin:"0 auto", position:"relative", zIndex:1 }}>
+          <SectionHeading en="IMAGE SAMPLE" ja="イメージサンプル" />
+          <p style={{ textAlign:"center", color:"#555", marginBottom:"3rem", lineHeight:1.9 }}>YOICHIが制作したデザインのイメージサンプルをご覧ください。</p>
+
+          <div style={{ maxWidth:900, margin:"0 auto 3rem", cursor:"pointer", position:"relative" }}
+            onClick={() => goToPage("samples")}
+            onMouseEnter={e => { e.currentTarget.style.transform="translateY(-4px)"; e.currentTarget.style.boxShadow="0 16px 48px rgba(0,0,0,0.15)"; }}
+            onMouseLeave={e => { e.currentTarget.style.transform="none"; e.currentTarget.style.boxShadow="0 4px 20px rgba(0,0,0,0.1)"; }}
+          >
+            <img
+              src={samplesHeroImg}
+              alt="YOICHI デザインサンプル"
+              style={{ width:"100%", display:"block", position:"relative", boxShadow:"0 4px 20px rgba(0,0,0,0.1)", transition:"all 0.3s" }}
+            />
+          </div>
+
+          <div style={{ textAlign:"center" }}>
+            <button onClick={() => goToPage("samples")} style={{ padding:"1rem 2.5rem", background:"transparent", color:C.primary, border:`2px solid ${C.primary}`, cursor:"pointer", letterSpacing:"0.12em", fontSize:"0.95rem", fontFamily:"inherit", transition:"all 0.2s", display:"inline-flex", alignItems:"center", gap:"0.5rem" }} onMouseEnter={e => { e.currentTarget.style.background=C.primary; e.currentTarget.style.color="#fff"; }} onMouseLeave={e => { e.currentTarget.style.background="transparent"; e.currentTarget.style.color=C.primary; }}>すべてのサンプルを見る <IconArrowRight /></button>
           </div>
         </div>
       </section>
 
       {/* ── 自社ブランド ── */}
-      <section id="brands" className="yh-section">
-        <div className="yh-wrap yh-grid">
-          <div className="yh-side">
-            <HomeHeading>自社ブランド</HomeHeading>
-            <p className="yh-lead">YOICHIが展開するオリジナルブランドをご紹介します。</p>
+      <section id="brands" style={{ padding:"5rem 1.5rem", background:C.white, position:"relative", overflow:"hidden" }}>
+        <div style={{ position:"absolute", top:0, left:0, right:0, height:1, background:`linear-gradient(to right,transparent,${C.accent}55,transparent)` }} />
+        <div style={{ position:"absolute", top:10, right:10, width:180, height:180, color:C.primary, opacity:0.05 }}><YagasuriBg /></div>
+        <div style={{ maxWidth:1100, margin:"0 auto", position:"relative", zIndex:1 }}>
+          <SectionHeading en="OUR BRANDS" ja="自社ブランド" />
+          <p style={{ textAlign:"center", color:"#555", marginBottom:"3rem", lineHeight:1.9 }}>YOICHIが展開するオリジナルブランドをご紹介します。</p>
+
+          <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(320px,1fr))", gap:"2rem", maxWidth:520, margin:"0 auto" }}>
+            {/* FOCUS カード */}
+            <div onClick={() => goToPage("focus")}
+              style={{ background:"#fff", border:"1px solid #111", padding:"3rem 2rem", cursor:"pointer", transition:"all 0.3s", position:"relative", overflow:"hidden", textAlign:"center", fontFamily:"'Helvetica Neue',Arial,sans-serif" }}
+              onMouseEnter={e => { e.currentTarget.style.transform="translateY(-4px)"; e.currentTarget.style.boxShadow="0 16px 40px rgba(0,0,0,0.15)"; }}
+              onMouseLeave={e => { e.currentTarget.style.transform="none"; e.currentTarget.style.boxShadow="none"; }}
+            >
+              <p style={{ fontSize:"0.7rem", color:"#777", letterSpacing:"0.4em", marginBottom:"1.5rem" }}>APPAREL BRAND</p>
+              <img src={focusLogo} alt="FOCUS" style={{ width:"min(260px,80%)", height:"auto", display:"block", margin:"0 auto 0.5rem" }} />
+              <p style={{ fontSize:"0.95rem", color:"#555", letterSpacing:"0.12em", fontWeight:300, marginBottom:"1.8rem" }}>Focus point on life…</p>
+              <span style={{ fontSize:"0.8rem", color:"#111", letterSpacing:"0.2em", borderBottom:"1px solid #111", paddingBottom:"2px" }}>ブランドを見る →</span>
+            </div>
           </div>
-          <button className="yh-brand-card" onClick={() => goToPage("focus")}>
-            <img src={focusLogo} alt="FOCUS" />
-            <p className="tag">Focus point on life…</p>
-            <span className="go">ブランドを見る</span>
-          </button>
         </div>
       </section>
 
       {/* ── ご納品までの流れ ── */}
-      <section id="flow" className="yh-section yh-section--paper">
-        <div className="yh-wrap yh-grid">
-          <div className="yh-side">
-            <HomeHeading>ご納品までの流れ</HomeHeading>
-            <p className="yh-lead">ご相談から納品まで、5つのステップで進めます。</p>
-          </div>
-          <div>
-            <ol className="yh-steps">
-              <li className="yh-step">
-                <span className="yh-step-no">1</span>
-                <h3>ヒアリング</h3>
-                <p>ご要望・イメージをお伺いします</p>
-              </li>
-              <li className="yh-step">
-                <span className="yh-step-no">2</span>
-                <h3>イメージ確認・ラフ案の作成</h3>
-                <p>ヒアリングをもとにデザインの方向性を決定します</p>
-                <div className="yh-branch">
-                  <div><b>お客様のイメージがある場合</b><span>イメージの合致<br />↓<br />注文内容の確認</span></div>
-                  <div><b>こちらからご提案する場合</b><span>ご提案<br />↓<br />イメージの合致<br />↓<br />注文内容の確認</span></div>
+      <section id="flow" style={{ padding:"5rem 1.5rem", background:C.white, position:"relative", overflow:"hidden" }}>
+        <div style={{ position:"absolute", top:0, left:0, right:0, height:1, background:`linear-gradient(to right,transparent,${C.accent}55,transparent)` }} />
+        <div style={{ maxWidth:900, margin:"0 auto", position:"relative", zIndex:1 }}>
+          <SectionHeading en="DELIVERY FLOW" ja="ご納品までの流れ" />
+
+          <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:0 }}>
+
+            <div className="flow-step" style={{ width:"100%", maxWidth:500, background:C.bg, border:`2px solid ${C.primary}`, padding:"1.5rem 2rem", textAlign:"center", position:"relative" }}>
+              <span style={{ position:"absolute", top:-12, left:20, background:C.accent, color:"#fff", fontSize:"0.7rem", padding:"0.15rem 0.6rem", letterSpacing:"0.1em" }}>STEP 01</span>
+              <h4 style={{ fontSize:"1.2rem", fontFamily:"serif", fontWeight:400, color:C.dark }}>ヒアリング</h4>
+              <p style={{ fontSize:"0.85rem", color:"#777", marginTop:"0.4rem" }}>ご要望・イメージをお伺いします</p>
+            </div>
+
+            <div style={{ width:2, height:30, background:C.accent }} />
+            <div style={{ width:0, height:0, borderLeft:"8px solid transparent", borderRight:"8px solid transparent", borderTop:`10px solid ${C.accent}` }} />
+
+            <div className="flow-step flow-step-wide" style={{ width:"100%", maxWidth:600, background:C.bg, border:`2px solid ${C.primary}`, padding:"1.5rem 2rem", textAlign:"center", position:"relative", marginTop:4 }}>
+              <span style={{ position:"absolute", top:-12, left:20, background:C.accent, color:"#fff", fontSize:"0.7rem", padding:"0.15rem 0.6rem", letterSpacing:"0.1em" }}>STEP 02</span>
+              <h4 style={{ fontSize:"1.2rem", fontFamily:"serif", fontWeight:400, color:C.dark }}>イメージ確認・ラフ案の作成</h4>
+              <p style={{ fontSize:"0.85rem", color:"#777", marginTop:"0.4rem" }}>ヒアリングをもとにデザインの方向性を決定します</p>
+            </div>
+
+            <div style={{ width:2, height:20, background:C.accent }} />
+            <div className="flow-branch" style={{ display:"flex", width:"100%", maxWidth:600, gap:"2rem", justifyContent:"center" }}>
+
+              <div style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", gap:0 }}>
+                <div style={{ width:0, height:0, borderLeft:"8px solid transparent", borderRight:"8px solid transparent", borderTop:`10px solid ${C.accent}` }} />
+                <div style={{ width:"100%", background:"#fff", border:`2px solid ${C.border}`, padding:"1rem", textAlign:"center", marginTop:4 }}>
+                  <p style={{ fontSize:"0.85rem", color:C.primary, fontWeight:700 }}>イメージの合致</p>
                 </div>
-              </li>
-              <li className="yh-step">
-                <span className="yh-step-no">3</span>
-                <h3>修正対応（最大4回まで）</h3>
-                <p>デザインの微調整を行います</p>
-              </li>
-              <li className="yh-step">
-                <span className="yh-step-no">4</span>
-                <h3>最終デザイン確認</h3>
-                <p>完成デザインを最終確認いただきます</p>
-              </li>
-              <li className="yh-step yh-step--end">
-                <span className="yh-step-no">5</span>
-                <h3>ご納品</h3>
-                <p>完成データをお届けいたします</p>
-              </li>
-            </ol>
-            <p className="yh-note">※製品や仕様によって流れが変わる場合がございます。</p>
+                <div style={{ width:2, height:20, background:C.accent }} />
+                <div style={{ width:0, height:0, borderLeft:"8px solid transparent", borderRight:"8px solid transparent", borderTop:`10px solid ${C.accent}` }} />
+                <div style={{ width:"100%", background:"#fff", border:`2px solid ${C.border}`, padding:"1rem", textAlign:"center", marginTop:4 }}>
+                  <p style={{ fontSize:"0.85rem", color:C.dark }}>注文内容の確認</p>
+                </div>
+              </div>
+
+              <div style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", gap:0 }}>
+                <div style={{ width:0, height:0, borderLeft:"8px solid transparent", borderRight:"8px solid transparent", borderTop:`10px solid ${C.accent}` }} />
+                <div style={{ width:"100%", background:"#fff", border:`2px solid ${C.border}`, padding:"1rem", textAlign:"center", marginTop:4 }}>
+                  <p style={{ fontSize:"0.85rem", color:C.primary, fontWeight:700 }}>ご提案</p>
+                </div>
+                <div style={{ width:2, height:20, background:C.accent }} />
+                <div style={{ width:0, height:0, borderLeft:"8px solid transparent", borderRight:"8px solid transparent", borderTop:`10px solid ${C.accent}` }} />
+                <div style={{ width:"100%", background:"#fff", border:`2px solid ${C.border}`, padding:"1rem", textAlign:"center", marginTop:4 }}>
+                  <p style={{ fontSize:"0.85rem", color:C.dark }}>イメージの合致</p>
+                </div>
+                <div style={{ width:2, height:20, background:C.accent }} />
+                <div style={{ width:0, height:0, borderLeft:"8px solid transparent", borderRight:"8px solid transparent", borderTop:`10px solid ${C.accent}` }} />
+                <div style={{ width:"100%", background:"#fff", border:`2px solid ${C.border}`, padding:"1rem", textAlign:"center", marginTop:4 }}>
+                  <p style={{ fontSize:"0.85rem", color:C.dark }}>注文内容の確認</p>
+                </div>
+              </div>
+            </div>
+
+            <div style={{ width:2, height:30, background:C.accent, marginTop:4 }} />
+            <div style={{ width:0, height:0, borderLeft:"8px solid transparent", borderRight:"8px solid transparent", borderTop:`10px solid ${C.accent}` }} />
+
+            <div className="flow-step flow-step-wide" style={{ width:"100%", maxWidth:600, background:C.bg, border:`2px solid ${C.primary}`, padding:"1.5rem 2rem", textAlign:"center", position:"relative", marginTop:4 }}>
+              <span style={{ position:"absolute", top:-12, left:20, background:C.accent, color:"#fff", fontSize:"0.7rem", padding:"0.15rem 0.6rem", letterSpacing:"0.1em" }}>STEP 03</span>
+              <h4 style={{ fontSize:"1.2rem", fontFamily:"serif", fontWeight:400, color:C.dark }}>修正対応（最大4回まで）</h4>
+              <p style={{ fontSize:"0.85rem", color:"#777", marginTop:"0.4rem" }}>デザインの微調整を行います</p>
+            </div>
+
+            <div style={{ width:2, height:30, background:C.accent }} />
+            <div style={{ width:0, height:0, borderLeft:"8px solid transparent", borderRight:"8px solid transparent", borderTop:`10px solid ${C.accent}` }} />
+
+            <div className="flow-step" style={{ width:"100%", maxWidth:500, background:C.bg, border:`2px solid ${C.primary}`, padding:"1.5rem 2rem", textAlign:"center", position:"relative", marginTop:4 }}>
+              <span style={{ position:"absolute", top:-12, left:20, background:C.accent, color:"#fff", fontSize:"0.7rem", padding:"0.15rem 0.6rem", letterSpacing:"0.1em" }}>STEP 04</span>
+              <h4 style={{ fontSize:"1.2rem", fontFamily:"serif", fontWeight:400, color:C.dark }}>最終デザイン確認</h4>
+              <p style={{ fontSize:"0.85rem", color:"#777", marginTop:"0.4rem" }}>完成デザインを最終確認いただきます</p>
+            </div>
+
+            <div style={{ width:2, height:30, background:C.accent }} />
+            <div style={{ width:0, height:0, borderLeft:"8px solid transparent", borderRight:"8px solid transparent", borderTop:`10px solid ${C.accent}` }} />
+
+            <div className="flow-step" style={{ width:"100%", maxWidth:500, background:C.primary, padding:"1.5rem 2rem", textAlign:"center", position:"relative", marginTop:4 }}>
+              <span style={{ position:"absolute", top:-12, left:20, background:C.dark, color:"#fff", fontSize:"0.7rem", padding:"0.15rem 0.6rem", letterSpacing:"0.1em" }}>STEP 05</span>
+              <h4 style={{ fontSize:"1.3rem", fontFamily:"serif", fontWeight:400, color:"#fff" }}>ご納品</h4>
+              <p style={{ fontSize:"0.85rem", color:"rgba(255,255,255,0.8)", marginTop:"0.4rem" }}>完成データをお届けいたします</p>
+            </div>
           </div>
+
+          <p style={{ textAlign:"center", color:C.accent, fontSize:"0.85rem", marginTop:"2.5rem", lineHeight:1.8 }}>※製品や仕様によって流れが変わる場合がございます。</p>
         </div>
       </section>
 
-      {/* ── 会社概要（元のデザイン） ── */}
-      <section id="about" style={{ padding:"5rem 1.5rem", background:C.white, position:"relative", overflow:"hidden", fontFamily:"'Georgia','Hiragino Mincho ProN',serif", lineHeight:"normal" }}>
+      <section id="about" style={{ padding:"5rem 1.5rem", background:C.white, position:"relative", overflow:"hidden" }}>
         <div style={{ position:"absolute", top:0, left:0, right:0, height:1, background:`linear-gradient(to right,transparent,${C.accent}55,transparent)` }} />
         <div style={{ maxWidth:1200, margin:"0 auto", position:"relative" }}>
           <SectionHeading en="ABOUT US" ja="会社概要" />
@@ -1476,103 +1332,244 @@ export default function App() {
         </div>
       </section>
 
-      {/* ── YOICHIの由来 ── */}
-      <section id="origin" className="yh-section yh-origin">
-        <div className="yh-origin-ring"><TargetRings outline /></div>
-        <div className="yh-wrap" style={{ position:"relative" }}>
-          <HomeHeading>YOICHIの由来</HomeHeading>
-          <div className="yh-origin-head">
-            <h3>那須与一と、的を外さない精神</h3>
-            <p>栃木県に、<strong>那須与一</strong>という弓の名手がいました。遠い距離（75m〜77mと言われています）の船の上にある<strong>扇の的</strong>を、見事に打ち抜いたという逸話があります。</p>
-            <div className="yh-dist">
-              <b>75〜77<small style={{ fontSize:"1rem", marginLeft:"0.3rem" }}>m</small></b>
-              <span>揺れる船上の小さな扇を、この距離から一射で射抜いた。その精神は、私たちが目指すべき姿そのものです。</span>
+      <section id="origin" style={{ padding:"5rem 1.5rem", background:C.bg, position:"relative", overflow:"hidden" }}>
+        <div style={{ position:"absolute", top:0, left:0, right:0, height:1, background:`linear-gradient(to right,transparent,${C.accent}55,transparent)` }} />
+        <div style={{ position:"absolute", inset:0, color:C.primary, opacity:0.04, pointerEvents:"none" }}><YagasuriBg /></div>
+        <div style={{ maxWidth:1200, margin:"0 auto", position:"relative", zIndex:1 }}>
+          <SectionHeading en="ORIGIN OF NAME" ja="YOICHIの由来" />
+          <div style={{ maxWidth:900, margin:"0 auto 5rem", position:"relative" }}>
+            <div style={{ position:"absolute", left:0, top:0, bottom:0, width:4, background:`linear-gradient(to bottom,${C.accent},${C.primary})` }} />
+            <div className="origin-card" style={{ background:C.white, border:`1px solid ${C.border}`, padding:"3rem 3rem 3rem 3.5rem", position:"relative", overflow:"hidden" }}>
+              <div style={{ fontSize:"8rem", lineHeight:1, color:C.accent, opacity:0.08, position:"absolute", top:0, left:"3rem", fontFamily:"serif", pointerEvents:"none" }}>"</div>
+              <div style={{ position:"relative" }}>
+                <div style={{ display:"flex", alignItems:"center", gap:"1rem", marginBottom:"2rem" }}>
+                  <div style={{ width:48, height:48, background:C.primary, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+                  </div>
+                  <div>
+                    <p style={{ fontSize:"0.7rem", color:C.textMuted, letterSpacing:"0.25em", marginBottom:"0.2rem" }}>ORIGIN STORY</p>
+                    <h3 className="origin-heading" style={{ fontSize:"1.4rem", fontFamily:"serif", fontWeight:400, color:C.dark, letterSpacing:"0.08em" }}>那須与一と、的を外さない精神</h3>
+                  </div>
+                </div>
+                <div style={{ display:"flex", flexDirection:"column", gap:"1.2rem" }}>
+                  <p style={{ fontSize:"1rem", color:"#444", lineHeight:2.1, fontFamily:"serif" }}>栃木県に、<strong style={{ color:C.dark }}>那須与一</strong>という弓の名手がいました。遠い距離（75m〜77mと言われています）の船の上にある<strong style={{ color:C.dark }}>扇の的</strong>を、見事に打ち抜いたという逸話があります。</p>
+                  <div className="distance-box" style={{ background:C.bg, border:`1px solid ${C.border}`, borderLeft:`3px solid ${C.accent}`, padding:"1rem 1.5rem", display:"flex", alignItems:"center", gap:"1.5rem" }}>
+                    <div style={{ textAlign:"center", flexShrink:0 }}>
+                      <div style={{ fontSize:"2.2rem", fontWeight:700, color:C.accent, lineHeight:1, fontFamily:"serif" }}>75<span style={{ fontSize:"1rem" }}>〜</span>77</div>
+                      <div style={{ fontSize:"0.75rem", color:C.textMuted, letterSpacing:"0.1em" }}>メートル</div>
+                    </div>
+                    <div className="distance-divider" style={{ width:1, height:40, background:C.border, flexShrink:0 }} />
+                    <p style={{ fontSize:"0.88rem", color:"#666", lineHeight:1.8 }}>揺れる船上の小さな扇を、この距離から一射で射抜いた。<br />その精神は、私たちが目指すべき姿そのものです。</p>
+                  </div>
+                  <p style={{ fontSize:"1rem", color:"#444", lineHeight:2.1, fontFamily:"serif" }}>弊社は<strong style={{ color:C.dark }}>栃木県発祥の企業</strong>であり、与一のように的を外さない——お客様一人ひとりに<strong style={{ color:C.dark }}>的を得た商品・サービス</strong>をお届けしようという強い想いから、社名を <strong style={{ color:C.accent, letterSpacing:"0.15em" }}>YOICHI</strong> としました。</p>
+                </div>
+                <div style={{ display:"flex", alignItems:"center", gap:"1rem", marginTop:"2rem" }}>
+                  <div style={{ flex:1, height:1, background:C.border }} />
+                  <span style={{ fontSize:"0.75rem", color:C.textMuted, letterSpacing:"0.2em" }}>TOCHIGI, JAPAN</span>
+                  <div style={{ flex:1, height:1, background:C.border }} />
+                </div>
+              </div>
             </div>
-            <p>弊社は<strong>栃木県発祥の企業</strong>であり、与一のように的を外さない——お客様一人ひとりに<strong>的を得た商品・サービス</strong>をお届けしようという強い想いから、社名を <strong>YOICHI</strong> としました。</p>
           </div>
-          <div className="yh-letters">
-            {originItems.map((item, i) => (
-              <div key={i} className="yh-letter">
-                <b>{item.letter}</b>
-                <div><h4>{item.word}</h4><p>{item.desc}</p></div>
+          <div className="letter-grid" style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))", gap:"2rem", marginBottom:"4rem" }}>
+            {originItems.map((item,i) => (
+              <div key={i} className="letter-card" style={{ background:C.white, border:`1px solid ${C.border}`, padding:"2rem", position:"relative", overflow:"hidden", transition:"box-shadow 0.3s" }} onMouseEnter={e => e.currentTarget.style.boxShadow="0 8px 28px rgba(0,0,0,0.08)"} onMouseLeave={e => e.currentTarget.style.boxShadow="none"}>
+                <div style={{ display:"flex", alignItems:"flex-end", gap:"0.75rem", marginBottom:"1rem" }}>
+                  <span style={{ fontSize:"3.5rem", fontWeight:700, color:C.accent, lineHeight:1, fontFamily:"serif" }}>{item.letter}</span>
+                  <span style={{ fontSize:"0.85rem", color:C.primary, letterSpacing:"0.1em", marginBottom:"0.4rem", fontStyle:"italic" }}>{item.word}</span>
+                </div>
+                <div style={{ width:32, height:3, background:C.accent, marginBottom:"1rem" }} />
+                <p style={{ fontSize:"0.9rem", color:"#555", lineHeight:1.9 }}>{item.desc}</p>
               </div>
             ))}
           </div>
-          <p className="yh-oath">「YOICHI」とは、夢・想い・縁・創造・調和・一期一会。六つの言葉が織りなす、私たちの誓いです。</p>
-        </div>
-      </section>
-
-      {/* ── SNS ── */}
-      <section id="sns" className="yh-section">
-        <div className="yh-wrap yh-grid">
-          <div className="yh-side">
-            <HomeHeading>SNS</HomeHeading>
-            <p className="yh-lead">日々の制作風景やデザインの想いを発信しています。ぜひフォローしてください。</p>
-          </div>
-          <div className="yh-sns">
-            {sns.map(s => (
-              <a key={s.name} href={s.href} target="_blank" rel="noopener noreferrer">
-                <s.Icon size={26} />
-                <div>
-                  <h3>{s.name} <small style={{ display:"inline", marginLeft:"0.5rem" }}>{s.handle}</small></h3>
-                  <p>{s.desc}</p>
-                </div>
-                <span className="ext">フォローする <IconExternalLink size={13} /></span>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── お問い合わせ ── */}
-      <section id="contact" className="yh-section yh-section--paper">
-        <div className="yh-wrap yh-grid">
-          <div>
-            <HomeHeading>お問い合わせ</HomeHeading>
-            <p className="yh-lead">ご相談、お見積もりなど、お気軽にお問い合わせくださいませ。</p>
-            <div style={{ marginTop:"2.4rem" }}>
-              <div className="yh-contact-item"><small>メールアドレス</small><a href="mailto:yoichi08107@gmail.com">yoichi08107@gmail.com</a></div>
-              <div className="yh-contact-item"><small>代表携帯</small><a href="tel:080-1360-7951">080-1360-7951</a></div>
+          <div className="summary-box" style={{ background:C.dark, padding:"3rem 2.5rem", position:"relative", overflow:"hidden", maxWidth:800, margin:"0 auto" }}>
+            <div style={{ position:"absolute", inset:0, color:C.primary, opacity:0.12 }}><YagasuriBg /></div>
+            <div style={{ position:"absolute", top:0, left:0, right:0, height:3, background:`linear-gradient(to right,${C.accent},${C.primary})` }} />
+            <div style={{ position:"relative", textAlign:"center" }}>
+              <p style={{ fontSize:"0.75rem", color:C.accent, letterSpacing:"0.3em", marginBottom:"1.2rem" }}>NAME MEANING</p>
+              <p style={{ fontSize:"clamp(1.2rem,3vw,1.6rem)", fontFamily:"serif", fontWeight:400, color:C.bg, lineHeight:1.9, marginBottom:"1.2rem" }}>「YOICHI」とは、<br />夢・想い・縁・創造・調和・一期一会。<br />六つの言葉が織りなす、私たちの誓いです。</p>
+              <div style={{ width:48, height:2, background:C.accent, margin:"0 auto" }} />
             </div>
-            <a className="yh-line" href="https://line.me/" target="_blank" rel="noopener noreferrer">
-              <IconLine color="#fff" size={26} />
-              <div><b>公式LINE</b><span>友だち追加で、お気軽にご相談いただけます</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="sns" style={{ padding:"5rem 1.5rem", background:C.bg, position:"relative", overflow:"hidden" }}>
+        <div style={{ position:"absolute", top:0, left:0, right:0, height:1, background:`linear-gradient(to right,transparent,${C.accent}55,transparent)` }} />
+        <div style={{ maxWidth:1200, margin:"0 auto", position:"relative", zIndex:1 }}>
+          <SectionHeading en="FOLLOW US" ja="SNS" />
+          <p style={{ textAlign:"center", color:C.textMuted, marginBottom:"3rem", lineHeight:1.9 }}>日々の制作風景やデザインの想いを発信しています。<br />ぜひフォローしてください。</p>
+          <div className="sns-grid" style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:"2rem", maxWidth:1100, margin:"0 auto" }}>
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" onMouseEnter={() => setHoveredSns("ig")} onMouseLeave={() => setHoveredSns(null)} style={{ textDecoration:"none", display:"block" }}>
+              <div style={{ background:hoveredSns==="ig"?"linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045)":C.white, border:`2px solid ${hoveredSns==="ig"?"transparent":C.border}`, padding:"2.5rem 2rem", transition:"all 0.3s", position:"relative", overflow:"hidden", transform:hoveredSns==="ig"?"translateY(-4px)":"none", boxShadow:hoveredSns==="ig"?"0 12px 32px rgba(131,58,180,0.25)":"none", height:"100%", display:"flex", flexDirection:"column" }}>
+                <div style={{ display:"flex", alignItems:"center", gap:"1rem", marginBottom:"1rem" }}>
+                  <div style={{ width:52, height:52, background:hoveredSns==="ig"?"rgba(255,255,255,0.2)":"linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045)", borderRadius:"12px", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}><IconInstagram color="#fff" size={26} /></div>
+                  <div><div style={{ fontWeight:700, fontSize:"1.1rem", color:hoveredSns==="ig"?"#fff":C.dark }}>Instagram</div><div style={{ fontSize:"0.8rem", color:hoveredSns==="ig"?"rgba(255,255,255,0.8)":C.textMuted }}>@yoichi_design</div></div>
+                </div>
+                <p style={{ fontSize:"0.88rem", color:hoveredSns==="ig"?"rgba(255,255,255,0.9)":"#555", lineHeight:1.8, flex:1 }}>制作の舞台裏や完成作品を毎日更新。和の美意識を大切にしたビジュアルをお届けします。</p>
+                <div style={{ marginTop:"1.2rem", display:"flex", alignItems:"center", gap:"0.4rem", color:hoveredSns==="ig"?"#fff":C.accent, fontSize:"0.82rem", letterSpacing:"0.1em" }}>フォローする <IconExternalLink size={13} /></div>
+              </div>
+            </a>
+            <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" onMouseEnter={() => setHoveredSns("x")} onMouseLeave={() => setHoveredSns(null)} style={{ textDecoration:"none", display:"block" }}>
+              <div style={{ background:hoveredSns==="x"?"#000":C.white, border:`2px solid ${hoveredSns==="x"?"#000":C.border}`, padding:"2.5rem 2rem", transition:"all 0.3s", position:"relative", overflow:"hidden", transform:hoveredSns==="x"?"translateY(-4px)":"none", boxShadow:hoveredSns==="x"?"0 12px 32px rgba(0,0,0,0.2)":"none", height:"100%", display:"flex", flexDirection:"column" }}>
+                <div style={{ display:"flex", alignItems:"center", gap:"1rem", marginBottom:"1rem" }}>
+                  <div style={{ width:52, height:52, background:hoveredSns==="x"?"rgba(255,255,255,0.15)":"#000", borderRadius:"12px", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}><IconTwitter color="#fff" size={26} /></div>
+                  <div><div style={{ fontWeight:700, fontSize:"1.1rem", color:hoveredSns==="x"?"#fff":C.dark }}>X (Twitter)</div><div style={{ fontSize:"0.8rem", color:hoveredSns==="x"?"rgba(255,255,255,0.6)":C.textMuted }}>@yoichi_design</div></div>
+                </div>
+                <p style={{ fontSize:"0.88rem", color:hoveredSns==="x"?"rgba(255,255,255,0.85)":"#555", lineHeight:1.8, flex:1 }}>デザインの考え方や業界の最新情報を発信。お気軽にリプライやDMもどうぞ。</p>
+                <div style={{ marginTop:"1.2rem", display:"flex", alignItems:"center", gap:"0.4rem", color:hoveredSns==="x"?"#fff":C.accent, fontSize:"0.82rem", letterSpacing:"0.1em" }}>フォローする <IconExternalLink size={13} /></div>
+              </div>
+            </a>
+            <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer" onMouseEnter={() => setHoveredSns("tk")} onMouseLeave={() => setHoveredSns(null)} style={{ textDecoration:"none", display:"block" }}>
+              <div style={{ background:hoveredSns==="tk"?"linear-gradient(135deg,#00f2ea,#ff0050)":C.white, border:`2px solid ${hoveredSns==="tk"?"transparent":C.border}`, padding:"2.5rem 2rem", transition:"all 0.3s", position:"relative", overflow:"hidden", transform:hoveredSns==="tk"?"translateY(-4px)":"none", boxShadow:hoveredSns==="tk"?"0 12px 32px rgba(255,0,80,0.25)":"none", height:"100%", display:"flex", flexDirection:"column" }}>
+                <div style={{ display:"flex", alignItems:"center", gap:"1rem", marginBottom:"1rem" }}>
+                  <div style={{ width:52, height:52, background:hoveredSns==="tk"?"rgba(255,255,255,0.2)":"linear-gradient(135deg,#00f2ea,#ff0050)", borderRadius:"12px", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}><IconTikTok color="#fff" size={26} /></div>
+                  <div><div style={{ fontWeight:700, fontSize:"1.1rem", color:hoveredSns==="tk"?"#fff":C.dark }}>TikTok</div><div style={{ fontSize:"0.8rem", color:hoveredSns==="tk"?"rgba(255,255,255,0.8)":C.textMuted }}>@yoichi_design</div></div>
+                </div>
+                <p style={{ fontSize:"0.88rem", color:hoveredSns==="tk"?"rgba(255,255,255,0.9)":"#555", lineHeight:1.8, flex:1 }}>デザインの制作過程やビフォーアフターを動画で公開中。ぜひチェックしてください。</p>
+                <div style={{ marginTop:"1.2rem", display:"flex", alignItems:"center", gap:"0.4rem", color:hoveredSns==="tk"?"#fff":C.accent, fontSize:"0.82rem", letterSpacing:"0.1em" }}>フォローする <IconExternalLink size={13} /></div>
+              </div>
             </a>
           </div>
-          <form className="yh-form" onSubmit={e => { e.preventDefault(); handleFormSubmit(); }} noValidate>
-            {[
-              { key:"name", label:"お名前（必須）", type:"text", ph:"山田 太郎", ac:"name" },
-              { key:"furigana", label:"フリガナ", type:"text", ph:"ヤマダ タロウ", ac:"off" },
-              { key:"company", label:"会社名", type:"text", ph:"株式会社〇〇", ac:"organization" },
-              { key:"email", label:"メールアドレス（必須）", type:"email", ph:"example@email.com", ac:"email" },
-            ].map(f => (
-              <div className="yh-field" key={f.key}>
-                <label htmlFor={`yh-${f.key}`}>{f.label}</label>
-                <input id={`yh-${f.key}`} type={f.type} placeholder={f.ph} autoComplete={f.ac} value={formData[f.key]} onChange={e => handleFormChange(f.key, e.target.value)} />
-              </div>
-            ))}
-            <div className="yh-field">
-              <label htmlFor="yh-message">お問い合わせ内容（必須）</label>
-              <textarea id="yh-message" rows={5} placeholder="ご相談内容をご記入ください" value={formData.message} onChange={e => handleFormChange("message", e.target.value)} />
-            </div>
-            {formStatus === "sent" && <p className="yh-msg yh-msg--ok" role="status">送信が完了しました。お問い合わせありがとうございます。</p>}
-            {formStatus === "error" && <p className="yh-msg yh-msg--ng" role="alert">送信に失敗しました。時間をおいて再度お試しください。</p>}
-            <button type="submit" className="yh-btn yh-submit" disabled={formStatus === "sending"}>{formStatus === "sending" ? "送信中..." : "送信する"}</button>
-          </form>
         </div>
       </section>
 
-      <footer className="yh-footer">
-        <div className="yh-footer-inner">
-          <div className="yh-brand"><YoichiMark size={44} /><span>YOICHI</span></div>
-          <div className="yh-footer-links">
-            {[...navLinks, { label:"お問い合わせ", id:"contact" }].map(l => (
-              <button key={l.id} onClick={() => scrollTo(l.id)}>{l.label}</button>
+      <section id="contact" style={{ padding:"5rem 1.5rem", background:C.white, position:"relative", overflow:"hidden" }}>
+        <div style={{ position:"absolute", top:0, left:0, right:0, height:1, background:`linear-gradient(to right,transparent,${C.accent}55,transparent)` }} />
+        <div style={{ maxWidth:1200, margin:"0 auto", position:"relative", zIndex:1 }}>
+          <SectionHeading en="CONTACT" ja="お問い合わせ" />
+          <p style={{ textAlign:"center", color:"#555", maxWidth:600, margin:"0 auto 3rem", lineHeight:1.9 }}>ご相談、お見積もりなど、お気軽にお問い合わせくださいませ</p>
+          <div className="contact-grid" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"3rem", alignItems:"start" }}>
+            <div style={{ display:"flex", flexDirection:"column", gap:"1.5rem" }}>
+              <ContactCard icon={IconMail} title="メールアドレス"><a href="mailto:yoichi08107@gmail.com" style={{ color:"#555", textDecoration:"none", fontSize:"0.95rem", fontFamily:"'Helvetica Neue',Arial,sans-serif", letterSpacing:"0.03em" }}>yoichi08107@gmail.com</a></ContactCard>
+              <ContactCard icon={IconPhone} title="代表携帯"><a href="tel:080-1360-7951" style={{ color:"#555", textDecoration:"none", fontSize:"0.95rem", fontFamily:"'Helvetica Neue',Arial,sans-serif", letterSpacing:"0.03em" }}>080-1360-7951</a></ContactCard>
+              <a href="https://line.me/" target="_blank" rel="noopener noreferrer" style={{ textDecoration:"none", display:"block" }}>
+                <div style={{ display:"flex", gap:"1rem", background:"#06C755", padding:"1.5rem", position:"relative", overflow:"hidden", transition:"all 0.2s", cursor:"pointer" }}
+                  onMouseEnter={e => { e.currentTarget.style.transform="translateY(-2px)"; e.currentTarget.style.boxShadow="0 6px 20px rgba(6,199,85,0.3)"; }}
+                  onMouseLeave={e => { e.currentTarget.style.transform="none"; e.currentTarget.style.boxShadow="none"; }}
+                >
+                  <div style={{ width:48, height:48, background:"rgba(255,255,255,0.2)", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, borderRadius:"12px" }}>
+                    <IconLine color="#fff" size={24} />
+                  </div>
+                  <div>
+                    <h3 style={{ fontSize:"1.1rem", marginBottom:"0.3rem", letterSpacing:"0.1em", color:"#fff" }}>公式LINE</h3>
+                    <p style={{ color:"rgba(255,255,255,0.9)", fontSize:"0.88rem", lineHeight:1.6 }}>お気軽にお問い合わせ・ご相談ください</p>
+                    <p style={{ color:"rgba(255,255,255,0.7)", fontSize:"0.78rem", marginTop:"0.3rem" }}>友だち追加で簡単にやり取りできます →</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div style={{ background:C.bg, padding:"2rem", border:`2px solid ${C.border}`, position:"relative", overflow:"hidden" }}>
+              <div style={{ display:"flex", flexDirection:"column", gap:"1.2rem", position:"relative" }}>
+                {[
+                  { key:"name", label:"お名前 *", type:"text", ph:"山田 太郎" },
+                  { key:"furigana", label:"フリガナ", type:"text", ph:"ヤマダ タロウ" },
+                  { key:"company", label:"会社名", type:"text", ph:"株式会社〇〇" },
+                  { key:"email", label:"メールアドレス *", type:"email", ph:"example@email.com" },
+                ].map(f => (
+                  <div key={f.key}><label style={{ display:"block", marginBottom:"0.5rem", letterSpacing:"0.1em", fontSize:"0.95rem" }}>{f.label}</label><input type={f.type} placeholder={f.ph} value={formData[f.key]} onChange={e => handleFormChange(f.key, e.target.value)} style={{ width:"100%", padding:"0.75rem 1rem", border:`2px solid ${C.border}`, background:C.white, fontSize:"0.95rem", outline:"none", boxSizing:"border-box", transition:"border-color 0.2s", fontFamily:"inherit" }} onFocus={e => e.target.style.borderColor=C.accent} onBlur={e => e.target.style.borderColor=C.border} /></div>
+                ))}
+                <div><label style={{ display:"block", marginBottom:"0.5rem", letterSpacing:"0.1em", fontSize:"0.95rem" }}>お問い合わせ内容 *</label><textarea rows={5} placeholder="ご相談内容をご記入ください" value={formData.message} onChange={e => handleFormChange("message", e.target.value)} style={{ width:"100%", padding:"0.75rem 1rem", border:`2px solid ${C.border}`, background:C.white, fontSize:"0.95rem", outline:"none", resize:"vertical", fontFamily:"inherit", boxSizing:"border-box", transition:"border-color 0.2s" }} onFocus={e => e.target.style.borderColor=C.accent} onBlur={e => e.target.style.borderColor=C.border} /></div>
+                {formStatus==="sent" && <p style={{ color:"#16a34a", fontSize:"0.9rem", textAlign:"center", padding:"0.5rem", background:"#f0fdf4", border:"1px solid #bbf7d0" }}>送信が完了しました。お問い合わせありがとうございます。</p>}
+                {formStatus==="error" && <p style={{ color:"#dc2626", fontSize:"0.9rem", textAlign:"center", padding:"0.5rem", background:"#fef2f2", border:"1px solid #fecaca" }}>送信に失敗しました。時間をおいて再度お試しください。</p>}
+                <button onClick={handleFormSubmit} disabled={formStatus==="sending"} style={{ padding:"1rem", background:formStatus==="sending"?"#aaa":C.primary, color:"#fff", border:"none", cursor:formStatus==="sending"?"not-allowed":"pointer", display:"flex", alignItems:"center", justifyContent:"center", gap:"0.5rem", letterSpacing:"0.12em", fontSize:"0.95rem", fontFamily:"inherit", transition:"background 0.2s", opacity:formStatus==="sending"?0.7:1 }} onMouseEnter={e => { if(formStatus!=="sending") e.currentTarget.style.background=C.deep; }} onMouseLeave={e => { if(formStatus!=="sending") e.currentTarget.style.background=C.primary; }}><span>{formStatus==="sending"?"送信中...":"送信する"}</span>{formStatus!=="sending" && <IconArrowRight />}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer style={{ background:C.dark, color:C.bg, padding:"3rem 1.5rem", position:"relative", overflow:"hidden" }}>
+        <div style={{ position:"absolute", top:0, left:0, right:0, height:1, background:`linear-gradient(to right,transparent,${C.accent},transparent)` }} />
+        <div style={{ position:"absolute", inset:0, color:C.primary, opacity:0.1 }}><YagasuriBg /></div>
+        <div style={{ maxWidth:1200, margin:"0 auto", position:"relative", display:"flex", flexDirection:"column", alignItems:"center", gap:"1.5rem" }}>
+          <div style={{ display:"flex", alignItems:"center", gap:"1rem" }}><YoichiMark size={52} dark={true} /><span style={{ fontSize:"1.8rem", letterSpacing:"0.2em", fontWeight:700 }}>YOICHI</span></div>
+          <p style={{ fontSize:"0.85rem", color:"#9ca3af", letterSpacing:"0.05em" }}>想いをカタチに、笑顔をそばに、繋がりを大切に</p>
+          <div className="footer-links" style={{ display:"flex", gap:"2rem", flexWrap:"wrap", justifyContent:"center" }}>
+            {[...navLinks,{ label:"お問い合わせ", id:"contact" }].map(l => (
+              <button key={l.id} onClick={() => scrollTo(l.id)} style={{ background:"none", border:"none", color:"#9ca3af", cursor:"pointer", fontSize:"0.85rem", letterSpacing:"0.12em", fontFamily:"inherit" }}>{l.label}</button>
             ))}
           </div>
-          <p className="yh-copy">想いをカタチに、笑顔をそばに、繋がりを大切に　© 令和八年 YOICHI</p>
+          <div style={{ display:"flex", gap:"1rem" }}>
+            {[{ href:"https://www.instagram.com/", Icon:IconInstagram },{ href:"https://twitter.com/", Icon:IconTwitter },{ href:"https://www.tiktok.com/", Icon:IconTikTok }].map(({ href, Icon }) => (
+              <a key={href} href={href} target="_blank" rel="noopener noreferrer" style={{ width:36, height:36, background:"rgba(255,255,255,0.1)", borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center" }}><Icon color="#fff" size={16} /></a>
+            ))}
+          </div>
+          <div style={{ width:64, height:1, background:C.accent, opacity:0.4 }} />
+          <p style={{ fontSize:"0.8rem", color:"#6b7280", letterSpacing:"0.12em" }}>© 令和八年 YOICHI</p>
         </div>
       </footer>
+
+      <style>{`
+        html{scroll-behavior:smooth;}
+        *{box-sizing:border-box;margin:0;padding:0;}
+        ::placeholder{color:#aaa;}
+        body{overflow-x:hidden;}
+
+        @keyframes fadeInUp{
+          from{opacity:0;transform:translateY(30px);}
+          to{opacity:1;transform:translateY(0);}
+        }
+        @keyframes fadeIn{
+          from{opacity:0;}
+          to{opacity:1;}
+        }
+        @keyframes slideInLeft{
+          from{opacity:0;transform:translateX(-30px);}
+          to{opacity:1;transform:translateX(0);}
+        }
+        .page-animate{animation:fadeIn 0.5s ease-out;}
+        .page-animate .anim-item{animation:fadeInUp 0.6s ease-out both;}
+        .page-animate .anim-item:nth-child(1){animation-delay:0.1s;}
+        .page-animate .anim-item:nth-child(2){animation-delay:0.2s;}
+        .page-animate .anim-item:nth-child(3){animation-delay:0.3s;}
+        .page-animate .anim-item:nth-child(4){animation-delay:0.4s;}
+        .page-animate .anim-item:nth-child(5){animation-delay:0.5s;}
+        .page-animate .anim-item:nth-child(6){animation-delay:0.6s;}
+        .page-animate .anim-item:nth-child(7){animation-delay:0.7s;}
+        .page-animate .anim-item:nth-child(8){animation-delay:0.8s;}
+        .page-animate .anim-item:nth-child(9){animation-delay:0.9s;}
+        .page-animate .anim-item:nth-child(10){animation-delay:1.0s;}
+        .nav-desktop{display:flex;align-items:center;gap:1.8rem;}
+        .nav-hamburger{display:none!important;}
+        @media(max-width:768px){
+          .nav-desktop{display:none!important;}
+          .nav-hamburger{display:flex!important;}
+          .hero-lockup{flex-direction:column!important;align-items:flex-start!important;gap:1rem!important;}
+          .section-inner{padding:3rem 1rem!important;}
+          .about-grid{grid-template-columns:1fr!important;gap:2rem!important;}
+          .philosophy-row{flex-direction:column!important;align-items:flex-start!important;gap:0.2rem!important;}
+          .philosophy-sep{display:none!important;}
+          .contact-grid{grid-template-columns:1fr!important;gap:2rem!important;}
+          .flow-branch{gap:0.8rem!important;padding:0!important;}
+          .flow-branch p{font-size:0.75rem!important;}
+          .flow-step{max-width:100%!important;padding:1rem 0.8rem!important;}
+          .flow-step-wide{max-width:100%!important;padding:1rem 0.8rem!important;}
+          .flow-step h4{font-size:0.95rem!important;}
+          .flow-step p{font-size:0.75rem!important;}
+          .cta-group{flex-direction:column!important;}
+          .cta-group button{width:100%!important;justify-content:center!important;}
+          .sns-grid{max-width:100%!important;grid-template-columns:1fr!important;}
+          .origin-card{padding:2rem 1.5rem 2rem 2rem!important;}
+          .distance-box{flex-direction:column!important;gap:0.75rem!important;}
+          .distance-divider{width:100%!important;height:1px!important;}
+          .summary-box{padding:2rem 1.2rem!important;}
+          .letter-grid{grid-template-columns:1fr!important;}
+          .works-grid{grid-template-columns:1fr!important;}
+          .services-grid{grid-template-columns:1fr!important;}
+          
+          .footer-links{gap:1rem!important;}
+        }
+        @media(max-width:480px){
+          .origin-card{padding:1.5rem 1rem 1.5rem 1.5rem!important;}
+          .origin-heading{font-size:1.1rem!important;}
+          .letter-card{padding:1.5rem!important;}
+          .flow-step{padding:0.8rem 0.6rem!important;}
+          .flow-step h4{font-size:0.85rem!important;}
+          .flow-branch p{font-size:0.7rem!important;}
+        }
+      `}</style>
     </div>
   );
 }

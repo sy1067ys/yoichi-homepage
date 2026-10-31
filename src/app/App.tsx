@@ -64,6 +64,14 @@ import diagram05 from "../assets/diagram-05.png";
 import focusLogo from "../assets/focus-logo.png";
 import focusSymbol from "../assets/focus-symbol.png";
 import representativePhoto from "../assets/representative.jpg";
+import heroProducts from "../assets/hero-products.jpg";
+import serviceBrand from "../assets/service-brand.jpg";
+import serviceWeb from "../assets/service-web.jpg";
+import servicePackage from "../assets/service-package.jpg";
+import serviceDocument from "../assets/service-document.jpg";
+import sampleCard from "../assets/sample-card.jpg";
+import sampleWeb from "../assets/sample-web.jpg";
+import samplePackage from "../assets/sample-package.jpg";
 
 const IconArrowRight = () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>);
 const IconArrowLeft = () => (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>);
@@ -1064,15 +1072,15 @@ export default function App() {
   ];
 
   const serviceCards = [
-    { title:"ブランド・広告デザイン", img:logo02, pos:"center 25%", desc:"事業の想いを、視覚的に伝えるブランドデザインを制作します。", links:[["ロゴ","logos"],["名刺","meishi"],["バナー","banners"]] },
-    { title:"Web・アプリ", img:web01, pos:"left top", desc:"伝わる構成と美しいデザインで、使いやすいWeb・アプリを制作します。", links:[["Webサイト","websamples"],["UI/UX","uiux"],["アプリ","appsamples"]] },
-    { title:"パッケージ・商品デザイン", img:sakuraBoxImg, pos:"center 30%", zoom:1.4, origin:"50% 30%", desc:"商品の魅力を引き立てる、オリジナルのパッケージや雑貨をデザインします。", links:[["パッケージ","package"],["雑貨","goods"]] },
-    { title:"資料・図解デザイン", img:layout01, pos:"center top", desc:"複雑な情報を、わかりやすく美しく伝える資料・図解を制作します。", links:[["レイアウト","layouts"],["テンプレート","templates"],["図解","diagrams"]] },
+    { title:"ブランド・広告デザイン", img:serviceBrand, pos:"center", desc:"事業の想いを、視覚的に伝えるブランドデザインを制作します。", links:[["ロゴ","logos"],["名刺","meishi"],["バナー","banners"]] },
+    { title:"Web・アプリ", img:serviceWeb, pos:"center", desc:"伝わる構成と美しいデザインで、使いやすいWeb・アプリを制作します。", links:[["Webサイト","websamples"],["UI/UX","uiux"],["アプリ","appsamples"]] },
+    { title:"パッケージ・商品デザイン", img:servicePackage, pos:"center", desc:"商品の魅力を引き立てる、オリジナルのパッケージや雑貨をデザインします。", links:[["パッケージ","package"],["雑貨","goods"]] },
+    { title:"資料・図解デザイン", img:serviceDocument, pos:"center", desc:"複雑な情報を、わかりやすく美しく伝える資料・図解を制作します。", links:[["レイアウト","layouts"],["テンプレート","templates"],["図解","diagrams"]] },
   ];
   const sampleCards = [
-    { label:"名刺・ロゴ", img:meishiSampleImg, pos:"center 42%", page:"meishi" },
-    { label:"Webサイト", img:web02, pos:"center top", page:"websamples" },
-    { label:"雑貨・グッズ", img:goodsCollage, pos:"center", page:"goods" },
+    { label:"名刺・ロゴ", img:sampleCard, pos:"center", page:"meishi" },
+    { label:"Webサイト", img:sampleWeb, pos:"center", page:"websamples" },
+    { label:"パッケージ", img:samplePackage, pos:"center", page:"package" },
   ];
   const infoItems = [
     { title:"料金", text:"内容に応じてお見積もり", icon:(<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg>) },
@@ -1128,9 +1136,7 @@ export default function App() {
             </div>
           </div>
           <div className="hm-hero-visual">
-            <div className="hm-hv hm-hv-main"><img src={meishiImg} alt="名刺デザイン" style={{ objectPosition:"center 50%", transform:"scale(1.75)", transformOrigin:"52% 48%" }} /></div>
-            <div className="hm-hv hm-hv-a"><img src={sakuraBoxImg} alt="パッケージデザイン" style={{ objectPosition:"center 28%", transform:"scale(1.45)", transformOrigin:"50% 30%" }} /></div>
-            <div className="hm-hv hm-hv-b"><img src={keychainPhoto} alt="YOICHI オリジナルグッズ" style={{ objectPosition:"center" }} /></div>
+            <img src={heroProducts} alt="YOICHIが手がけるWebサイト・パッケージ・名刺・冊子のイメージ" />
           </div>
         </div>
       </section>
@@ -1168,7 +1174,6 @@ export default function App() {
             {sampleCards.map(s => (
               <div key={s.label} className="hm-sample" onClick={() => goToPage(s.page)}>
                 <div className="hm-sample-img">
-                  <span className="hm-sample-tag">SAMPLE</span>
                   <img src={s.img} alt={s.label} style={{ objectPosition:s.pos }} />
                 </div>
                 <div className="hm-sample-foot"><span>{s.label}</span><span className="hm-long-arrow" /></div>
@@ -1472,21 +1477,18 @@ export default function App() {
         .hm-btn-white:hover{background:#f5eee8;}
 
         /* ヒーロー */
-        .hm-hero{position:relative;overflow:hidden;background:linear-gradient(100deg,#f7f2ec 0%,#f3ece4 55%,#efe7dd 100%);padding:68px 0 0;}
+        .hm-hero{position:relative;overflow:hidden;background:linear-gradient(100deg,#f7f2ec 0%,#f3ebe3 45%,#efe6dc 100%);padding:68px 0 0;}
         .hm-hero-pattern{position:absolute;left:0;top:0;width:340px;height:100%;color:${C.primary};opacity:0.18;pointer-events:none;-webkit-mask-image:linear-gradient(to right,#000,transparent);mask-image:linear-gradient(to right,#000,transparent);}
-        .hm-hero-grid{position:relative;display:grid;grid-template-columns:1fr 1.05fr;gap:3rem;align-items:center;min-height:540px;padding-top:3.5rem;padding-bottom:3.5rem;}
+        .hm-hero-grid{position:static;display:flex;align-items:center;min-height:560px;padding-top:3.5rem;padding-bottom:3.5rem;}
+        .hm-hero-text{position:relative;z-index:2;max-width:520px;}
         .hm-eyebrow{display:flex;align-items:center;gap:1rem;font-size:0.7rem;letter-spacing:0.3em;color:#9a8f88;margin-bottom:1.1rem;}
         .hm-eyebrow span{display:block;width:48px;height:1px;background:#b9aea6;}
         .hm-hero-kicker{font-size:1.2rem;letter-spacing:0.18em;color:${C.dark};margin-bottom:0.6rem;}
         .hm-hero-title{font-size:clamp(2.1rem,4.3vw,3.7rem);white-space:nowrap;font-weight:500;letter-spacing:0.04em;line-height:1.3;color:#2b2422;margin-bottom:1rem;}
         .hm-hero-lead{font-size:clamp(1.05rem,1.8vw,1.35rem);letter-spacing:0.12em;color:#3d3533;margin-bottom:2.4rem;}
         .hm-hero-btns{display:flex;flex-wrap:wrap;gap:1rem;}
-        .hm-hero-visual{position:relative;height:440px;}
-        .hm-hv{position:absolute;background:#fff;border:7px solid #fff;overflow:hidden;box-shadow:0 18px 40px rgba(60,40,30,0.16);}
-        .hm-hv img{width:100%;height:100%;object-fit:cover;}
-        .hm-hv-main{left:0;top:40px;width:62%;height:330px;z-index:2;}
-        .hm-hv-a{right:0;top:0;width:42%;height:230px;z-index:1;}
-        .hm-hv-b{right:5%;bottom:0;width:46%;height:200px;z-index:3;}
+        .hm-hero-visual{position:absolute;top:68px;right:0;bottom:0;width:60%;z-index:1;pointer-events:none;}
+        .hm-hero-visual img{width:100%;height:100%;object-fit:cover;object-position:center 40%;-webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,0.55) 16%,#000 34%),linear-gradient(to bottom,#000 82%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,0.55) 16%,#000 34%),linear-gradient(to bottom,#000 82%,transparent 100%);mask-composite:intersect;}
 
         /* 見出し */
         .hm-section{padding:5rem 0;background:#faf8f4;}
@@ -1520,7 +1522,6 @@ export default function App() {
         .hm-sample-img{position:relative;aspect-ratio:16/10;overflow:hidden;background:#f1ebe3;}
         .hm-sample-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s;}
         .hm-sample:hover .hm-sample-img img{transform:scale(1.04);}
-        .hm-sample-tag{position:absolute;top:10px;left:10px;z-index:1;background:${C.primary};color:#fff;font-size:0.66rem;letter-spacing:0.22em;padding:0.3rem 0.7rem;}
         .hm-sample-foot{display:flex;align-items:center;justify-content:space-between;padding:0.9rem 0.1rem;font-size:1rem;letter-spacing:0.14em;color:#2b2422;}
         .hm-long-arrow{position:relative;display:inline-block;width:34px;height:1px;background:${C.primary};transition:width .3s;}
         .hm-long-arrow::after{content:"";position:absolute;right:0;top:-3px;width:8px;height:1px;background:${C.primary};transform:rotate(35deg);transform-origin:right;}
@@ -1571,12 +1572,13 @@ export default function App() {
         .hm-footer-link{background:none;border:none;cursor:pointer;font-family:inherit;font-size:0.82rem;letter-spacing:0.12em;color:#7a706a;}
         .hm-footer-link:hover{color:${C.accent};}
 
+        @media(max-width:1100px){
+          .hm-hero-grid{flex-direction:column;align-items:stretch;min-height:0;padding-top:2.5rem;padding-bottom:0;}
+          .hm-hero-text{max-width:none;}
+          .hm-hero-visual{position:relative;top:auto;right:auto;bottom:auto;width:auto;height:auto;margin:0.5rem -1.5rem 0;}
+          .hm-hero-visual img{height:auto;aspect-ratio:1479/876;-webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 18%,#000 88%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0%,#000 18%,#000 88%,transparent 100%);}
+        }
         @media(max-width:960px){
-          .hm-hero-grid{grid-template-columns:1fr;gap:2.5rem;min-height:0;padding-top:2.5rem;}
-          .hm-hero-visual{height:360px;max-width:560px;width:100%;margin:0 auto;}
-          .hm-hv-main{height:270px;}
-          .hm-hv-a{height:190px;}
-          .hm-hv-b{height:160px;}
           .hm-svc-grid{grid-template-columns:1fr;}
           .hm-brand-grid{grid-template-columns:1fr;gap:2rem;}
           .hm-brand-visual{max-width:520px;width:100%;}
@@ -1586,11 +1588,6 @@ export default function App() {
         @media(max-width:768px){
           .hm-section{padding:3.5rem 0;}
           .hm-section-tight{padding-top:0.5rem;}
-          .hm-hero-visual{height:290px;}
-          .hm-hv{border-width:5px;}
-          .hm-hv-main{top:28px;height:215px;width:64%;}
-          .hm-hv-a{height:150px;width:42%;}
-          .hm-hv-b{height:130px;width:48%;right:2%;}
           .hm-svc{grid-template-columns:1fr;}
           .hm-svc-img{min-height:190px;}
           .hm-svc-body{padding:1.1rem 1rem;}

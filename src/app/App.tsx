@@ -72,6 +72,7 @@ import serviceDocument from "../assets/service-document.jpg";
 import sampleCard from "../assets/sample-card.jpg";
 import sampleWeb from "../assets/sample-web.jpg";
 import samplePackage from "../assets/sample-package.jpg";
+import focusProducts from "../assets/focus-products.jpg";
 
 const IconArrowRight = () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>);
 const IconArrowLeft = () => (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>);
@@ -1197,13 +1198,7 @@ export default function App() {
             <span className="hm-more" style={{ color:C.dark }}>ブランドを見る <span className="hm-long-arrow" /></span>
           </div>
           <div className="hm-brand-visual">
-            <div className="hm-brand-symbol"><img src={focusSymbol} alt="FOCUS シンボルマーク" /></div>
-            <div className="hm-brand-tag">
-              <span className="hm-brand-hole" />
-              <img src={focusLogo} alt="" />
-              <p>APPAREL BRAND</p>
-            </div>
-            <div className="hm-brand-box"><p>COMING SOON</p></div>
+            <img src={focusProducts} alt="FOCUSのTシャツとパッケージ" />
           </div>
         </div>
       </section>
@@ -1477,9 +1472,9 @@ export default function App() {
         .hm-btn-white:hover{background:#f5eee8;}
 
         /* ヒーロー */
-        .hm-hero{position:relative;overflow:hidden;background:linear-gradient(100deg,#f7f2ec 0%,#f3ebe3 45%,#efe6dc 100%);padding:68px 0 0;}
+        .hm-hero{position:relative;overflow:hidden;background:#efe3d7;padding:68px 0 0;}
         .hm-hero-pattern{position:absolute;left:0;top:0;width:340px;height:100%;color:${C.primary};opacity:0.18;pointer-events:none;-webkit-mask-image:linear-gradient(to right,#000,transparent);mask-image:linear-gradient(to right,#000,transparent);}
-        .hm-hero-grid{position:static;display:flex;align-items:center;min-height:560px;padding-top:3.5rem;padding-bottom:3.5rem;}
+        .hm-hero-grid{position:static;display:flex;align-items:center;min-height:600px;padding-top:3.5rem;padding-bottom:3.5rem;}
         .hm-hero-text{position:relative;z-index:2;max-width:520px;}
         .hm-eyebrow{display:flex;align-items:center;gap:1rem;font-size:0.7rem;letter-spacing:0.3em;color:#9a8f88;margin-bottom:1.1rem;}
         .hm-eyebrow span{display:block;width:48px;height:1px;background:#b9aea6;}
@@ -1487,8 +1482,8 @@ export default function App() {
         .hm-hero-title{font-size:clamp(2.1rem,4.3vw,3.7rem);white-space:nowrap;font-weight:500;letter-spacing:0.04em;line-height:1.3;color:#2b2422;margin-bottom:1rem;}
         .hm-hero-lead{font-size:clamp(1.05rem,1.8vw,1.35rem);letter-spacing:0.12em;color:#3d3533;margin-bottom:2.4rem;}
         .hm-hero-btns{display:flex;flex-wrap:wrap;gap:1rem;}
-        .hm-hero-visual{position:absolute;top:68px;right:0;bottom:0;width:60%;z-index:1;pointer-events:none;}
-        .hm-hero-visual img{width:100%;height:100%;object-fit:cover;object-position:center 40%;-webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,0.55) 16%,#000 34%),linear-gradient(to bottom,#000 82%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,0.55) 16%,#000 34%),linear-gradient(to bottom,#000 82%,transparent 100%);mask-composite:intersect;}
+        .hm-hero-visual{position:absolute;top:68px;right:0;bottom:0;width:74%;z-index:1;pointer-events:none;}
+        .hm-hero-visual img{width:100%;height:100%;object-fit:cover;object-position:right center;-webkit-mask-image:linear-gradient(to right,transparent 0%,#000 28%);mask-image:linear-gradient(to right,transparent 0%,#000 28%);}
 
         /* 見出し */
         .hm-section{padding:5rem 0;background:#faf8f4;}
@@ -1528,21 +1523,15 @@ export default function App() {
         .hm-sample:hover .hm-long-arrow,.hm-brand:hover .hm-long-arrow{width:46px;}
 
         /* FOCUS */
-        .hm-brand{cursor:pointer;background:linear-gradient(100deg,#f4f0ea 0%,#ece7e0 100%);border-top:1px solid #e6ded3;border-bottom:1px solid #e6ded3;overflow:hidden;}
-        .hm-brand-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:3rem;align-items:center;min-height:340px;padding-top:3rem;padding-bottom:3rem;}
+        .hm-brand{position:relative;cursor:pointer;background:linear-gradient(100deg,#f4f0ea 0%,#ece7e0 100%);border-top:1px solid #e6ded3;border-bottom:1px solid #e6ded3;overflow:hidden;}
+        .hm-brand-grid{position:static;display:flex;align-items:center;min-height:380px;padding-top:3rem;padding-bottom:3rem;}
+        .hm-brand-text{position:relative;z-index:2;max-width:440px;}
         .hm-brand-label{font-size:0.9rem;letter-spacing:0.22em;color:#5a514c;margin-bottom:1.2rem;}
         .hm-brand-logo{width:min(300px,80%);margin-left:-18px;height:auto;margin-bottom:0.9rem;}
         .hm-brand-tagline{font-family:'Helvetica Neue',Arial,sans-serif;font-weight:300;font-size:0.95rem;letter-spacing:0.14em;color:#444;margin-bottom:0.5rem;}
         .hm-brand-copy{font-size:1rem;letter-spacing:0.12em;color:#3d3533;margin-bottom:1.4rem;}
-        .hm-brand-visual{position:relative;height:280px;}
-        .hm-brand-symbol{position:absolute;left:4%;top:20px;width:210px;height:210px;background:#fff;box-shadow:0 16px 36px rgba(0,0,0,0.12);display:flex;align-items:center;justify-content:center;transform:rotate(-4deg);}
-        .hm-brand-symbol img{width:72%;height:72%;object-fit:contain;}
-        .hm-brand-tag{position:absolute;left:44%;top:8px;width:120px;height:230px;background:#fbfaf7;border:1px solid #ddd5ca;box-shadow:0 12px 26px rgba(0,0,0,0.12);transform:rotate(7deg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.9rem;z-index:2;}
-        .hm-brand-hole{position:absolute;top:14px;left:50%;width:12px;height:12px;margin-left:-6px;border-radius:50%;border:1px solid #c9bfb3;background:#ece7e0;}
-        .hm-brand-tag img{width:84px;height:auto;}
-        .hm-brand-tag p{white-space:nowrap;font-family:'Helvetica Neue',Arial,sans-serif;font-size:0.5rem;letter-spacing:0.3em;color:#777;}
-        .hm-brand-box{position:absolute;right:0;bottom:6px;width:42%;height:180px;background:#141414;box-shadow:0 18px 40px rgba(0,0,0,0.25);display:flex;align-items:flex-end;justify-content:flex-end;padding:1rem;}
-        .hm-brand-box p{font-family:'Helvetica Neue',Arial,sans-serif;font-weight:300;color:#bbb;font-size:0.62rem;letter-spacing:0.35em;}
+        .hm-brand-visual{position:absolute;top:0;right:0;bottom:0;width:64%;z-index:1;}
+        .hm-brand-visual img{width:100%;height:100%;object-fit:cover;object-position:center 45%;-webkit-mask-image:linear-gradient(to right,transparent 0%,#000 30%);mask-image:linear-gradient(to right,transparent 0%,#000 30%);}
 
         /* 料金・流れ */
         .hm-info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;}
@@ -1575,13 +1564,16 @@ export default function App() {
         @media(max-width:1100px){
           .hm-hero-grid{flex-direction:column;align-items:stretch;min-height:0;padding-top:2.5rem;padding-bottom:0;}
           .hm-hero-text{max-width:none;}
-          .hm-hero-visual{position:relative;top:auto;right:auto;bottom:auto;width:auto;height:auto;margin:0.5rem -1.5rem 0;}
-          .hm-hero-visual img{height:auto;aspect-ratio:1479/876;-webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 18%,#000 88%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0%,#000 18%,#000 88%,transparent 100%);}
+          .hm-hero{background:linear-gradient(180deg,#f3e9df 0%,#efe3d7 100%);}
+          .hm-hero-visual{position:relative;top:auto;right:auto;bottom:auto;left:auto;width:auto;height:auto;margin:0.5rem -1.5rem 0;}
+          .hm-hero-visual img{height:auto;aspect-ratio:1672/941;object-position:center;-webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 18%,#000 88%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0%,#000 18%,#000 88%,transparent 100%);}
         }
         @media(max-width:960px){
           .hm-svc-grid{grid-template-columns:1fr;}
-          .hm-brand-grid{grid-template-columns:1fr;gap:2rem;}
-          .hm-brand-visual{max-width:520px;width:100%;}
+          .hm-brand-grid{flex-direction:column;align-items:stretch;padding-bottom:0;}
+          .hm-brand-text{max-width:none;}
+          .hm-brand-visual{position:relative;width:auto;margin:1.5rem -1.5rem 0;}
+          .hm-brand-visual img{height:auto;aspect-ratio:1672/941;-webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 20%);mask-image:linear-gradient(to bottom,transparent 0%,#000 20%);}
           .hm-flow-grid{grid-template-columns:1fr 1fr;row-gap:2rem;}
           .hm-flow-line{display:none;}
         }
@@ -1596,13 +1588,6 @@ export default function App() {
           .hm-sample-grid{grid-template-columns:1fr;gap:1rem;}
           .hm-info-grid{grid-template-columns:1fr;gap:0.8rem;}
           .hm-flow-grid{grid-template-columns:1fr;row-gap:1.2rem;}
-          .hm-brand-visual{height:230px;}
-          .hm-brand-symbol{width:160px;height:160px;left:0;top:24px;}
-          .hm-brand-tag{width:96px;height:190px;left:40%;}
-          .hm-brand-tag img{width:68px;}
-          .hm-brand-tag p{letter-spacing:0.18em;font-size:0.45rem;}
-          .hm-brand-box{width:40%;height:140px;padding:0.7rem;}
-          .hm-brand-box p{letter-spacing:0.18em;font-size:0.5rem;}
           .hm-cta-title{font-size:1.12rem;letter-spacing:0.06em;}
           .hm-cta-sub{font-size:0.82rem;}
         }

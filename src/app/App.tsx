@@ -986,14 +986,23 @@ function DiagramSamplesPage({ onBack }) {
 }
 
 const navLinks = [
-  { label:"お仕事", id:"works_detail" },
-  { label:"サンプル", id:"works" },
-  { label:"自社ブランド", id:"brands" },
-  { label:"ご納品の流れ", id:"flow" },
-  { label:"会社概要", id:"about" },
+  { label:"サービス", id:"services", main:true },
+  { label:"制作サンプル", id:"works", main:true },
+  { label:"自社ブランド", id:"brands", main:true },
+  { label:"ご依頼の流れ", id:"flow", main:true },
+  { label:"会社概要", id:"about", main:true },
   { label:"由来", id:"origin" },
   { label:"SNS", id:"sns" },
 ];
+
+function HomeHeading({ en, ja }) {
+  return (
+    <div className="hm-head">
+      <p className="hm-en">{en}</p>
+      <h2 className="hm-h2">{ja}</h2>
+    </div>
+  );
+}
 
 export default function App() {
   const [page, setPage] = useState("home");
@@ -1054,254 +1063,190 @@ export default function App() {
     { letter:"I", word:"Ichi（一・市）", desc:"「一期一会」の精神で、お客様との出会いを唯一無二のものとして大切にします。すべての出会いが新たな物語の始まりです。" },
   ];
 
-  return (
-    <div style={{ minHeight:"100vh", background:C.bg, fontFamily:"'Georgia','Hiragino Mincho ProN',serif", color:C.dark, overflowX:"hidden" }}>
-      <div style={{ position:"fixed", inset:0, pointerEvents:"none", opacity:0.4, color:C.primary, zIndex:0 }}><YagasuriBg /></div>
+  const serviceCards = [
+    { title:"ブランド・広告デザイン", img:logo02, pos:"center 25%", desc:"事業の想いを、視覚的に伝えるブランドデザインを制作します。", links:[["ロゴ","logos"],["名刺","meishi"],["バナー","banners"]] },
+    { title:"Web・アプリ", img:web01, pos:"left top", desc:"伝わる構成と美しいデザインで、使いやすいWeb・アプリを制作します。", links:[["Webサイト","websamples"],["UI/UX","uiux"],["アプリ","appsamples"]] },
+    { title:"パッケージ・商品デザイン", img:sakuraBoxImg, pos:"center 30%", zoom:1.4, origin:"50% 30%", desc:"商品の魅力を引き立てる、オリジナルのパッケージや雑貨をデザインします。", links:[["パッケージ","package"],["雑貨","goods"]] },
+    { title:"資料・図解デザイン", img:layout01, pos:"center top", desc:"複雑な情報を、わかりやすく美しく伝える資料・図解を制作します。", links:[["レイアウト","layouts"],["テンプレート","templates"],["図解","diagrams"]] },
+  ];
+  const sampleCards = [
+    { label:"名刺・ロゴ", img:meishiSampleImg, pos:"center 42%", page:"meishi" },
+    { label:"Webサイト", img:web02, pos:"center top", page:"websamples" },
+    { label:"雑貨・グッズ", img:goodsCollage, pos:"center", page:"goods" },
+  ];
+  const infoItems = [
+    { title:"料金", text:"内容に応じてお見積もり", icon:(<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg>) },
+    { title:"納期", text:"ご依頼時にご案内", icon:(<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>) },
+    { title:"納品形式", text:"用途に合わせてご提案", icon:(<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>) },
+  ];
+  const flowSteps = [
+    { no:"01", title:"ご相談", desc:"まずはお気軽にご相談ください。目的やご要望をお聞きします。" },
+    { no:"02", title:"お見積もり", desc:"内容を整理し、お見積もりとラフ案をご提示します。" },
+    { no:"03", title:"制作・確認", desc:"デザイン制作を進め、確認・調整を行います。（修正は最大4回まで）" },
+    { no:"04", title:"ご納品", desc:"最終確認後、ご希望の形式で納品いたします。" },
+  ];
 
-      <header style={{ position:"fixed", top:0, left:0, right:0, zIndex:50, background:`${C.bg}f5`, backdropFilter:"blur(8px)", borderBottom:`2px solid ${C.primary}33` }}>
-        <nav style={{ maxWidth:1200, margin:"0 auto", padding:"1rem 1.5rem", display:"flex", alignItems:"center", justifyContent:"space-between" }}>
-          <div style={{ display:"flex", alignItems:"center", gap:"0.75rem", cursor:"pointer" }} onClick={() => scrollTo("hero")}>
-            <YoichiMark size={44} />
-            <div style={{ fontSize:"1.4rem", letterSpacing:"0.2em", fontWeight:700, lineHeight:1 }}>YOICHI</div>
+  return (
+    <div className="hm" style={{ minHeight:"100vh", background:"#faf8f4", color:C.dark, overflowX:"hidden" }}>
+
+      {/* ── ヘッダー ── */}
+      <header className="hm-header">
+        <nav className="hm-wrap hm-nav">
+          <div className="hm-logo" onClick={() => scrollTo("hero")}>
+            <YoichiMark size={50} />
+            <span>YOICHI</span>
           </div>
           <div className="nav-desktop">
-            {navLinks.map(l => (<button key={l.id} onClick={() => scrollTo(l.id)} style={{ background:"none", border:"none", cursor:"pointer", fontSize:"0.9rem", letterSpacing:"0.12em", color:C.dark, fontFamily:"inherit", transition:"color 0.2s" }} onMouseEnter={e => e.currentTarget.style.color=C.accent} onMouseLeave={e => e.currentTarget.style.color=C.dark}>{l.label}</button>))}
-            <button onClick={() => scrollTo("contact")} style={{ padding:"0.55rem 1.4rem", background:C.primary, color:"#fff", border:"none", cursor:"pointer", letterSpacing:"0.12em", fontSize:"0.88rem", fontFamily:"inherit", transition:"background 0.2s" }} onMouseEnter={e => e.currentTarget.style.background=C.deep} onMouseLeave={e => e.currentTarget.style.background=C.primary}>お問い合わせ</button>
+            {navLinks.filter(l => l.main).map(l => (<button key={l.id} className="hm-navlink" onClick={() => scrollTo(l.id)}>{l.label}</button>))}
+            <button className="hm-btn hm-btn-fill hm-btn-sm" onClick={() => scrollTo("contact")}>お問い合わせ</button>
           </div>
-          <button className="nav-hamburger" onClick={() => setMenuOpen(!menuOpen)} style={{ background:"none", border:"none", cursor:"pointer" }}>
+          <button className="nav-hamburger" onClick={() => setMenuOpen(!menuOpen)} style={{ background:"none", border:"none", cursor:"pointer", color:C.dark }}>
             {menuOpen ? <IconX /> : <IconMenu />}
           </button>
         </nav>
         {menuOpen && (
-          <div style={{ background:C.bg, borderTop:`1px solid ${C.border}`, padding:"1rem 1.5rem" }}>
+          <div style={{ background:"#faf8f4", borderTop:"1px solid #e8e0d6", padding:"0.5rem 1.5rem 1rem" }}>
             {[...navLinks, { label:"お問い合わせ", id:"contact" }].map(l => (
-              <button key={l.id} onClick={() => scrollTo(l.id)} style={{ display:"block", width:"100%", textAlign:"left", padding:"0.75rem 0", background:"none", border:"none", cursor:"pointer", fontSize:"1rem", letterSpacing:"0.1em", fontFamily:"inherit", color:C.dark, borderBottom:`1px solid ${C.border}` }}>{l.label}</button>
+              <button key={l.id} onClick={() => scrollTo(l.id)} style={{ display:"block", width:"100%", textAlign:"left", padding:"0.85rem 0", background:"none", border:"none", cursor:"pointer", fontSize:"0.98rem", letterSpacing:"0.12em", fontFamily:"inherit", color:C.dark, borderBottom:"1px solid #ece5db" }}>{l.label}</button>
             ))}
           </div>
         )}
       </header>
 
-      <section id="hero" style={{ minHeight:"100vh", display:"flex", alignItems:"center", position:"relative", overflow:"hidden" }}>
-        <div style={{ position:"absolute", top:"20%", left:"20%", width:320, height:320, color:C.accent, opacity:0.12, pointerEvents:"none" }}><YagasuriBg /></div>
-        <div style={{ position:"absolute", bottom:"5%", right:"5%", width:200, height:200, color:C.primary, opacity:0.08, pointerEvents:"none" }}><YagasuriBg /></div>
-        <div style={{ position:"absolute", top:0, right:"40%", width:1, height:"100%", background:`linear-gradient(to bottom,transparent,${C.accent}30,transparent)`, transform:"rotate(15deg)", pointerEvents:"none" }} />
-        <div style={{ maxWidth:1200, margin:"0 auto", padding:"8rem 1.5rem 5rem", position:"relative", zIndex:1, width:"100%" }}>
-          <div style={{ maxWidth:780 }}>
-            <div className="hero-lockup" style={{ display:"flex", alignItems:"center", gap:"1.5rem", marginBottom:"3rem" }}>
-              <YoichiMark size={250} />
-              <div>
-                <h1 style={{ fontSize:"clamp(2.5rem,6vw,4.5rem)", letterSpacing:"0.2em", fontWeight:700, marginBottom:"0.4rem", lineHeight:1 }}>YOICHI</h1>
-                <div style={{ height:4, width:96, background:C.accent }} />
-              </div>
+      {/* ── ヒーロー ── */}
+      <section id="hero" className="hm-hero">
+        <div className="hm-hero-pattern"><YagasuriBg /></div>
+        <div className="hm-wrap hm-hero-grid">
+          <div className="hm-hero-text">
+            <p className="hm-eyebrow">OUR SERVICES<span /></p>
+            <p className="hm-hero-kicker">YOICHIのお仕事</p>
+            <h1 className="hm-hero-title">想いをカタチに。</h1>
+            <p className="hm-hero-lead">事業の魅力を、伝わるデザインへ。</p>
+            <div className="hm-hero-btns cta-group">
+              <button className="hm-btn hm-btn-fill" onClick={() => scrollTo("contact")}>制作について相談する <IconArrowRight /></button>
+              <button className="hm-btn hm-btn-line" onClick={() => scrollTo("works")}>制作サンプルを見る</button>
             </div>
-            <div style={{ position:"relative", marginBottom:"2.5rem" }}>
-              <div style={{ position:"absolute", left:-8, top:-8, width:80, height:80, color:C.accent, opacity:0.15 }}><YagasuriBg /></div>
-              <div style={{ borderLeft:`4px solid ${C.accent}`, paddingLeft:"1.2rem", position:"relative" }}>
-                {["想いをカタチに","笑顔をそばに","繋がりを大切に"].map((line,i) => (<p key={i} style={{ fontSize:"clamp(1.6rem,4vw,2.8rem)", fontFamily:"serif", fontWeight:400, lineHeight:1.75, color:C.dark, margin:0 }}>{line}</p>))}
-              </div>
-            </div>
-            <div className="cta-group" style={{ display:"flex", flexWrap:"wrap", gap:"1rem", paddingLeft:"1.2rem" }}>
-              <button onClick={() => scrollTo("contact")} style={{ padding:"1rem 2rem", background:C.primary, color:"#fff", border:"none", cursor:"pointer", display:"flex", alignItems:"center", gap:"0.5rem", letterSpacing:"0.12em", fontSize:"0.95rem", fontFamily:"inherit", transition:"background 0.2s", boxShadow:"0 4px 20px rgba(139,79,71,0.3)" }} onMouseEnter={e => e.currentTarget.style.background=C.deep} onMouseLeave={e => e.currentTarget.style.background=C.primary}>ご相談はこちら <IconArrowRight /></button>
-              <button onClick={() => scrollTo("works")} style={{ padding:"1rem 2rem", background:"transparent", color:C.primary, border:`2px solid ${C.primary}`, cursor:"pointer", letterSpacing:"0.12em", fontSize:"0.95rem", fontFamily:"inherit", transition:"all 0.2s" }} onMouseEnter={e => { e.currentTarget.style.background=C.primary; e.currentTarget.style.color="#fff"; }} onMouseLeave={e => { e.currentTarget.style.background="transparent"; e.currentTarget.style.color=C.primary; }}>イメージサンプル</button>
-            </div>
+          </div>
+          <div className="hm-hero-visual">
+            <div className="hm-hv hm-hv-main"><img src={meishiImg} alt="名刺デザイン" style={{ objectPosition:"center 50%", transform:"scale(1.75)", transformOrigin:"52% 48%" }} /></div>
+            <div className="hm-hv hm-hv-a"><img src={sakuraBoxImg} alt="パッケージデザイン" style={{ objectPosition:"center 28%", transform:"scale(1.45)", transformOrigin:"50% 30%" }} /></div>
+            <div className="hm-hv hm-hv-b"><img src={keychainPhoto} alt="YOICHI オリジナルグッズ" style={{ objectPosition:"center" }} /></div>
           </div>
         </div>
       </section>
 
-      {/* ── YOICHIのお仕事 ── */}
-      <section id="works_detail" style={{ padding:"5rem 1.5rem", background:C.white, position:"relative", overflow:"hidden" }}>
-        <div style={{ position:"absolute", top:0, left:0, right:0, height:1, background:`linear-gradient(to right,transparent,${C.accent}55,transparent)` }} />
-        <div style={{ position:"absolute", top:10, right:10, width:200, height:200, color:C.primary, opacity:0.06 }}><YagasuriBg /></div>
-        <div style={{ maxWidth:1200, margin:"0 auto", position:"relative", zIndex:1 }}>
-          <SectionHeading en="WHAT WE DO" ja="YOICHIのお仕事" />
-          <div style={{ maxWidth:860, margin:"0 auto" }}>
-            <p style={{ textAlign:"center", color:"#555", lineHeight:1.9, marginBottom:"3rem", fontSize:"1rem" }}>
-              デザインのお仕事をメインにしています。
-            </p>
-            <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(200px,1fr))", gap:"1.2rem", marginBottom:"3rem" }}>
-              {[
-                { icon:"🖼️", label:"バナー作成", link:"banners" },
-                { icon:"💼", label:"名刺作成", link:"meishi" },
-                { icon:"✏️", label:"ロゴ作成", link:"logos" },
-                { icon:"📦", label:"パッケージデザイン", link:"package" },
-                { icon:"🖥️", label:"UI/UXデザイン", link:"uiux" },
-                { icon:"🌐", label:"ウェブサイト作成", link:"websamples" },
-                { icon:"📱", label:"アプリケーション作成", link:"appsamples" },
-                { icon:"📄", label:"テンプレート作成", link:"templates" },
-                { icon:"🎁", label:"雑貨デザイン", link:"goods" },
-                { icon:"📐", label:"レイアウトデザイン", link:"layouts" },
-                { icon:"📊", label:"図解デザイン", link:"diagrams" },
-              ].map((item, i) => (
-                <div key={i}
-                  onClick={() => item.link && goToPage(item.link)}
-                  style={{ background:C.bg, border:`1px solid ${item.link ? C.accent : C.border}`, padding:"1.2rem 1rem", display:"flex", alignItems:"center", gap:"0.75rem", transition:"all 0.2s", position:"relative", overflow:"hidden", cursor:item.link?"pointer":"default" }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor=C.accent; e.currentTarget.style.background=C.white; e.currentTarget.style.transform="translateY(-2px)"; e.currentTarget.style.boxShadow="0 6px 20px rgba(0,0,0,0.08)"; }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor=item.link?C.accent:C.border; e.currentTarget.style.background=C.bg; e.currentTarget.style.transform="none"; e.currentTarget.style.boxShadow="none"; }}
-                >
-                  <span style={{ fontSize:"1.5rem" }}>{item.icon}</span>
-                  <span style={{ fontSize:"0.9rem", color:item.link?C.accent:C.dark, letterSpacing:"0.05em", fontFamily:"serif", fontWeight:item.link?700:400 }}>{item.label}</span>
-                  {item.link && <span style={{ marginLeft:"auto", fontSize:"0.75rem", color:C.accent }}>→</span>}
+      {/* ── お手伝いできること ── */}
+      <section id="services" className="hm-section">
+        <div className="hm-wrap">
+          <HomeHeading en="SERVICES" ja="お手伝いできること" />
+          <div className="hm-svc-grid">
+            {serviceCards.map(s => (
+              <div key={s.title} className="hm-svc" onClick={() => goToPage(s.links[0][1])}>
+                <div className="hm-svc-img"><img src={s.img} alt={s.title} style={{ objectPosition:s.pos, transform:s.zoom ? `scale(${s.zoom})` : undefined, transformOrigin:s.origin }} /></div>
+                <div className="hm-svc-body">
+                  <h3>{s.title}</h3>
+                  <p className="hm-svc-tags">
+                    {s.links.map(([label, page], i) => (
+                      <span key={page}>{i > 0 && "・"}<button onClick={e => { e.stopPropagation(); goToPage(page); }}>{label}</button></span>
+                    ))}
+                  </p>
+                  <p className="hm-svc-desc">{s.desc}</p>
+                  <span className="hm-more">詳しく見る <span className="hm-arrow">→</span></span>
                 </div>
-              ))}
-            </div>
-            <div style={{ background:C.primary, padding:"2rem 2.5rem", display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:"1rem", position:"relative", overflow:"hidden" }}>
-              <div style={{ position:"absolute", inset:0, color:"#fff", opacity:0.08 }}><YagasuriBg /></div>
-              <div style={{ position:"relative" }}>
-                <p style={{ color:"#fff", fontSize:"1.1rem", fontFamily:"serif", fontWeight:400, letterSpacing:"0.08em" }}>その他、気軽にご相談ください‼</p>
-                <p style={{ color:"rgba(255,255,255,0.75)", fontSize:"0.85rem", marginTop:"0.3rem" }}>上記以外のご要望もお気軽にどうぞ</p>
               </div>
-              <button
-                onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" })}
-                style={{ padding:"0.75rem 1.8rem", background:"#fff", color:C.primary, border:"none", cursor:"pointer", fontSize:"0.9rem", letterSpacing:"0.12em", fontFamily:"inherit", fontWeight:700, transition:"all 0.2s", position:"relative", flexShrink:0 }}
-                onMouseEnter={e => { e.currentTarget.style.background=C.bg; }}
-                onMouseLeave={e => { e.currentTarget.style.background="#fff"; }}
-              >お問い合わせはこちら →</button>
-            </div>
+            ))}
+          </div>
+          <p className="hm-note">その他のご要望も、お気軽にご相談ください。</p>
+        </div>
+      </section>
+
+      {/* ── 制作サンプル ── */}
+      <section id="works" className="hm-section hm-section-tight">
+        <div className="hm-wrap">
+          <HomeHeading en="SAMPLE" ja="制作サンプル" />
+          <div className="hm-sample-grid">
+            {sampleCards.map(s => (
+              <div key={s.label} className="hm-sample" onClick={() => goToPage(s.page)}>
+                <div className="hm-sample-img">
+                  <span className="hm-sample-tag">SAMPLE</span>
+                  <img src={s.img} alt={s.label} style={{ objectPosition:s.pos }} />
+                </div>
+                <div className="hm-sample-foot"><span>{s.label}</span><span className="hm-long-arrow" /></div>
+              </div>
+            ))}
+          </div>
+          <div style={{ textAlign:"center", marginTop:"2.5rem" }}>
+            <button className="hm-btn hm-btn-line" onClick={() => goToPage("samples")}>すべてのサンプルを見る <IconArrowRight /></button>
           </div>
         </div>
       </section>
 
-      {/* ── イメージサンプル ── */}
-      <section id="works" style={{ padding:"5rem 1.5rem", background:C.bg, position:"relative", overflow:"hidden" }}>
-        <div style={{ position:"absolute", top:0, left:0, right:0, height:1, background:`linear-gradient(to right,transparent,${C.accent}55,transparent)` }} />
-        <div style={{ maxWidth:1100, margin:"0 auto", position:"relative", zIndex:1 }}>
-          <SectionHeading en="IMAGE SAMPLE" ja="イメージサンプル" />
-          <p style={{ textAlign:"center", color:"#555", marginBottom:"3rem", lineHeight:1.9 }}>YOICHIが制作したデザインのイメージサンプルをご覧ください。</p>
-
-          <div style={{ maxWidth:900, margin:"0 auto 3rem", cursor:"pointer", position:"relative" }}
-            onClick={() => goToPage("samples")}
-            onMouseEnter={e => { e.currentTarget.style.transform="translateY(-4px)"; e.currentTarget.style.boxShadow="0 16px 48px rgba(0,0,0,0.15)"; }}
-            onMouseLeave={e => { e.currentTarget.style.transform="none"; e.currentTarget.style.boxShadow="0 4px 20px rgba(0,0,0,0.1)"; }}
-          >
-            <img
-              src={samplesHeroImg}
-              alt="YOICHI デザインサンプル"
-              style={{ width:"100%", display:"block", position:"relative", boxShadow:"0 4px 20px rgba(0,0,0,0.1)", transition:"all 0.3s" }}
-            />
+      {/* ── 自社ブランド FOCUS ── */}
+      <section id="brands" className="hm-brand" onClick={() => goToPage("focus")}>
+        <div className="hm-wrap hm-brand-grid">
+          <div className="hm-brand-text">
+            <p className="hm-brand-label">YOICHIの自社ブランド</p>
+            <img src={focusLogo} alt="FOCUS" className="hm-brand-logo" />
+            <p className="hm-brand-tagline">Focus point on life…</p>
+            <p className="hm-brand-copy">商品とブランドの世界観を、ひとつに。</p>
+            <span className="hm-more" style={{ color:C.dark }}>ブランドを見る <span className="hm-long-arrow" /></span>
           </div>
-
-          <div style={{ textAlign:"center" }}>
-            <button onClick={() => goToPage("samples")} style={{ padding:"1rem 2.5rem", background:"transparent", color:C.primary, border:`2px solid ${C.primary}`, cursor:"pointer", letterSpacing:"0.12em", fontSize:"0.95rem", fontFamily:"inherit", transition:"all 0.2s", display:"inline-flex", alignItems:"center", gap:"0.5rem" }} onMouseEnter={e => { e.currentTarget.style.background=C.primary; e.currentTarget.style.color="#fff"; }} onMouseLeave={e => { e.currentTarget.style.background="transparent"; e.currentTarget.style.color=C.primary; }}>すべてのサンプルを見る <IconArrowRight /></button>
+          <div className="hm-brand-visual">
+            <div className="hm-brand-symbol"><img src={focusSymbol} alt="FOCUS シンボルマーク" /></div>
+            <div className="hm-brand-tag">
+              <span className="hm-brand-hole" />
+              <img src={focusLogo} alt="" />
+              <p>APPAREL BRAND</p>
+            </div>
+            <div className="hm-brand-box"><p>COMING SOON</p></div>
           </div>
         </div>
       </section>
 
-      {/* ── 自社ブランド ── */}
-      <section id="brands" style={{ padding:"5rem 1.5rem", background:C.white, position:"relative", overflow:"hidden" }}>
-        <div style={{ position:"absolute", top:0, left:0, right:0, height:1, background:`linear-gradient(to right,transparent,${C.accent}55,transparent)` }} />
-        <div style={{ position:"absolute", top:10, right:10, width:180, height:180, color:C.primary, opacity:0.05 }}><YagasuriBg /></div>
-        <div style={{ maxWidth:1100, margin:"0 auto", position:"relative", zIndex:1 }}>
-          <SectionHeading en="OUR BRANDS" ja="自社ブランド" />
-          <p style={{ textAlign:"center", color:"#555", marginBottom:"3rem", lineHeight:1.9 }}>YOICHIが展開するオリジナルブランドをご紹介します。</p>
-
-          <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(320px,1fr))", gap:"2rem", maxWidth:520, margin:"0 auto" }}>
-            {/* FOCUS カード */}
-            <div onClick={() => goToPage("focus")}
-              style={{ background:"#fff", border:"1px solid #111", padding:"3rem 2rem", cursor:"pointer", transition:"all 0.3s", position:"relative", overflow:"hidden", textAlign:"center", fontFamily:"'Helvetica Neue',Arial,sans-serif" }}
-              onMouseEnter={e => { e.currentTarget.style.transform="translateY(-4px)"; e.currentTarget.style.boxShadow="0 16px 40px rgba(0,0,0,0.15)"; }}
-              onMouseLeave={e => { e.currentTarget.style.transform="none"; e.currentTarget.style.boxShadow="none"; }}
-            >
-              <p style={{ fontSize:"0.7rem", color:"#777", letterSpacing:"0.4em", marginBottom:"1.5rem" }}>APPAREL BRAND</p>
-              <img src={focusLogo} alt="FOCUS" style={{ width:"min(260px,80%)", height:"auto", display:"block", margin:"0 auto 0.5rem" }} />
-              <p style={{ fontSize:"0.95rem", color:"#555", letterSpacing:"0.12em", fontWeight:300, marginBottom:"1.8rem" }}>Focus point on life…</p>
-              <span style={{ fontSize:"0.8rem", color:"#111", letterSpacing:"0.2em", borderBottom:"1px solid #111", paddingBottom:"2px" }}>ブランドを見る →</span>
-            </div>
+      {/* ── 料金・ご依頼について／ご依頼の流れ ── */}
+      <section id="flow" className="hm-section">
+        <div className="hm-wrap">
+          <HomeHeading en="PRICE & ORDER" ja="料金・ご依頼について" />
+          <div className="hm-info-grid">
+            {infoItems.map(it => (
+              <div key={it.title} className="hm-info">
+                <span className="hm-info-icon">{it.icon}</span>
+                <div><p className="hm-info-title">{it.title}</p><p className="hm-info-text">{it.text}</p></div>
+              </div>
+            ))}
           </div>
+
+          <h3 className="hm-h3">ご依頼の流れ</h3>
+          <div className="hm-flow-grid">
+            {flowSteps.map((f, i) => (
+              <div key={f.no} className="hm-flow">
+                <div className="hm-flow-head">
+                  <span className="hm-flow-no">{f.no}</span>
+                  <span className="hm-flow-title">{f.title}</span>
+                  {i < flowSteps.length - 1 && <span className="hm-flow-line" />}
+                </div>
+                <p className="hm-flow-desc">{f.desc}</p>
+              </div>
+            ))}
+          </div>
+          <p className="hm-note" style={{ textAlign:"left" }}>※製品や仕様によって流れが変わる場合がございます。</p>
         </div>
       </section>
 
-      {/* ── ご納品までの流れ ── */}
-      <section id="flow" style={{ padding:"5rem 1.5rem", background:C.white, position:"relative", overflow:"hidden" }}>
-        <div style={{ position:"absolute", top:0, left:0, right:0, height:1, background:`linear-gradient(to right,transparent,${C.accent}55,transparent)` }} />
-        <div style={{ maxWidth:900, margin:"0 auto", position:"relative", zIndex:1 }}>
-          <SectionHeading en="DELIVERY FLOW" ja="ご納品までの流れ" />
-
-          <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:0 }}>
-
-            <div className="flow-step" style={{ width:"100%", maxWidth:500, background:C.bg, border:`2px solid ${C.primary}`, padding:"1.5rem 2rem", textAlign:"center", position:"relative" }}>
-              <span style={{ position:"absolute", top:-12, left:20, background:C.accent, color:"#fff", fontSize:"0.7rem", padding:"0.15rem 0.6rem", letterSpacing:"0.1em" }}>STEP 01</span>
-              <h4 style={{ fontSize:"1.2rem", fontFamily:"serif", fontWeight:400, color:C.dark }}>ヒアリング</h4>
-              <p style={{ fontSize:"0.85rem", color:"#777", marginTop:"0.4rem" }}>ご要望・イメージをお伺いします</p>
-            </div>
-
-            <div style={{ width:2, height:30, background:C.accent }} />
-            <div style={{ width:0, height:0, borderLeft:"8px solid transparent", borderRight:"8px solid transparent", borderTop:`10px solid ${C.accent}` }} />
-
-            <div className="flow-step flow-step-wide" style={{ width:"100%", maxWidth:600, background:C.bg, border:`2px solid ${C.primary}`, padding:"1.5rem 2rem", textAlign:"center", position:"relative", marginTop:4 }}>
-              <span style={{ position:"absolute", top:-12, left:20, background:C.accent, color:"#fff", fontSize:"0.7rem", padding:"0.15rem 0.6rem", letterSpacing:"0.1em" }}>STEP 02</span>
-              <h4 style={{ fontSize:"1.2rem", fontFamily:"serif", fontWeight:400, color:C.dark }}>イメージ確認・ラフ案の作成</h4>
-              <p style={{ fontSize:"0.85rem", color:"#777", marginTop:"0.4rem" }}>ヒアリングをもとにデザインの方向性を決定します</p>
-            </div>
-
-            <div style={{ width:2, height:20, background:C.accent }} />
-            <div className="flow-branch" style={{ display:"flex", width:"100%", maxWidth:600, gap:"2rem", justifyContent:"center" }}>
-
-              <div style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", gap:0 }}>
-                <div style={{ width:0, height:0, borderLeft:"8px solid transparent", borderRight:"8px solid transparent", borderTop:`10px solid ${C.accent}` }} />
-                <div style={{ width:"100%", background:"#fff", border:`2px solid ${C.border}`, padding:"1rem", textAlign:"center", marginTop:4 }}>
-                  <p style={{ fontSize:"0.85rem", color:C.primary, fontWeight:700 }}>イメージの合致</p>
-                </div>
-                <div style={{ width:2, height:20, background:C.accent }} />
-                <div style={{ width:0, height:0, borderLeft:"8px solid transparent", borderRight:"8px solid transparent", borderTop:`10px solid ${C.accent}` }} />
-                <div style={{ width:"100%", background:"#fff", border:`2px solid ${C.border}`, padding:"1rem", textAlign:"center", marginTop:4 }}>
-                  <p style={{ fontSize:"0.85rem", color:C.dark }}>注文内容の確認</p>
-                </div>
-              </div>
-
-              <div style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", gap:0 }}>
-                <div style={{ width:0, height:0, borderLeft:"8px solid transparent", borderRight:"8px solid transparent", borderTop:`10px solid ${C.accent}` }} />
-                <div style={{ width:"100%", background:"#fff", border:`2px solid ${C.border}`, padding:"1rem", textAlign:"center", marginTop:4 }}>
-                  <p style={{ fontSize:"0.85rem", color:C.primary, fontWeight:700 }}>ご提案</p>
-                </div>
-                <div style={{ width:2, height:20, background:C.accent }} />
-                <div style={{ width:0, height:0, borderLeft:"8px solid transparent", borderRight:"8px solid transparent", borderTop:`10px solid ${C.accent}` }} />
-                <div style={{ width:"100%", background:"#fff", border:`2px solid ${C.border}`, padding:"1rem", textAlign:"center", marginTop:4 }}>
-                  <p style={{ fontSize:"0.85rem", color:C.dark }}>イメージの合致</p>
-                </div>
-                <div style={{ width:2, height:20, background:C.accent }} />
-                <div style={{ width:0, height:0, borderLeft:"8px solid transparent", borderRight:"8px solid transparent", borderTop:`10px solid ${C.accent}` }} />
-                <div style={{ width:"100%", background:"#fff", border:`2px solid ${C.border}`, padding:"1rem", textAlign:"center", marginTop:4 }}>
-                  <p style={{ fontSize:"0.85rem", color:C.dark }}>注文内容の確認</p>
-                </div>
-              </div>
-            </div>
-
-            <div style={{ width:2, height:30, background:C.accent, marginTop:4 }} />
-            <div style={{ width:0, height:0, borderLeft:"8px solid transparent", borderRight:"8px solid transparent", borderTop:`10px solid ${C.accent}` }} />
-
-            <div className="flow-step flow-step-wide" style={{ width:"100%", maxWidth:600, background:C.bg, border:`2px solid ${C.primary}`, padding:"1.5rem 2rem", textAlign:"center", position:"relative", marginTop:4 }}>
-              <span style={{ position:"absolute", top:-12, left:20, background:C.accent, color:"#fff", fontSize:"0.7rem", padding:"0.15rem 0.6rem", letterSpacing:"0.1em" }}>STEP 03</span>
-              <h4 style={{ fontSize:"1.2rem", fontFamily:"serif", fontWeight:400, color:C.dark }}>修正対応（最大4回まで）</h4>
-              <p style={{ fontSize:"0.85rem", color:"#777", marginTop:"0.4rem" }}>デザインの微調整を行います</p>
-            </div>
-
-            <div style={{ width:2, height:30, background:C.accent }} />
-            <div style={{ width:0, height:0, borderLeft:"8px solid transparent", borderRight:"8px solid transparent", borderTop:`10px solid ${C.accent}` }} />
-
-            <div className="flow-step" style={{ width:"100%", maxWidth:500, background:C.bg, border:`2px solid ${C.primary}`, padding:"1.5rem 2rem", textAlign:"center", position:"relative", marginTop:4 }}>
-              <span style={{ position:"absolute", top:-12, left:20, background:C.accent, color:"#fff", fontSize:"0.7rem", padding:"0.15rem 0.6rem", letterSpacing:"0.1em" }}>STEP 04</span>
-              <h4 style={{ fontSize:"1.2rem", fontFamily:"serif", fontWeight:400, color:C.dark }}>最終デザイン確認</h4>
-              <p style={{ fontSize:"0.85rem", color:"#777", marginTop:"0.4rem" }}>完成デザインを最終確認いただきます</p>
-            </div>
-
-            <div style={{ width:2, height:30, background:C.accent }} />
-            <div style={{ width:0, height:0, borderLeft:"8px solid transparent", borderRight:"8px solid transparent", borderTop:`10px solid ${C.accent}` }} />
-
-            <div className="flow-step" style={{ width:"100%", maxWidth:500, background:C.primary, padding:"1.5rem 2rem", textAlign:"center", position:"relative", marginTop:4 }}>
-              <span style={{ position:"absolute", top:-12, left:20, background:C.dark, color:"#fff", fontSize:"0.7rem", padding:"0.15rem 0.6rem", letterSpacing:"0.1em" }}>STEP 05</span>
-              <h4 style={{ fontSize:"1.3rem", fontFamily:"serif", fontWeight:400, color:"#fff" }}>ご納品</h4>
-              <p style={{ fontSize:"0.85rem", color:"rgba(255,255,255,0.8)", marginTop:"0.4rem" }}>完成データをお届けいたします</p>
-            </div>
-          </div>
-
-          <p style={{ textAlign:"center", color:C.accent, fontSize:"0.85rem", marginTop:"2.5rem", lineHeight:1.8 }}>※製品や仕様によって流れが変わる場合がございます。</p>
+      {/* ── CTA ── */}
+      <section className="hm-cta">
+        <div className="hm-cta-pattern"><YagasuriBg /></div>
+        <div style={{ position:"relative" }}>
+          <p className="hm-cta-title">まずは、想いをお聞かせください。</p>
+          <p className="hm-cta-sub">ご相談・お見積もりは、お気軽に。</p>
+          <button className="hm-btn hm-btn-white" onClick={() => scrollTo("contact")}>制作について相談する <IconArrowRight /></button>
         </div>
       </section>
 
       <section id="about" style={{ padding:"5rem 1.5rem", background:C.white, position:"relative", overflow:"hidden" }}>
         <div style={{ position:"absolute", top:0, left:0, right:0, height:1, background:`linear-gradient(to right,transparent,${C.accent}55,transparent)` }} />
         <div style={{ maxWidth:1200, margin:"0 auto", position:"relative" }}>
-          <SectionHeading en="ABOUT US" ja="会社概要" />
+          <HomeHeading en="ABOUT US" ja="会社概要" />
           <div className="about-grid" style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(300px,1fr))", gap:"4rem", alignItems:"center" }}>
             <div style={{ borderLeft:`4px solid ${C.accent}`, paddingLeft:"1.5rem" }}>
               <p style={{ fontSize:"0.75rem", color:C.accent, letterSpacing:"0.3em", marginBottom:"0.8rem" }}>MANAGEMENT PHILOSOPHY</p>
@@ -1336,7 +1281,7 @@ export default function App() {
         <div style={{ position:"absolute", top:0, left:0, right:0, height:1, background:`linear-gradient(to right,transparent,${C.accent}55,transparent)` }} />
         <div style={{ position:"absolute", inset:0, color:C.primary, opacity:0.04, pointerEvents:"none" }}><YagasuriBg /></div>
         <div style={{ maxWidth:1200, margin:"0 auto", position:"relative", zIndex:1 }}>
-          <SectionHeading en="ORIGIN OF NAME" ja="YOICHIの由来" />
+          <HomeHeading en="ORIGIN OF NAME" ja="YOICHIの由来" />
           <div style={{ maxWidth:900, margin:"0 auto 5rem", position:"relative" }}>
             <div style={{ position:"absolute", left:0, top:0, bottom:0, width:4, background:`linear-gradient(to bottom,${C.accent},${C.primary})` }} />
             <div className="origin-card" style={{ background:C.white, border:`1px solid ${C.border}`, padding:"3rem 3rem 3rem 3.5rem", position:"relative", overflow:"hidden" }}>
@@ -1395,10 +1340,10 @@ export default function App() {
         </div>
       </section>
 
-      <section id="sns" style={{ padding:"5rem 1.5rem", background:C.bg, position:"relative", overflow:"hidden" }}>
+      <section id="sns" style={{ padding:"5rem 1.5rem", background:"#faf8f4", position:"relative", overflow:"hidden" }}>
         <div style={{ position:"absolute", top:0, left:0, right:0, height:1, background:`linear-gradient(to right,transparent,${C.accent}55,transparent)` }} />
         <div style={{ maxWidth:1200, margin:"0 auto", position:"relative", zIndex:1 }}>
-          <SectionHeading en="FOLLOW US" ja="SNS" />
+          <HomeHeading en="FOLLOW US" ja="SNS" />
           <p style={{ textAlign:"center", color:C.textMuted, marginBottom:"3rem", lineHeight:1.9 }}>日々の制作風景やデザインの想いを発信しています。<br />ぜひフォローしてください。</p>
           <div className="sns-grid" style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:"2rem", maxWidth:1100, margin:"0 auto" }}>
             <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" onMouseEnter={() => setHoveredSns("ig")} onMouseLeave={() => setHoveredSns(null)} style={{ textDecoration:"none", display:"block" }}>
@@ -1438,7 +1383,7 @@ export default function App() {
       <section id="contact" style={{ padding:"5rem 1.5rem", background:C.white, position:"relative", overflow:"hidden" }}>
         <div style={{ position:"absolute", top:0, left:0, right:0, height:1, background:`linear-gradient(to right,transparent,${C.accent}55,transparent)` }} />
         <div style={{ maxWidth:1200, margin:"0 auto", position:"relative", zIndex:1 }}>
-          <SectionHeading en="CONTACT" ja="お問い合わせ" />
+          <HomeHeading en="CONTACT" ja="お問い合わせ" />
           <p style={{ textAlign:"center", color:"#555", maxWidth:600, margin:"0 auto 3rem", lineHeight:1.9 }}>ご相談、お見積もりなど、お気軽にお問い合わせくださいませ</p>
           <div className="contact-grid" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"3rem", alignItems:"start" }}>
             <div style={{ display:"flex", flexDirection:"column", gap:"1.5rem" }}>
@@ -1480,28 +1425,190 @@ export default function App() {
         </div>
       </section>
 
-      <footer style={{ background:C.dark, color:C.bg, padding:"3rem 1.5rem", position:"relative", overflow:"hidden" }}>
-        <div style={{ position:"absolute", top:0, left:0, right:0, height:1, background:`linear-gradient(to right,transparent,${C.accent},transparent)` }} />
-        <div style={{ position:"absolute", inset:0, color:C.primary, opacity:0.1 }}><YagasuriBg /></div>
-        <div style={{ maxWidth:1200, margin:"0 auto", position:"relative", display:"flex", flexDirection:"column", alignItems:"center", gap:"1.5rem" }}>
-          <div style={{ display:"flex", alignItems:"center", gap:"1rem" }}><YoichiMark size={52} dark={true} /><span style={{ fontSize:"1.8rem", letterSpacing:"0.2em", fontWeight:700 }}>YOICHI</span></div>
-          <p style={{ fontSize:"0.85rem", color:"#9ca3af", letterSpacing:"0.05em" }}>想いをカタチに、笑顔をそばに、繋がりを大切に</p>
-          <div className="footer-links" style={{ display:"flex", gap:"2rem", flexWrap:"wrap", justifyContent:"center" }}>
+      <footer className="hm-footer">
+        <div className="hm-wrap" style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:"1.4rem" }}>
+          <div className="hm-footer-brand">
+            <YoichiMark size={44} />
+            <span className="hm-footer-name">YOICHI</span>
+            <span className="hm-footer-rule" />
+            <span className="hm-footer-copy">想いをカタチに</span>
+          </div>
+          <div className="footer-links" style={{ display:"flex", gap:"1.6rem", flexWrap:"wrap", justifyContent:"center" }}>
             {[...navLinks,{ label:"お問い合わせ", id:"contact" }].map(l => (
-              <button key={l.id} onClick={() => scrollTo(l.id)} style={{ background:"none", border:"none", color:"#9ca3af", cursor:"pointer", fontSize:"0.85rem", letterSpacing:"0.12em", fontFamily:"inherit" }}>{l.label}</button>
+              <button key={l.id} onClick={() => scrollTo(l.id)} className="hm-footer-link">{l.label}</button>
             ))}
           </div>
-          <div style={{ display:"flex", gap:"1rem" }}>
+          <div style={{ display:"flex", gap:"0.8rem" }}>
             {[{ href:"https://www.instagram.com/", Icon:IconInstagram },{ href:"https://twitter.com/", Icon:IconTwitter },{ href:"https://www.tiktok.com/", Icon:IconTikTok }].map(({ href, Icon }) => (
-              <a key={href} href={href} target="_blank" rel="noopener noreferrer" style={{ width:36, height:36, background:"rgba(255,255,255,0.1)", borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center" }}><Icon color="#fff" size={16} /></a>
+              <a key={href} href={href} target="_blank" rel="noopener noreferrer" style={{ width:36, height:36, background:C.primary, borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center" }}><Icon color="#fff" size={16} /></a>
             ))}
           </div>
-          <div style={{ width:64, height:1, background:C.accent, opacity:0.4 }} />
-          <p style={{ fontSize:"0.8rem", color:"#6b7280", letterSpacing:"0.12em" }}>© 令和八年 YOICHI</p>
+          <p style={{ fontSize:"0.78rem", color:"#8a807a", letterSpacing:"0.12em" }}>© 令和八年 YOICHI</p>
         </div>
       </footer>
 
       <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&display=swap');
+        .hm{font-family:'Shippori Mincho','Hiragino Mincho ProN','Yu Mincho',serif;}
+        .hm-wrap{max-width:1160px;margin:0 auto;padding:0 1.5rem;width:100%;}
+        .hm img{display:block;}
+
+        /* ヘッダー */
+        .hm-header{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(250,248,244,0.95);backdrop-filter:blur(8px);border-bottom:1px solid #ebe3d8;}
+        .hm-nav{display:flex;align-items:center;justify-content:space-between;height:68px;}
+        .hm-logo{display:flex;align-items:center;gap:0.6rem;cursor:pointer;}
+        .hm-logo span{font-size:1.3rem;letter-spacing:0.28em;font-weight:500;}
+        .hm-navlink{background:none;border:none;cursor:pointer;font-family:inherit;font-size:0.85rem;letter-spacing:0.14em;color:#5a514c;transition:color .2s;}
+        .hm-navlink:hover{color:${C.accent};}
+
+        /* ボタン */
+        .hm-btn{display:inline-flex;align-items:center;justify-content:center;gap:0.6rem;padding:0.95rem 1.7rem;font-family:inherit;font-size:0.9rem;letter-spacing:0.14em;cursor:pointer;transition:all .25s;border:1px solid ${C.primary};}
+        .hm-btn-sm{padding:0.55rem 1.3rem;font-size:0.84rem;}
+        .hm-btn-fill{background:${C.primary};color:#fff;}
+        .hm-btn-fill:hover{background:${C.deep};border-color:${C.deep};}
+        .hm-btn-line{background:transparent;color:${C.primary};}
+        .hm-btn-line:hover{background:${C.primary};color:#fff;}
+        .hm-btn-white{background:#fff;color:${C.primary};border-color:#fff;padding:1rem 2.4rem;}
+        .hm-btn-white:hover{background:#f5eee8;}
+
+        /* ヒーロー */
+        .hm-hero{position:relative;overflow:hidden;background:linear-gradient(100deg,#f7f2ec 0%,#f3ece4 55%,#efe7dd 100%);padding:68px 0 0;}
+        .hm-hero-pattern{position:absolute;left:0;top:0;width:340px;height:100%;color:${C.primary};opacity:0.18;pointer-events:none;-webkit-mask-image:linear-gradient(to right,#000,transparent);mask-image:linear-gradient(to right,#000,transparent);}
+        .hm-hero-grid{position:relative;display:grid;grid-template-columns:1fr 1.05fr;gap:3rem;align-items:center;min-height:540px;padding-top:3.5rem;padding-bottom:3.5rem;}
+        .hm-eyebrow{display:flex;align-items:center;gap:1rem;font-size:0.7rem;letter-spacing:0.3em;color:#9a8f88;margin-bottom:1.1rem;}
+        .hm-eyebrow span{display:block;width:48px;height:1px;background:#b9aea6;}
+        .hm-hero-kicker{font-size:1.2rem;letter-spacing:0.18em;color:${C.dark};margin-bottom:0.6rem;}
+        .hm-hero-title{font-size:clamp(2.1rem,4.3vw,3.7rem);white-space:nowrap;font-weight:500;letter-spacing:0.04em;line-height:1.3;color:#2b2422;margin-bottom:1rem;}
+        .hm-hero-lead{font-size:clamp(1.05rem,1.8vw,1.35rem);letter-spacing:0.12em;color:#3d3533;margin-bottom:2.4rem;}
+        .hm-hero-btns{display:flex;flex-wrap:wrap;gap:1rem;}
+        .hm-hero-visual{position:relative;height:440px;}
+        .hm-hv{position:absolute;background:#fff;border:7px solid #fff;overflow:hidden;box-shadow:0 18px 40px rgba(60,40,30,0.16);}
+        .hm-hv img{width:100%;height:100%;object-fit:cover;}
+        .hm-hv-main{left:0;top:40px;width:62%;height:330px;z-index:2;}
+        .hm-hv-a{right:0;top:0;width:42%;height:230px;z-index:1;}
+        .hm-hv-b{right:5%;bottom:0;width:46%;height:200px;z-index:3;}
+
+        /* 見出し */
+        .hm-section{padding:5rem 0;background:#faf8f4;}
+        .hm-section-tight{padding-top:1rem;}
+        .hm-head{margin-bottom:2.2rem;}
+        .hm-en{font-size:0.68rem;letter-spacing:0.3em;color:${C.accent};margin-bottom:0.35rem;}
+        .hm-h2{font-size:clamp(1.7rem,3vw,2.2rem);font-weight:500;letter-spacing:0.12em;color:#2b2422;line-height:1.4;}
+        .hm-h3{font-size:clamp(1.4rem,2.4vw,1.8rem);font-weight:500;letter-spacing:0.12em;color:#2b2422;margin:3.5rem 0 1.6rem;}
+        .hm-note{text-align:center;color:#857a74;font-size:0.85rem;letter-spacing:0.08em;margin-top:2rem;}
+
+        /* サービス */
+        .hm-svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;}
+        .hm-svc{display:grid;grid-template-columns:47% 1fr;background:#fff;border:1px solid #ece4d9;cursor:pointer;transition:box-shadow .3s,transform .3s;}
+        .hm-svc:hover{box-shadow:0 14px 34px rgba(60,40,30,0.1);transform:translateY(-3px);}
+        .hm-svc-img{position:relative;overflow:hidden;min-height:230px;background:#f1ebe3;}
+        .hm-svc-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s;}
+        
+        .hm-svc-body{padding:1.5rem 1.4rem;display:flex;flex-direction:column;}
+        .hm-svc-body h3{font-size:1.12rem;font-weight:500;letter-spacing:0.08em;color:#2b2422;margin-bottom:0.45rem;}
+        .hm-svc-tags{font-size:0.8rem;color:#7a706a;letter-spacing:0.08em;margin-bottom:0.9rem;}
+        .hm-svc-tags button{background:none;border:none;padding:0;font:inherit;color:inherit;cursor:pointer;border-bottom:1px solid transparent;}
+        .hm-svc-tags button:hover{color:${C.accent};border-bottom-color:${C.accent};}
+        .hm-svc-desc{font-size:0.84rem;line-height:1.95;color:#5a514c;margin-bottom:1.1rem;flex:1;}
+        .hm-more{display:inline-flex;align-items:center;gap:0.6rem;font-size:0.82rem;letter-spacing:0.14em;color:${C.primary};}
+        .hm-arrow{transition:transform .25s;}
+        .hm-svc:hover .hm-arrow{transform:translateX(4px);}
+
+        /* サンプル */
+        .hm-sample-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;}
+        .hm-sample{cursor:pointer;}
+        .hm-sample-img{position:relative;aspect-ratio:16/10;overflow:hidden;background:#f1ebe3;}
+        .hm-sample-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s;}
+        .hm-sample:hover .hm-sample-img img{transform:scale(1.04);}
+        .hm-sample-tag{position:absolute;top:10px;left:10px;z-index:1;background:${C.primary};color:#fff;font-size:0.66rem;letter-spacing:0.22em;padding:0.3rem 0.7rem;}
+        .hm-sample-foot{display:flex;align-items:center;justify-content:space-between;padding:0.9rem 0.1rem;font-size:1rem;letter-spacing:0.14em;color:#2b2422;}
+        .hm-long-arrow{position:relative;display:inline-block;width:34px;height:1px;background:${C.primary};transition:width .3s;}
+        .hm-long-arrow::after{content:"";position:absolute;right:0;top:-3px;width:8px;height:1px;background:${C.primary};transform:rotate(35deg);transform-origin:right;}
+        .hm-sample:hover .hm-long-arrow,.hm-brand:hover .hm-long-arrow{width:46px;}
+
+        /* FOCUS */
+        .hm-brand{cursor:pointer;background:linear-gradient(100deg,#f4f0ea 0%,#ece7e0 100%);border-top:1px solid #e6ded3;border-bottom:1px solid #e6ded3;overflow:hidden;}
+        .hm-brand-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:3rem;align-items:center;min-height:340px;padding-top:3rem;padding-bottom:3rem;}
+        .hm-brand-label{font-size:0.9rem;letter-spacing:0.22em;color:#5a514c;margin-bottom:1.2rem;}
+        .hm-brand-logo{width:min(300px,80%);margin-left:-18px;height:auto;margin-bottom:0.9rem;}
+        .hm-brand-tagline{font-family:'Helvetica Neue',Arial,sans-serif;font-weight:300;font-size:0.95rem;letter-spacing:0.14em;color:#444;margin-bottom:0.5rem;}
+        .hm-brand-copy{font-size:1rem;letter-spacing:0.12em;color:#3d3533;margin-bottom:1.4rem;}
+        .hm-brand-visual{position:relative;height:280px;}
+        .hm-brand-symbol{position:absolute;left:4%;top:20px;width:210px;height:210px;background:#fff;box-shadow:0 16px 36px rgba(0,0,0,0.12);display:flex;align-items:center;justify-content:center;transform:rotate(-4deg);}
+        .hm-brand-symbol img{width:72%;height:72%;object-fit:contain;}
+        .hm-brand-tag{position:absolute;left:44%;top:8px;width:120px;height:230px;background:#fbfaf7;border:1px solid #ddd5ca;box-shadow:0 12px 26px rgba(0,0,0,0.12);transform:rotate(7deg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.9rem;z-index:2;}
+        .hm-brand-hole{position:absolute;top:14px;left:50%;width:12px;height:12px;margin-left:-6px;border-radius:50%;border:1px solid #c9bfb3;background:#ece7e0;}
+        .hm-brand-tag img{width:84px;height:auto;}
+        .hm-brand-tag p{white-space:nowrap;font-family:'Helvetica Neue',Arial,sans-serif;font-size:0.5rem;letter-spacing:0.3em;color:#777;}
+        .hm-brand-box{position:absolute;right:0;bottom:6px;width:42%;height:180px;background:#141414;box-shadow:0 18px 40px rgba(0,0,0,0.25);display:flex;align-items:flex-end;justify-content:flex-end;padding:1rem;}
+        .hm-brand-box p{font-family:'Helvetica Neue',Arial,sans-serif;font-weight:300;color:#bbb;font-size:0.62rem;letter-spacing:0.35em;}
+
+        /* 料金・流れ */
+        .hm-info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;}
+        .hm-info{display:flex;align-items:center;gap:1.2rem;background:#fff;border:1px solid #ece4d9;padding:1.4rem 1.6rem;}
+        .hm-info-icon{color:${C.primary};flex-shrink:0;display:flex;}
+        .hm-info-title{font-size:1rem;letter-spacing:0.12em;color:#2b2422;margin-bottom:0.2rem;}
+        .hm-info-text{font-size:0.84rem;color:#6f6660;letter-spacing:0.06em;}
+        .hm-flow-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem;}
+        .hm-flow-head{position:relative;display:flex;align-items:center;gap:0.8rem;margin-bottom:0.8rem;}
+        .hm-flow-no{width:50px;height:50px;border-radius:50%;background:#fff;border:1px solid #eadfd3;display:flex;align-items:center;justify-content:center;color:${C.accent};font-size:1.15rem;flex-shrink:0;box-shadow:0 4px 12px rgba(139,79,71,0.08);}
+        .hm-flow-title{font-size:1.02rem;letter-spacing:0.1em;color:#2b2422;white-space:nowrap;}
+        .hm-flow-line{flex:1;height:1px;background:#d9cfc3;min-width:16px;}
+        .hm-flow-desc{font-size:0.8rem;line-height:1.9;color:#6f6660;padding-left:62px;}
+
+        /* CTA */
+        .hm-cta{position:relative;overflow:hidden;background:${C.primary};text-align:center;padding:3.6rem 1.5rem;}
+        .hm-cta-pattern{position:absolute;inset:0;color:#fff;opacity:0.12;pointer-events:none;}
+        .hm-cta-title{font-size:clamp(1.3rem,2.8vw,1.9rem);color:#fff;letter-spacing:0.14em;margin-bottom:0.6rem;font-weight:500;}
+        .hm-cta-sub{font-size:0.9rem;color:rgba(255,255,255,0.85);letter-spacing:0.12em;margin-bottom:1.8rem;}
+
+        /* フッター */
+        .hm-footer{background:#faf8f4;border-top:1px solid #ebe3d8;padding:3rem 0 2.4rem;}
+        .hm-footer-brand{display:flex;align-items:center;gap:0.9rem;flex-wrap:wrap;justify-content:center;}
+        .hm-footer-name{font-size:1.25rem;letter-spacing:0.3em;}
+        .hm-footer-rule{width:40px;height:1px;background:#b9aea6;}
+        .hm-footer-copy{font-size:0.88rem;letter-spacing:0.16em;color:#5a514c;}
+        .hm-footer-link{background:none;border:none;cursor:pointer;font-family:inherit;font-size:0.82rem;letter-spacing:0.12em;color:#7a706a;}
+        .hm-footer-link:hover{color:${C.accent};}
+
+        @media(max-width:960px){
+          .hm-hero-grid{grid-template-columns:1fr;gap:2.5rem;min-height:0;padding-top:2.5rem;}
+          .hm-hero-visual{height:360px;max-width:560px;width:100%;margin:0 auto;}
+          .hm-hv-main{height:270px;}
+          .hm-hv-a{height:190px;}
+          .hm-hv-b{height:160px;}
+          .hm-svc-grid{grid-template-columns:1fr;}
+          .hm-brand-grid{grid-template-columns:1fr;gap:2rem;}
+          .hm-brand-visual{max-width:520px;width:100%;}
+          .hm-flow-grid{grid-template-columns:1fr 1fr;row-gap:2rem;}
+          .hm-flow-line{display:none;}
+        }
+        @media(max-width:768px){
+          .hm-section{padding:3.5rem 0;}
+          .hm-section-tight{padding-top:0.5rem;}
+          .hm-hero-visual{height:290px;}
+          .hm-hv{border-width:5px;}
+          .hm-hv-main{top:28px;height:215px;width:64%;}
+          .hm-hv-a{height:150px;width:42%;}
+          .hm-hv-b{height:130px;width:48%;right:2%;}
+          .hm-svc{grid-template-columns:1fr;}
+          .hm-svc-img{min-height:190px;}
+          .hm-svc-body{padding:1.1rem 1rem;}
+          .hm-svc-body h3{font-size:1rem;}
+          .hm-svc-desc{font-size:0.8rem;line-height:1.8;}
+          .hm-sample-grid{grid-template-columns:1fr;gap:1rem;}
+          .hm-info-grid{grid-template-columns:1fr;gap:0.8rem;}
+          .hm-flow-grid{grid-template-columns:1fr;row-gap:1.2rem;}
+          .hm-brand-visual{height:230px;}
+          .hm-brand-symbol{width:160px;height:160px;left:0;top:24px;}
+          .hm-brand-tag{width:96px;height:190px;left:40%;}
+          .hm-brand-tag img{width:68px;}
+          .hm-brand-tag p{letter-spacing:0.18em;font-size:0.45rem;}
+          .hm-brand-box{width:40%;height:140px;padding:0.7rem;}
+          .hm-brand-box p{letter-spacing:0.18em;font-size:0.5rem;}
+          .hm-cta-title{font-size:1.12rem;letter-spacing:0.06em;}
+          .hm-cta-sub{font-size:0.82rem;}
+        }
         html{scroll-behavior:smooth;}
         *{box-sizing:border-box;margin:0;padding:0;}
         ::placeholder{color:#aaa;}
